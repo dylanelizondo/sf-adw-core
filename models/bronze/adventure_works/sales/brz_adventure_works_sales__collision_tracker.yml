@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__collision_tracker
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.COLLISION_TRACKER, exposed one to one with no
+        transformations. Log of fleet vehicle collisions. Table added on top of the original
+        AdventureWorks model for safety analytics; it is not part of the standard schema.
+    columns:
+      - name: incident_number
+        description: "PK. Collision incident number."
+      - name: service_area
+        description: "Service area where the collision happened."
+      - name: driver_last_name
+        description: "Family name of the driver involved. Sensitive data (PII)."
+      - name: driver_first_name
+        description: "Given name of the driver involved. Sensitive data (PII)."
+      - name: incident_date
+        description: "Date the collision happened."
+      - name: incident_title
+        description: "Short title summarising the incident."
+      - name: day_of_week
+        description: "Day of the week the collision happened."
+      - name: time_of_day
+        description: "Time band in which the collision happened."
+      - name: conclusion
+        description: "Conclusion of the incident investigation."
+      - name: collision_type
+        description: "Type of collision recorded."
+      - name: collision_initiated_by
+        description: "Party that initiated the collision."
+      - name: vehicle_activity_at_collision
+        description: "Manoeuvre the vehicle was performing at the moment of impact."
+      - name: mph_at_collision
+        description: "Estimated speed in miles per hour at the moment of impact."
+      - name: cdl_holder
+        description: "Whether the driver holds a commercial drivers license (CDL)."
+      - name: collision_location
+        description: "Location where the collision happened."
+      - name: safety_professional
+        description: "Safety professional who handled the case."
+      - name: territory
+        description: "Operating territory the collision was reported in."
+      - name: kore_camera_assisted
+        description: "Whether KORE camera footage was available to support the analysis."
+      - name: notes
+        description: "Free-form investigator notes about the incident."

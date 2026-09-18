@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__person
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.PERSON, exposed one to one with no transformations.
+        Naming data for every person in the model: individual customers, employees and contacts.
+        PERSON_TYPE states the role each person plays. Contains PII.
+    columns:
+      - name: business_entity_id
+        description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the person."
+      - name: person_type
+        description: "Role of the person: SC (store contact), IN (individual customer), SP (sales person), EM (employee), VC (vendor contact), GC (general contact)."
+      - name: name_style
+        description: "0 when the name follows Western order (first name first), 1 when it follows Eastern order."
+      - name: title
+        description: "Courtesy title (Mr., Ms. and so on). Null when not captured."
+      - name: first_name
+        description: "Given name. Sensitive data (PII)."
+      - name: middle_name
+        description: "Middle name or initial. Sensitive data (PII)."
+      - name: last_name
+        description: "Family name. Sensitive data (PII)."
+      - name: suffix
+        description: "Name suffix (Jr., III and so on)."
+      - name: email_promotion
+        description: "Marketing preference: 0 = do not contact, 1 = AdventureWorks only, 2 = AdventureWorks and partners."
+      - name: additional_contact_info
+        description: "Additional contact information as XML, exactly as delivered by the source."
+      - name: demographics
+        description: "Demographic attributes of the person as XML, exactly as delivered by the source."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

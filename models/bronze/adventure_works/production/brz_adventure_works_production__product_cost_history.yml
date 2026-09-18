@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_cost_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_COST_HISTORY, exposed one to one with no
+        transformations. History of standard cost per product. Grain: product + effective start
+        date.
+    columns:
+      - name: product_id
+        description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product the cost applies to."
+      - name: start_date
+        description: "Part of the PK. Date the cost became effective."
+      - name: end_date
+        description: "Date the record stopped being effective. Null while it is still current."
+      - name: standard_cost
+        description: "Standard cost in force during the period."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

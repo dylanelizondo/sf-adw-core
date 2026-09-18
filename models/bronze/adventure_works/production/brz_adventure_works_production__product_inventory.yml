@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_inventory
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_INVENTORY, exposed one to one with no
+        transformations. Stock on hand per product and location, including its physical position in
+        the warehouse. Grain: product + location.
+    columns:
+      - name: product_id
+        description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product held in stock."
+      - name: location_id
+        description: "Part of the PK and FK to PRODUCTION.LOCATION. Location where it is stored."
+      - name: shelf
+        description: "Shelf where the product is stored."
+      - name: bin
+        description: "Bin within the shelf."
+      - name: quantity
+        description: "Units on hand at that location."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

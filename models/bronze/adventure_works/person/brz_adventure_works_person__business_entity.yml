@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__business_entity
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.BUSINESS_ENTITY, exposed one to one with no
+        transformations. Root table that assigns a universal identifier to every business entity
+        (person, store or vendor). It is the join point across the PERSON, SALES and PURCHASING
+        schemas.
+    columns:
+      - name: business_entity_id
+        description: "PK. Universal identifier of the business entity."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -37,6 +37,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   adw_core:
+    # Push the descriptions from the .yml files into Snowflake as COMMENTs.
+    # Without this, dbt keeps descriptions in the manifest only and the views/tables
+    # land in the database with no comment at all.
+    #   relation -> COMMENT on the view/table
+    #   columns  -> COMMENT on every column
+    +persist_docs:
+      relation: true
+      columns: true
+
     # Applies to all files under models/example/
     bronze:
       +database: "{{ env_var('DBT_DB_ADW_BRONZE') }}"

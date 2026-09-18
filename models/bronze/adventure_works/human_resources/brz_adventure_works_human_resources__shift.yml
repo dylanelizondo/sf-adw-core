@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__shift
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.SHIFT, exposed one to one with no
+        transformations. Lookup of work shifts with their time window.
+    columns:
+      - name: shift_id
+        description: "PK. Unique identifier of the shift."
+      - name: name
+        description: "Shift name (Day, Evening, Night)."
+      - name: start_time
+        description: "Time the shift starts."
+      - name: end_time
+        description: "Time the shift ends."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

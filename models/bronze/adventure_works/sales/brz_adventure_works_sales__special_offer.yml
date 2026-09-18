@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__special_offer
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER, exposed one to one with no
+        transformations. Lookup of promotions and discounts, with validity dates and the quantity
+        range they apply to.
+    columns:
+      - name: special_offer_id
+        description: "PK. Unique identifier of the promotion."
+      - name: description
+        description: "Description of the promotion."
+      - name: discount_pct
+        description: "Discount percentage granted by the promotion."
+      - name: type
+        description: "Promotion type (for example Volume Discount, Discontinued Product)."
+      - name: category
+        description: "Audience the promotion targets: Reseller or Customer."
+      - name: start_date
+        description: "Date the record became effective."
+      - name: end_date
+        description: "Date the record stopped being effective. Null while it is still current."
+      - name: min_qty
+        description: "Minimum quantity for the promotion to apply."
+      - name: max_qty
+        description: "Maximum quantity the promotion applies up to. Null when there is no cap."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

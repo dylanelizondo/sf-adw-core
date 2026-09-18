@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__address
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS, exposed one to one with no transformations.
+        Physical addresses used by customers, employees, stores and vendors. Linked to business
+        entities through BUSINESS_ENTITY_ADDRESS.
+    columns:
+      - name: address_id
+        description: "PK. Unique identifier of the address."
+      - name: address_line1
+        description: "First line of the address (street and number)."
+      - name: address_line2
+        description: "Second line of the address (apartment, suite). Null when not applicable."
+      - name: city
+        description: "City of the address."
+      - name: state_province_id
+        description: "FK to PERSON.STATE_PROVINCE. State or province of the record."
+      - name: postal_code
+        description: "Postal code of the address."
+      - name: spatial_location
+        description: "Geographic coordinate of the address (source geography type)."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

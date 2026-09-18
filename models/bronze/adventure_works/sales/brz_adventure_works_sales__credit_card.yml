@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__credit_card
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.CREDIT_CARD, exposed one to one with no
+        transformations. Credit cards registered for payment, with their brand and expiry. Holds
+        sensitive payment data: restrict how far it propagates into consumption layers.
+    columns:
+      - name: credit_card_id
+        description: "PK. Unique identifier of the credit card."
+      - name: card_type
+        description: "Card brand (Vista, SuperiorCard, Distinguish, ColonialVoice)."
+      - name: card_number
+        description: "Card number. Highly sensitive data."
+      - name: exp_month
+        description: "Expiry month of the card."
+      - name: exp_year
+        description: "Expiry year of the card."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

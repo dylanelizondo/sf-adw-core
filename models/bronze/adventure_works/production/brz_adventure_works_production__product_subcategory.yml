@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_subcategory
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_SUBCATEGORY, exposed one to one with no
+        transformations. Lookup of product subcategories: the level between category and product.
+    columns:
+      - name: product_subcategory_id
+        description: "PK. Unique identifier of the subcategory."
+      - name: product_category_id
+        description: "FK to PRODUCTION.PRODUCT_CATEGORY. Category of the product."
+      - name: name
+        description: "Name of the subcategory (for example Mountain Bikes, Road Frames)."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

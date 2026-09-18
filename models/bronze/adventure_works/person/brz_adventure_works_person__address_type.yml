@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__address_type
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS_TYPE, exposed one to one with no
+        transformations. Lookup of address types (Billing, Home, Shipping and so on).
+    columns:
+      - name: address_type_id
+        description: "PK. Unique identifier of the address type."
+      - name: name
+        description: "Name of the address type."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

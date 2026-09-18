@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__employee_pay_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_PAY_HISTORY, exposed one to one
+        with no transformations. History of pay rates per employee. Grain: employee + rate change
+        date.
+    columns:
+      - name: business_entity_id
+        description: "Part of the PK and FK to HUMAN_RESOURCES.EMPLOYEE. Employee the rate applies to."
+      - name: rate_change_date
+        description: "Part of the PK. Date the rate became effective."
+      - name: rate
+        description: "Hourly pay rate effective from RATE_CHANGE_DATE."
+      - name: pay_frequency
+        description: "Pay frequency: 1 = monthly, 2 = biweekly."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_purchasing__vendor
+    description: >
+        Bronze view over ADVENTURE_WORKS.PURCHASING.VENDOR, exposed one to one with no
+        transformations. Company vendors with their credit rating and preferred status.
+    columns:
+      - name: business_entity_id
+        description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the vendor."
+      - name: account_number
+        description: "Vendor account number."
+      - name: name
+        description: "Legal name of the vendor."
+      - name: credit_rating
+        description: "Credit rating from 1 (best) to 5 (worst)."
+      - name: preferred_vendor_status
+        description: "1 when the vendor is preferred, 0 when not."
+      - name: active_flag
+        description: "1 when the company still buys from this vendor, 0 when not."
+      - name: purchasing_web_service_url
+        description: "URL of the vendor purchasing web service."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."
