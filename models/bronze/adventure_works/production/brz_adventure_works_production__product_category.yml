@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_category
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_CATEGORY, exposed one to one with no
+        transformations. Lookup of product categories: the top level of the product hierarchy.
+    columns:
+      - name: product_category_id
+        description: "PK. Unique identifier of the category."
+      - name: name
+        description: "Name of the category (Bikes, Components, Clothing, Accessories)."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_order_header
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER, exposed one to one with no
+        transformations. Header of sales orders: customer, salesperson, territory, addresses,
+        amounts and dates. Grain: one row per sales order.
+    columns:
+      - name: sales_order_id
+        description: "PK. Unique identifier of the sales order."
+      - name: revision_number
+        description: "Revision number of the document. Incremented on every change."
+      - name: order_date
+        description: "Date the order was placed."
+      - name: due_date
+        description: "Date the delivery was promised for."
+      - name: ship_date
+        description: "Date the document was shipped. Null while it has not shipped."
+      - name: status
+        description: "Order status: 1 = in process, 2 = approved, 3 = backordered, 4 = rejected, 5 = shipped, 6 = cancelled."
+      - name: online_order_flag
+        description: "1 when the order was placed online, 0 when a salesperson placed it."
+      - name: sales_order_number
+        description: "Sales order number shown to the customer."
+      - name: purchase_order_number
+        description: "Purchase order number the customer assigned to the sale."
+      - name: account_number
+        description: "Accounting account number tied to the sale."
+      - name: customer_id
+        description: "FK to SALES.CUSTOMER. Customer the record belongs to."
+      - name: sales_person_id
+        description: "FK to SALES.SALES_PERSON. Assigned salesperson."
+      - name: territory_id
+        description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+      - name: bill_to_address_id
+        description: "FK to PERSON.ADDRESS. Billing address."
+      - name: ship_to_address_id
+        description: "FK to PERSON.ADDRESS. Shipping address."
+      - name: ship_method_id
+        description: "FK to PURCHASING.SHIP_METHOD. Shipping method used."
+      - name: credit_card_id
+        description: "FK to SALES.CREDIT_CARD. Credit card associated with the record."
+      - name: credit_card_approval_code
+        description: "Approval code returned by the card processor."
+      - name: currency_rate_id
+        description: "FK to SALES.CURRENCY_RATE. Exchange rate applied. Null for sales in local currency."
+      - name: sub_total
+        description: "Document subtotal before tax and freight."
+      - name: tax_amt
+        description: "Tax amount charged on the document."
+      - name: freight
+        description: "Freight cost charged on the document."
+      - name: total_due
+        description: "Total amount due on the document (subtotal + tax + freight)."
+      - name: comment
+        description: "Free-form comment captured on the order."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

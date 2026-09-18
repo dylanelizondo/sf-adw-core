@@ -1,0 +1,59 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT, exposed one to one with no
+        transformations. Master product catalog: commercial, physical and cost attributes plus the
+        selling window. It is the base product dimension for the whole model.
+    columns:
+      - name: product_id
+        description: "PK. Unique identifier of the product."
+      - name: name
+        description: "Commercial name of the product."
+      - name: product_number
+        description: "Product code used in catalogs and documents."
+      - name: make_flag
+        description: "1 when the product is manufactured in house, 0 when it is purchased."
+      - name: finished_goods_flag
+        description: "1 when the product is sellable, 0 when it is a component."
+      - name: color
+        description: "Color of the product. Null when not applicable."
+      - name: safety_stock_level
+        description: "Minimum safety stock level."
+      - name: reorder_point
+        description: "Inventory level that triggers replenishment."
+      - name: standard_cost
+        description: "Standard cost of the product."
+      - name: list_price
+        description: "Current list price of the product."
+      - name: size
+        description: "Size of the product, expressed in SIZE_UNIT_MEASURE_CODE."
+      - name: size_unit_measure_code
+        description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the size."
+      - name: weight_unit_measure_code
+        description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the weight."
+      - name: weight
+        description: "Weight of the product, expressed in WEIGHT_UNIT_MEASURE_CODE."
+      - name: days_to_manufacture
+        description: "Days required to manufacture the product."
+      - name: product_line
+        description: "Product line: R (Road), M (Mountain), T (Touring), S (Standard)."
+      - name: class
+        description: "Quality classification: H (high), M (medium), L (low)."
+      - name: style
+        description: "Product style: W (womens), M (mens), U (universal)."
+      - name: product_subcategory_id
+        description: "FK to PRODUCTION.PRODUCT_SUBCATEGORY. Subcategory of the product."
+      - name: product_model_id
+        description: "Identifier of the product model in the source system."
+      - name: sell_start_date
+        description: "Date the product became available for sale."
+      - name: sell_end_date
+        description: "Date the product stopped being sold. Null while it is still on sale."
+      - name: discontinued_date
+        description: "Date the product was discontinued. Null when it was not discontinued."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

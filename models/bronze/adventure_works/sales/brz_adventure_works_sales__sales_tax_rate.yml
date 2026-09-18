@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_tax_rate
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_TAX_RATE, exposed one to one with no
+        transformations. Tax rates by state or province and tax type.
+    columns:
+      - name: sales_tax_rate_id
+        description: "PK. Unique identifier of the tax rate."
+      - name: state_province_id
+        description: "FK to PERSON.STATE_PROVINCE. State or province of the record."
+      - name: tax_type
+        description: "Tax type: 1 = shipping only, 2 = state only, 3 = both."
+      - name: tax_rate
+        description: "Applicable tax rate, as a percentage."
+      - name: name
+        description: "Descriptive name of the tax rate."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

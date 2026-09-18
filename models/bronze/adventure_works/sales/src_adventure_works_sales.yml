@@ -1,0 +1,81 @@
+version: 2
+
+sources:
+  - name: adventure_works_sales
+    description: >
+        AdventureWorks sales schema: customers, stores, salespeople, territories, promotions,
+        currencies and sales orders with their detail lines. Also holds the COLLISION_TRACKER and
+        INJURY_TRACKER safety tables, which were added outside the standard model.
+    database: ADVENTURE_WORKS
+    schema: SALES
+    tables:
+      - name: collision_tracker
+        description: >
+            Log of fleet vehicle collisions. Table added on top of the original AdventureWorks model
+            for safety analytics; it is not part of the standard schema.
+      - name: country_region_currency
+        description: >
+            Bridge stating which currencies are used in each country or region. Grain: country +
+            currency.
+      - name: credit_card
+        description: >
+            Credit cards registered for payment, with their brand and expiry. Holds sensitive
+            payment data: restrict how far it propagates into consumption layers.
+      - name: currency
+        description: >
+            Lookup of currencies identified by ISO code.
+      - name: currency_rate
+        description: >
+            Daily exchange rates between currency pairs. Grain: date + from currency + to currency.
+      - name: customer
+        description: >
+            Company customers. PERSON_ID identifies retail buyers and STORE_ID identifies reseller
+            stores; the two are mutually exclusive.
+      - name: injury_tracker
+        description: >
+            Log of workplace injuries and safety events with their OSHA classification. Table added
+            on top of the original AdventureWorks model for safety analytics; it is not part of the
+            standard schema.
+      - name: person_credit_card
+        description: >
+            Bridge between people and their credit cards. Grain: person + credit card.
+      - name: sales_order_detail
+        description: >
+            Sales order lines with product, quantity, price and discount applied. It is the finest
+            grain sales fact table and the highest volume table in the schema.
+      - name: sales_order_header
+        description: >
+            Header of sales orders: customer, salesperson, territory, addresses, amounts and dates.
+            Grain: one row per sales order.
+      - name: sales_order_header_sales_reason
+        description: >
+            Bridge between sales orders and the recorded reasons for the purchase. An order may
+            carry several reasons. Grain: order + reason.
+      - name: sales_person
+        description: >
+            Salespeople with their quota, commission and accumulated performance. Extends
+            HUMAN_RESOURCES.EMPLOYEE with sales specific attributes.
+      - name: sales_tax_rate
+        description: >
+            Tax rates by state or province and tax type.
+      - name: sales_territory
+        description: >
+            Sales territories with their accumulated sales and cost. It is the commercial geography
+            dimension of the model.
+      - name: sales_territory_history
+        description: >
+            History of salesperson assignments to territory. Grain: salesperson + territory + start
+            date.
+      - name: shopping_cart_item
+        description: >
+            Items sitting in online shopping carts that have not yet been turned into an order.
+      - name: special_offer
+        description: >
+            Lookup of promotions and discounts, with validity dates and the quantity range they
+            apply to.
+      - name: special_offer_product
+        description: >
+            Bridge between promotions and the products they apply to. Grain: promotion + product.
+      - name: store
+        description: >
+            Reseller stores that buy from AdventureWorks, with the salesperson who serves them.

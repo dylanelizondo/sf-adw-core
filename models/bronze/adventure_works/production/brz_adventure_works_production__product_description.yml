@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_description
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DESCRIPTION, exposed one to one with no
+        transformations. Product marketing copy, reusable across models and translatable by culture.
+    columns:
+      - name: product_description_id
+        description: "PK. Unique identifier of the description."
+      - name: description
+        description: "Marketing copy for the product."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

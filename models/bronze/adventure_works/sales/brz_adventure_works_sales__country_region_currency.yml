@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__country_region_currency
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.COUNTRY_REGION_CURRENCY, exposed one to one with no
+        transformations. Bridge stating which currencies are used in each country or region. Grain:
+        country + currency.
+    columns:
+      - name: country_region_code
+        description: "FK to PERSON.COUNTRY_REGION. ISO code of the country or region."
+      - name: currency_code
+        description: "FK to SALES.CURRENCY. ISO code of the currency."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

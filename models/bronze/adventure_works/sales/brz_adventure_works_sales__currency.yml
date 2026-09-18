@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__currency
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.CURRENCY, exposed one to one with no transformations.
+        Lookup of currencies identified by ISO code.
+    columns:
+      - name: currency_code
+        description: "PK. ISO code of the currency."
+      - name: name
+        description: "Name of the currency."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

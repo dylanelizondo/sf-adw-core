@@ -1,0 +1,28 @@
+version: 2
+
+sources:
+  - name: adventure_works_purchasing
+    description: >
+        AdventureWorks purchasing schema: vendors, commercial terms per product and purchase orders
+        with their detail lines.
+    database: ADVENTURE_WORKS
+    schema: PURCHASING
+    tables:
+      - name: product_vendor
+        description: >
+            Commercial terms for each product with each vendor that supplies it. Grain: product +
+            vendor.
+      - name: purchase_order_detail
+        description: >
+            Purchase order lines, with ordered, received, rejected and stocked quantities. Grain:
+            one row per purchase order line.
+      - name: purchase_order_header
+        description: >
+            Header of purchase orders placed with vendors, including amounts, status and dates.
+            Grain: one row per purchase order.
+      - name: ship_method
+        description: >
+            Lookup of shipping methods with their base and variable rates.
+      - name: vendor
+        description: >
+            Company vendors with their credit rating and preferred status.

@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__bill_of_materials
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.BILL_OF_MATERIALS, exposed one to one with no
+        transformations. Bill of materials: recursive relationship between an assembly and its
+        components, with validity dates. A null PRODUCT_ASSEMBLY_ID marks the root of the structure.
+    columns:
+      - name: bill_of_materials_id
+        description: "PK. Unique identifier of the bill of materials line."
+      - name: product_assembly_id
+        description: "FK to PRODUCTION.PRODUCT. Parent product (assembly). Null at the root of the structure."
+      - name: component_id
+        description: "FK to PRODUCTION.PRODUCT. Child product consumed by the assembly."
+      - name: start_date
+        description: "Date the record became effective."
+      - name: end_date
+        description: "Date the record stopped being effective. Null while it is still current."
+      - name: unit_measure_code
+        description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure code."
+      - name: bomlevel
+        description: "Depth of the component within the structure."
+      - name: per_assembly_qty
+        description: "Quantity of the component required per assembly."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

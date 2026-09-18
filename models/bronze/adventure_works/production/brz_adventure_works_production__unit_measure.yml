@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__unit_measure
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.UNIT_MEASURE, exposed one to one with no
+        transformations. Lookup of units of measure used across product, purchasing and bill of
+        materials.
+    columns:
+      - name: unit_measure_code
+        description: "PK. Code of the unit of measure."
+      - name: name
+        description: "Name of the unit of measure."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

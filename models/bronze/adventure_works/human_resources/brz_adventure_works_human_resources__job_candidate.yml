@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__job_candidate
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.JOB_CANDIDATE, exposed one to one with no
+        transformations. Candidates for open positions, with their resume stored as XML.
+        BUSINESS_ENTITY_ID is only populated once the candidate has been hired.
+    columns:
+      - name: job_candidate_id
+        description: "PK. Unique identifier of the candidate."
+      - name: business_entity_id
+        description: "FK to HUMAN_RESOURCES.EMPLOYEE. Null while the candidate has not been hired."
+      - name: resume
+        description: "Candidate resume as XML, exactly as delivered by the source."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

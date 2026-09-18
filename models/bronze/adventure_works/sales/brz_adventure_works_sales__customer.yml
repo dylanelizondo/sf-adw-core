@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__customer
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.CUSTOMER, exposed one to one with no transformations.
+        Company customers. PERSON_ID identifies retail buyers and STORE_ID identifies reseller
+        stores; the two are mutually exclusive.
+    columns:
+      - name: customer_id
+        description: "PK. Unique identifier of the customer."
+      - name: person_id
+        description: "FK to PERSON.PERSON. Person buying at retail. Null when the customer is a store."
+      - name: store_id
+        description: "FK to SALES.STORE. Reseller store. Null when the customer is a person."
+      - name: territory_id
+        description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+      - name: account_number
+        description: "Customer account number, derived in the source system."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

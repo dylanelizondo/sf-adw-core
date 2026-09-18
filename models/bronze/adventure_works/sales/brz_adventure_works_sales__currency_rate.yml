@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__currency_rate
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.CURRENCY_RATE, exposed one to one with no
+        transformations. Daily exchange rates between currency pairs. Grain: date + from currency +
+        to currency.
+    columns:
+      - name: currency_rate_id
+        description: "PK. Unique identifier of the exchange rate."
+      - name: currency_rate_date
+        description: "Date the exchange rate applies to."
+      - name: from_currency_code
+        description: "FK to SALES.CURRENCY. Source currency of the conversion."
+      - name: to_currency_code
+        description: "FK to SALES.CURRENCY. Target currency of the conversion."
+      - name: average_rate
+        description: "Average exchange rate for the day."
+      - name: end_of_day_rate
+        description: "Exchange rate at the close of the day."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."
