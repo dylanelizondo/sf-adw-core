@@ -1,0 +1,53 @@
+version: 2
+
+sources:
+  - name: adventure_works_person
+    description: >
+        AdventureWorks person schema: identity of every business entity plus their contact details,
+        addresses and geographic lookups. Holds most of the PII in the model.
+    database: ADVENTURE_WORKS
+    schema: PERSON
+    tables:
+      - name: address
+        description: >
+            Physical addresses used by customers, employees, stores and vendors. Linked to business
+            entities through BUSINESS_ENTITY_ADDRESS.
+      - name: address_type
+        description: >
+            Lookup of address types (Billing, Home, Shipping and so on).
+      - name: business_entity
+        description: >
+            Root table that assigns a universal identifier to every business entity (person, store
+            or vendor). It is the join point across the PERSON, SALES and PURCHASING schemas.
+      - name: business_entity_address
+        description: >
+            Bridge between business entities and addresses, qualified by address type. Grain:
+            business entity + address + address type.
+      - name: business_entity_contact
+        description: >
+            Bridge that links contact people to business entities (stores and vendors), qualified by
+            contact type.
+      - name: contact_type
+        description: >
+            Lookup of contact types (Owner, Purchasing Manager, Sales Agent and so on).
+      - name: country_region
+        description: >
+            Lookup of countries and regions identified by ISO code.
+      - name: email_address
+        description: >
+            Email addresses per person. A person may hold several addresses. Sensitive data (PII).
+      - name: password
+        description: >
+            Access credentials per person, stored as a salted hash. Highly sensitive: must not be
+            propagated to consumption layers.
+      - name: person
+        description: >
+            Naming data for every person in the model: individual customers, employees and contacts.
+            PERSON_TYPE states the role each person plays. Contains PII.
+      - name: person_phone
+        description: >
+            Phone numbers per person, qualified by type. Grain: person + number + type. Sensitive
+            data (PII).
+      - name: state_province
+        description: >
+            Lookup of states and provinces, tied to a country and to a sales territory.

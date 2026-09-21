@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__culture
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.CULTURE, exposed one to one with no
+        transformations. Lookup of languages and cultures used to translate product descriptions.
+    columns:
+      - name: culture_id
+        description: "PK. Culture code (for example en, es, fr)."
+      - name: name
+        description: "Name of the language or culture."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

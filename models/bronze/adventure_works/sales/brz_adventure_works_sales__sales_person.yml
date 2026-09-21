@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_person
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_PERSON, exposed one to one with no
+        transformations. Salespeople with their quota, commission and accumulated performance.
+        Extends HUMAN_RESOURCES.EMPLOYEE with sales specific attributes.
+    columns:
+      - name: business_entity_id
+        description: "PK and FK to HUMAN_RESOURCES.EMPLOYEE. Identifies the salesperson."
+      - name: territory_id
+        description: "FK to SALES.SALES_TERRITORY. Assigned territory. Null for corporate salespeople."
+      - name: sales_quota
+        description: "Sales quota assigned to the salesperson. Null when no quota is set."
+      - name: bonus
+        description: "Additional bonus granted to the salesperson."
+      - name: commission_pct
+        description: "Commission percentage earned on sales."
+      - name: sales_ytd
+        description: "Sales accumulated year to date."
+      - name: sales_last_year
+        description: "Sales accumulated over the previous year."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

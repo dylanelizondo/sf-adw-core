@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__country_region
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.COUNTRY_REGION, exposed one to one with no
+        transformations. Lookup of countries and regions identified by ISO code.
+    columns:
+      - name: country_region_code
+        description: "PK. ISO code of the country or region."
+      - name: name
+        description: "Name of the country or region."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

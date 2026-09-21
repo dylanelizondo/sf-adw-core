@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__employee_department_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_DEPARTMENT_HISTORY, exposed one to
+        one with no transformations. History of employee assignments to department and shift. Grain:
+        employee + department + shift + start date. Lets you rebuild headcount as of any date.
+    columns:
+      - name: business_entity_id
+        description: "Part of the PK and FK to HUMAN_RESOURCES.EMPLOYEE. Assigned employee."
+      - name: department_id
+        description: "FK to HUMAN_RESOURCES.DEPARTMENT. Department the record belongs to."
+      - name: shift_id
+        description: "FK to HUMAN_RESOURCES.SHIFT. Work shift the record belongs to."
+      - name: start_date
+        description: "Date the employee joined the department."
+      - name: end_date
+        description: "Date the employee left the department. Null for the current assignment."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__transaction_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.TRANSACTION_HISTORY, exposed one to one with no
+        transformations. Log of inventory movements driven by purchases, sales and work orders. It
+        is the product movement fact table and the highest volume table in the schema.
+    columns:
+      - name: transaction_id
+        description: "PK. Unique identifier of the movement."
+      - name: product_id
+        description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+      - name: reference_order_id
+        description: "Identifier of the document that drove the movement. Its meaning depends on TRANSACTION_TYPE."
+      - name: reference_order_line_id
+        description: "Line of the document that drove the movement."
+      - name: transaction_date
+        description: "Date of the inventory movement."
+      - name: transaction_type
+        description: "Movement type: W (work order), S (sales), P (purchase)."
+      - name: quantity
+        description: "Units moved."
+      - name: actual_cost
+        description: "Actual cost of the movement."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

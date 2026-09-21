@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_order_detail
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_DETAIL, exposed one to one with no
+        transformations. Sales order lines with product, quantity, price and discount applied. It is
+        the finest grain sales fact table and the highest volume table in the schema.
+    columns:
+      - name: sales_order_id
+        description: "FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to."
+      - name: sales_order_detail_id
+        description: "PK. Unique identifier of the sales order line."
+      - name: carrier_tracking_number
+        description: "Carrier tracking number for the line."
+      - name: order_qty
+        description: "Number of units ordered."
+      - name: product_id
+        description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+      - name: special_offer_id
+        description: "FK to SALES.SPECIAL_OFFER. Promotion applied."
+      - name: unit_price
+        description: "Unit price applied on the line."
+      - name: unit_price_discount
+        description: "Discount applied to the unit price, as a decimal fraction."
+      - name: line_total
+        description: "Line total, computed in the source system as quantity times price net of discount."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

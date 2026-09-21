@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_territory_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY_HISTORY, exposed one to one with no
+        transformations. History of salesperson assignments to territory. Grain: salesperson +
+        territory + start date.
+    columns:
+      - name: business_entity_id
+        description: "Part of the PK and FK to SALES.SALES_PERSON. Assigned salesperson."
+      - name: territory_id
+        description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+      - name: start_date
+        description: "Part of the PK. Date the salesperson took over the territory."
+      - name: end_date
+        description: "Date the salesperson left the territory. Null for the current assignment."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__store
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.STORE, exposed one to one with no transformations.
+        Reseller stores that buy from AdventureWorks, with the salesperson who serves them.
+    columns:
+      - name: business_entity_id
+        description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the store."
+      - name: name
+        description: "Name of the reseller store."
+      - name: sales_person_id
+        description: "FK to SALES.SALES_PERSON. Salesperson who serves the store."
+      - name: demographics
+        description: "Demographic attributes of the store as XML, exactly as delivered by the source."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

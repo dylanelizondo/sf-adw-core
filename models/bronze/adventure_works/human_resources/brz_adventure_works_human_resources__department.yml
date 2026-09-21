@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__department
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.DEPARTMENT, exposed one to one with no
+        transformations. Lookup of company departments, rolled up into functional groups. Base
+        dimension for analysing headcount by area.
+    columns:
+      - name: department_id
+        description: "PK. Unique identifier of the department."
+      - name: name
+        description: "Department name (for example Engineering, Sales)."
+      - name: group_name
+        description: "Functional group that rolls up several departments (for example Research and Development)."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__email_address
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.EMAIL_ADDRESS, exposed one to one with no
+        transformations. Email addresses per person. A person may hold several addresses. Sensitive
+        data (PII).
+    columns:
+      - name: business_entity_id
+        description: "Part of the PK and FK to PERSON.PERSON. Person who owns the email address."
+      - name: email_address_id
+        description: "Part of the PK. Sequence of the email address within the person."
+      - name: email_address
+        description: "Email address. Sensitive data (PII)."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

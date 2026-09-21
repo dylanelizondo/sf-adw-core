@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__state_province
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.STATE_PROVINCE, exposed one to one with no
+        transformations. Lookup of states and provinces, tied to a country and to a sales territory.
+    columns:
+      - name: state_province_id
+        description: "PK. Unique identifier of the state or province."
+      - name: state_province_code
+        description: "Short code of the state or province, unique within the country."
+      - name: country_region_code
+        description: "FK to PERSON.COUNTRY_REGION. ISO code of the country or region."
+      - name: is_only_state_province_flag
+        description: "1 when the country has no subdivisions and this is the placeholder row."
+      - name: name
+        description: "Name of the state or province."
+      - name: territory_id
+        description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,32 @@
+version: 2
+
+sources:
+  - name: adventure_works_human_resources
+    description: >
+        AdventureWorks human resources schema: employees, departments, shifts, job and pay history,
+        and candidates for open positions.
+    database: ADVENTURE_WORKS
+    schema: HUMAN_RESOURCES
+    tables:
+      - name: department
+        description: >
+            Lookup of company departments, rolled up into functional groups. Base dimension for
+            analysing headcount by area.
+      - name: employee
+        description: >
+            One row per employee with their employment and demographic attributes. The reporting
+            hierarchy is modelled through ORGANIZATION_NODE / ORGANIZATION_LEVEL.
+      - name: employee_department_history
+        description: >
+            History of employee assignments to department and shift. Grain: employee + department +
+            shift + start date. Lets you rebuild headcount as of any date.
+      - name: employee_pay_history
+        description: >
+            History of pay rates per employee. Grain: employee + rate change date.
+      - name: job_candidate
+        description: >
+            Candidates for open positions, with their resume stored as XML. BUSINESS_ENTITY_ID is
+            only populated once the candidate has been hired.
+      - name: shift
+        description: >
+            Lookup of work shifts with their time window.

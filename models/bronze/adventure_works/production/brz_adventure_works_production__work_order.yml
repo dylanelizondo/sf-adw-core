@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__work_order
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER, exposed one to one with no
+        transformations. Manufacturing work orders with produced and scrapped quantities plus the
+        cycle dates.
+    columns:
+      - name: work_order_id
+        description: "PK. Unique identifier of the work order."
+      - name: product_id
+        description: "FK to PRODUCTION.PRODUCT. Product being manufactured."
+      - name: order_qty
+        description: "Units to be manufactured on the order."
+      - name: stocked_qty
+        description: "Quantity actually taken into inventory."
+      - name: scrapped_qty
+        description: "Quantity scrapped because of defects."
+      - name: start_date
+        description: "Date manufacturing started."
+      - name: end_date
+        description: "Date manufacturing finished. Null while the order is still open."
+      - name: due_date
+        description: "Date the delivery was promised for."
+      - name: scrap_reason_id
+        description: "Identifier of the scrap reason. Null when nothing was scrapped."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_territory
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY, exposed one to one with no
+        transformations. Sales territories with their accumulated sales and cost. It is the
+        commercial geography dimension of the model.
+    columns:
+      - name: territory_id
+        description: "PK. Unique identifier of the sales territory."
+      - name: name
+        description: "Name of the territory (for example Northwest, Canada)."
+      - name: country_region_code
+        description: "FK to PERSON.COUNTRY_REGION. ISO code of the country or region."
+      - name: group
+        description: "Higher level grouping of the territory (North America, Europe, Pacific). The column name is a reserved word in Snowflake, so it is referenced with double quotes."
+      - name: sales_ytd
+        description: "Sales accumulated year to date."
+      - name: sales_last_year
+        description: "Sales accumulated over the previous year."
+      - name: cost_ytd
+        description: "Cost accumulated year to date."
+      - name: cost_last_year
+        description: "Cost accumulated over the previous year."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."
