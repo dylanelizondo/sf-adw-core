@@ -1,0 +1,15 @@
+version: 2
+
+# Groups declare ownership over a set of models. dbt requires them to be defined
+# in a properties file under model-paths (here, models/) -- a `groups:` key in
+# dbt_project.yml is silently ignored.
+#
+# The group is assigned to the models in dbt_project.yml via `+group:`.
+groups:
+  - name: bronze_adventure_works
+    description: >
+      Bronze passthrough views over the ADVENTURE_WORKS source database. Owned by
+      the Data Platform team; downstream projects consume these through dbt Mesh.
+    owner:
+      name: Data Platform
+      email: dylan.ea@ibm.com
