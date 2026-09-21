@@ -49,9 +49,11 @@ models:
     # Applies to all files under models/example/
     bronze:
       +database: "{{ env_var('DBT_DB_ADW_BRONZE') }}"
-      +schema: SOURCE
       +materialized: view
+      +schema: SOURCE
       +tags: ["bronze"]
+      adventure_works:
+        +schema: ADVENTURE_WORKS
 
     silver:
       +database: "{{ env_var('DBT_DB_ADW_SILVER') }}"
