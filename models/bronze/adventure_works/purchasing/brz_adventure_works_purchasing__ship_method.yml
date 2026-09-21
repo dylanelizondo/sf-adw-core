@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_purchasing__ship_method
+    description: >
+        Bronze view over ADVENTURE_WORKS.PURCHASING.SHIP_METHOD, exposed one to one with no
+        transformations. Lookup of shipping methods with their base and variable rates.
+    columns:
+      - name: ship_method_id
+        description: "PK. Unique identifier of the shipping method."
+      - name: name
+        description: "Name of the shipping method (for example XRQ - TRUCK GROUND)."
+      - name: ship_base
+        description: "Flat charge of the shipping method."
+      - name: ship_rate
+        description: "Variable charge per unit of weight."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__person_credit_card
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.PERSON_CREDIT_CARD, exposed one to one with no
+        transformations. Bridge between people and their credit cards. Grain: person + credit card.
+    columns:
+      - name: business_entity_id
+        description: "FK to PERSON.BUSINESS_ENTITY. Universal identifier of the business entity (person, store or vendor)."
+      - name: credit_card_id
+        description: "FK to SALES.CREDIT_CARD. Credit card associated with the record."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

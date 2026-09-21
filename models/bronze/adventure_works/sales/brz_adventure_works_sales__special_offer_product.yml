@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__special_offer_product
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER_PRODUCT, exposed one to one with no
+        transformations. Bridge between promotions and the products they apply to. Grain: promotion
+        + product.
+    columns:
+      - name: special_offer_id
+        description: "FK to SALES.SPECIAL_OFFER. Promotion applied."
+      - name: product_id
+        description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

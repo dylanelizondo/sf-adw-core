@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_human_resources__employee
+    description: >
+        Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE, exposed one to one with no
+        transformations. One row per employee with their employment and demographic attributes. The
+        reporting hierarchy is modelled through ORGANIZATION_NODE / ORGANIZATION_LEVEL.
+    columns:
+      - name: business_entity_id
+        description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the employee."
+      - name: national_idnumber
+        description: "Employee national identification number. Sensitive data (PII)."
+      - name: login_id
+        description: "Network account the employee signs in with."
+      - name: organization_node
+        description: "Hierarchical path of the employee in the org chart (source hierarchyid type)."
+      - name: organization_level
+        description: "Depth of the employee in the org chart. Null for the root level (CEO)."
+      - name: job_title
+        description: "Current job title of the employee."
+      - name: birth_date
+        description: "Employee date of birth. Sensitive data (PII)."
+      - name: marital_status
+        description: "Marital status: M (married) or S (single)."
+      - name: gender
+        description: "Gender recorded in the source system: M or F."
+      - name: hire_date
+        description: "Date the employee was hired."
+      - name: salaried_flag
+        description: "1 when the employee is salaried, 0 when paid hourly."
+      - name: vacation_hours
+        description: "Vacation hours available to the employee."
+      - name: sick_leave_hours
+        description: "Sick leave hours available to the employee."
+      - name: current_flag
+        description: "1 when the employee is active, 0 when no longer employed."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

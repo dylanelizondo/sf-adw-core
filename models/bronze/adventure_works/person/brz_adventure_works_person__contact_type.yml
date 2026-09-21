@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__contact_type
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.CONTACT_TYPE, exposed one to one with no
+        transformations. Lookup of contact types (Owner, Purchasing Manager, Sales Agent and so on).
+    columns:
+      - name: contact_type_id
+        description: "PK. Unique identifier of the contact type."
+      - name: name
+        description: "Name of the contact type."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

@@ -1,0 +1,15 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_order_header_sales_reason
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER_SALES_REASON, exposed one to one
+        with no transformations. Bridge between sales orders and the recorded reasons for the
+        purchase. An order may carry several reasons. Grain: order + reason.
+    columns:
+      - name: sales_order_id
+        description: "FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to."
+      - name: sales_reason_id
+        description: "Part of the PK. Reason for the purchase tied to the order."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

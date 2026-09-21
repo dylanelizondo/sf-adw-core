@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__work_order_routing
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER_ROUTING, exposed one to one with no
+        transformations. Manufacturing routing for each work order: one row per operation, with
+        planned versus actual costs and dates. Grain: work order + product + operation sequence.
+    columns:
+      - name: work_order_id
+        description: "Part of the PK and FK to PRODUCTION.WORK_ORDER. Work order being routed."
+      - name: product_id
+        description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product being manufactured."
+      - name: operation_sequence
+        description: "Sequence number of the operation within the manufacturing routing."
+      - name: location_id
+        description: "FK to PRODUCTION.LOCATION. Location inside the plant."
+      - name: scheduled_start_date
+        description: "Planned start date of the operation."
+      - name: scheduled_end_date
+        description: "Planned end date of the operation."
+      - name: actual_start_date
+        description: "Actual start date of the operation."
+      - name: actual_end_date
+        description: "Actual end date of the operation."
+      - name: actual_resource_hrs
+        description: "Resource hours actually consumed by the operation."
+      - name: planned_cost
+        description: "Planned cost of the operation."
+      - name: actual_cost
+        description: "Actual cost of the operation."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

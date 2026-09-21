@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_person__person_phone
+    description: >
+        Bronze view over ADVENTURE_WORKS.PERSON.PERSON_PHONE, exposed one to one with no
+        transformations. Phone numbers per person, qualified by type. Grain: person + number + type.
+        Sensitive data (PII).
+    columns:
+      - name: business_entity_id
+        description: "Part of the PK and FK to PERSON.PERSON. Person who owns the phone number."
+      - name: phone_number
+        description: "Part of the PK. Phone number. Sensitive data (PII)."
+      - name: phone_number_type_id
+        description: "Part of the PK. Phone type: 1 = cell, 2 = home, 3 = work."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

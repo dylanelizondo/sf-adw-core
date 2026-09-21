@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_purchasing__product_vendor
+    description: >
+        Bronze view over ADVENTURE_WORKS.PURCHASING.PRODUCT_VENDOR, exposed one to one with no
+        transformations. Commercial terms for each product with each vendor that supplies it. Grain:
+        product + vendor.
+    columns:
+      - name: product_id
+        description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product being supplied."
+      - name: business_entity_id
+        description: "Part of the PK and FK to PURCHASING.VENDOR. Vendor supplying the product."
+      - name: average_lead_time
+        description: "Average number of days between placing the order and receiving it."
+      - name: standard_price
+        description: "Purchase price negotiated with the vendor."
+      - name: last_receipt_cost
+        description: "Unit cost of the most recent receipt."
+      - name: last_receipt_date
+        description: "Date of the most recent receipt of the product."
+      - name: min_order_qty
+        description: "Minimum quantity the vendor accepts per order."
+      - name: max_order_qty
+        description: "Maximum quantity the vendor accepts per order."
+      - name: on_order_qty
+        description: "Units ordered and not yet received."
+      - name: unit_measure_code
+        description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure code."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

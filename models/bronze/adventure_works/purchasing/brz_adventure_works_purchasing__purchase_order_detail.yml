@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_purchasing__purchase_order_detail
+    description: >
+        Bronze view over ADVENTURE_WORKS.PURCHASING.PURCHASE_ORDER_DETAIL, exposed one to one with
+        no transformations. Purchase order lines, with ordered, received, rejected and stocked
+        quantities. Grain: one row per purchase order line.
+    columns:
+      - name: purchase_order_id
+        description: "FK to PURCHASING.PURCHASE_ORDER_HEADER. Purchase order the record belongs to."
+      - name: purchase_order_detail_id
+        description: "PK. Unique identifier of the purchase order line."
+      - name: due_date
+        description: "Date the delivery was promised for."
+      - name: order_qty
+        description: "Number of units ordered."
+      - name: product_id
+        description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+      - name: unit_price
+        description: "Unit price applied on the line."
+      - name: line_total
+        description: "Calculated total for the line."
+      - name: received_qty
+        description: "Quantity received from the vendor."
+      - name: rejected_qty
+        description: "Quantity rejected on quality inspection."
+      - name: stocked_qty
+        description: "Quantity actually taken into inventory."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

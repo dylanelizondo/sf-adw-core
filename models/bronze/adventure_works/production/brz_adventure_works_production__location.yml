@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__location
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.LOCATION, exposed one to one with no
+        transformations. Lookup of inventory and manufacturing locations inside the plant.
+    columns:
+      - name: location_id
+        description: "PK. Unique identifier of the location."
+      - name: name
+        description: "Name of the location (for example Tool Crib, Paint Shop)."
+      - name: cost_rate
+        description: "Hourly cost of using the location in manufacturing."
+      - name: availability
+        description: "Available capacity of the location, in hours."
+      - name: modified_date
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

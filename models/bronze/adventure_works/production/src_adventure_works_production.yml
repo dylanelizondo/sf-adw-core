@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: adventure_works_production
+    description: >
+        AdventureWorks production schema: the product catalog and its hierarchy, inventory, bill of
+        materials, work orders and inventory movements.
+    database: ADVENTURE_WORKS
+    schema: PRODUCTION
+    tables:
+      - name: bill_of_materials
+        description: >
+            Bill of materials: recursive relationship between an assembly and its components, with
+            validity dates. A null PRODUCT_ASSEMBLY_ID marks the root of the structure.
+      - name: culture
+        description: >
+            Lookup of languages and cultures used to translate product descriptions.
+      - name: location
+        description: >
+            Lookup of inventory and manufacturing locations inside the plant.
+      - name: product
+        description: >
+            Master product catalog: commercial, physical and cost attributes plus the selling
+            window. It is the base product dimension for the whole model.
+      - name: product_category
+        description: >
+            Lookup of product categories: the top level of the product hierarchy.
+      - name: product_cost_history
+        description: >
+            History of standard cost per product. Grain: product + effective start date.
+      - name: product_description
+        description: >
+            Product marketing copy, reusable across models and translatable by culture.
+      - name: product_inventory
+        description: >
+            Stock on hand per product and location, including its physical position in the
+            warehouse. Grain: product + location.
+      - name: product_subcategory
+        description: >
+            Lookup of product subcategories: the level between category and product.
+      - name: transaction_history
+        description: >
+            Log of inventory movements driven by purchases, sales and work orders. It is the product
+            movement fact table and the highest volume table in the schema.
+      - name: unit_measure
+        description: >
+            Lookup of units of measure used across product, purchasing and bill of materials.
+      - name: work_order
+        description: >
+            Manufacturing work orders with produced and scrapped quantities plus the cycle dates.
+      - name: work_order_routing
+        description: >
+            Manufacturing routing for each work order: one row per operation, with planned versus
+            actual costs and dates. Grain: work order + product + operation sequence.
