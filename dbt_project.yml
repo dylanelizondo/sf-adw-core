@@ -34,7 +34,6 @@ clean-targets:         # directories to be removed by `dbt clean`
 # instead be materialized as tables. Any models you add to the root of the models folder will 
 # continue to be built as views. These settings can be overridden in the individual model files
 # using the `{{ config(...) }}` macro.
-
 models:
   adw_core:
     # Push the descriptions from the .yml files into Snowflake as COMMENTs.
@@ -52,6 +51,8 @@ models:
       +materialized: view
       +schema: SOURCE
       +tags: ["bronze"]
+      +access: public
+      +group: bronze_adventure_works
       adventure_works:
         +schema: ADVENTURE_WORKS
 
@@ -60,3 +61,5 @@ models:
       +schema: SOURCE
       +materialized: table
       +tags: ["silver"]
+      adventure_works:
+        +schema: ADVENTURE_WORKS
