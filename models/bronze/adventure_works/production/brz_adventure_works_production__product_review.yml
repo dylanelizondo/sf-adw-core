@@ -1,0 +1,25 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_review
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_REVIEW, exposed one to one with no
+        transformations. Customer reviews of products, including reviewer details, ratings and
+        comments.
+    columns:
+      - name: productreviewid
+        description: "PK. Unique identifier of the product review."
+      - name: productid
+        description: "FK to PRODUCTION.PRODUCT. Product being reviewed."
+      - name: reviewername
+        description: "Name of the person who submitted the review."
+      - name: reviewdate
+        description: "Date and time when the review was submitted."
+      - name: emailaddress
+        description: "Email address supplied by the reviewer."
+      - name: rating
+        description: "Product rating from 1 to 5."
+      - name: comments
+        description: "Free-text comments supplied by the reviewer. Null when no comments were provided."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

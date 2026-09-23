@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__document
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.DOCUMENT, exposed one to one with no
+        transformations. Stores product-related document metadata, document hierarchy, ownership
+        and status information.
+    columns:
+      - name: documentnode
+        description: "PK. Hierarchy path that uniquely identifies the document in the source system."
+      - name: documentlevel
+        description: "Depth of the document within the document hierarchy."
+      - name: title
+        description: "Title of the document."
+      - name: owner
+        description: "Identifier of the employee that owns the document."
+      - name: folderflag
+        description: "True when the row represents a folder, false when it represents a document."
+      - name: filename
+        description: "Name of the document file."
+      - name: fileextension
+        description: "File extension of the document."
+      - name: revision
+        description: "Revision identifier assigned to the document."
+      - name: changenumber
+        description: "Engineering change number associated with the document."
+      - name: status
+        description: "Document status code."
+      - name: documentsummary
+        description: "Summary or description of the document. Null when no summary is available."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

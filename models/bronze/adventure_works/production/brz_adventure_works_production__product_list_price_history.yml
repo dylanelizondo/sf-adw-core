@@ -1,0 +1,18 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_list_price_history
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_LIST_PRICE_HISTORY, exposed one to one
+        with no transformations. Historical list prices for products and their effective periods.
+    columns:
+      - name: productid
+        description: "FK to PRODUCTION.PRODUCT. Product whose list price changed."
+      - name: startdate
+        description: "Date and time from which the list price became effective."
+      - name: enddate
+        description: "Date and time when the list price stopped being effective. Null while the price remains current."
+      - name: listprice
+        description: "List price of the product during the effective period."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."
