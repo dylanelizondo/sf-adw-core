@@ -52,3 +52,50 @@ sources:
         description: >
             Manufacturing routing for each work order: one row per operation, with planned versus
             actual costs and dates. Grain: work order + product + operation sequence.
+            - name: document
+        description: >
+            Product documentation metadata and hierarchy.
+
+      - name: illustration
+        description: >
+            Technical illustrations associated with product models.
+
+      - name: product_document
+        description: >
+            Bridge between products and their associated documents.
+
+      - name: product_list_price_history
+        description: >
+            Historical list prices by product and effective date.
+
+      - name: product_model
+        description: >
+            Product models shared by individual product variants.
+
+      - name: product_model_illustration
+        description: >
+            Bridge between product models and illustrations.
+
+      - name: product_model_product_description_culture
+        description: >
+            Bridge between product models, translated descriptions and cultures.
+
+      - name: product_photo
+        description: >
+            Product photo metadata and file names.
+
+      - name: product_product_photo
+        description: >
+            Bridge between products and product photos.
+
+      - name: product_review
+        description: >
+            Customer reviews and ratings associated with products.
+
+      - name: scrap_reason
+        description: >
+            Lookup of manufacturing scrap reasons.
+
+      - name: transaction_history_archive
+        description: >
+            Historical archive of product inventory transactions.
