@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_model_product_description_culture
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_PRODUCT_DESCRIPTION_CULTURE,
+        exposed one to one with no transformations. Bridge relating product models to translated
+        product descriptions and their cultures.
+    columns:
+      - name: productmodelid
+        description: "FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the description."
+      - name: productdescriptionid
+        description: "FK to PRODUCTION.PRODUCT_DESCRIPTION. Description associated with the product model."
+      - name: cultureid
+        description: "FK to PRODUCTION.CULTURE. Language or culture of the product description."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

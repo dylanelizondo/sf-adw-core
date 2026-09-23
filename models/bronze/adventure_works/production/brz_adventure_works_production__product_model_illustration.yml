@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_model_illustration
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_ILLUSTRATION, exposed one to one
+        with no transformations. Bridge relating product models to their technical illustrations.
+    columns:
+      - name: productmodelid
+        description: "FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the illustration."
+      - name: illustrationid
+        description: "FK to PRODUCTION.ILLUSTRATION. Illustration associated with the product model."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

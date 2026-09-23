@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_model
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL, exposed one to one with no
+        transformations. Lookup of product models shared by individual product variants, including
+        catalog descriptions and manufacturing instructions.
+    columns:
+      - name: productmodelid
+        description: "PK. Unique identifier of the product model."
+      - name: name
+        description: "Name of the product model."
+      - name: catalogdescription
+        description: "XML catalog description of the product model. Null when no catalog description is available."
+      - name: instructions
+        description: "XML manufacturing instructions for the product model. Null when no instructions are available."
+      - name: rowguid
+        description: "Globally unique identifier (GUID) used by the source system for row-level replication."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

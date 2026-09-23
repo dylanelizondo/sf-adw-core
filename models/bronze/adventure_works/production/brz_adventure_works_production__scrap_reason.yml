@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__scrap_reason
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.SCRAP_REASON, exposed one to one with no
+        transformations. Lookup of reasons why units are scrapped during manufacturing.
+    columns:
+      - name: scrapreasonid
+        description: "PK. Unique identifier of the scrap reason."
+      - name: name
+        description: "Description of the manufacturing failure or scrap reason."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

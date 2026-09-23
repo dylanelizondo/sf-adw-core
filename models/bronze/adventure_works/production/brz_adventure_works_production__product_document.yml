@@ -1,0 +1,14 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_document
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no
+        transformations. Bridge relating products to their associated technical documents.
+    columns:
+      - name: productid
+        description: "FK to PRODUCTION.PRODUCT. Product associated with the document."
+      - name: documentnode
+        description: "FK to PRODUCTION.DOCUMENT. Document associated with the product."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."
