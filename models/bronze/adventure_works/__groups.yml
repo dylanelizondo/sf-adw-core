@@ -6,10 +6,10 @@ version: 2
 #
 # The group is assigned to the models in dbt_project.yml via `+group:`.
 groups:
-  - name: bronze_adventure_works
+  - name: it_adventure_works
     description: >
       Bronze passthrough views over the ADVENTURE_WORKS source database. Owned by
       the Data Platform team; downstream projects consume these through dbt Mesh.
     owner:
-      name: Data Platform
-      email: dylan.ea@ibm.com
+      name: IT
+      email: it@adw.com
