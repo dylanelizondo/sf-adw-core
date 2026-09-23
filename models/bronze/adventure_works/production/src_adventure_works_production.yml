@@ -60,6 +60,7 @@ sources:
       - name: illustration
         description: >
             Technical illustrations associated with product models.
+            
       - name: product_document
         description: >
             Bridge between products and their associated documents.
