@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_product_photo
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PRODUCT_PHOTO, exposed one to one with
+        no transformations. Bridge relating products to their product photos and identifying the
+        primary photo.
+    columns:
+      - name: productid
+        description: "FK to PRODUCTION.PRODUCT. Product associated with the photo."
+      - name: productphotoid
+        description: "FK to PRODUCTION.PRODUCT_PHOTO. Photo associated with the product."
+      - name: primary
+        description: "True when the photo is the primary image for the product, false otherwise."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."

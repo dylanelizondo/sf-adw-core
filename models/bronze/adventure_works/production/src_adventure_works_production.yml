@@ -52,14 +52,15 @@ sources:
         description: >
             Manufacturing routing for each work order: one row per operation, with planned versus
             actual costs and dates. Grain: work order + product + operation sequence.
-            - name: document
+
+      - name: document
         description: >
             Product documentation metadata and hierarchy.
 
       - name: illustration
         description: >
             Technical illustrations associated with product models.
-
+            
       - name: product_document
         description: >
             Bridge between products and their associated documents.

@@ -1,0 +1,16 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_production__product_photo
+    description: >
+        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PHOTO, exposed one to one with no
+        transformations. Stores file-name metadata for product thumbnail and large-format photos.
+    columns:
+      - name: productphotoid
+        description: "PK. Unique identifier of the product photo."
+      - name: thumbnailphotofilename
+        description: "File name of the thumbnail product image. Null when no thumbnail file is available."
+      - name: largephotofilename
+        description: "File name of the large product image. Null when no large image file is available."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system."
