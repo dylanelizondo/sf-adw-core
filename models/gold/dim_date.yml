@@ -1,0 +1,137 @@
+version: 2
+
+models:
+  - name: dim_date
+    description: >
+        Gold conformed date dimension, generated in SQL rather than sourced from ADVENTURE_WORKS.
+        One row per calendar day, from 1 January of last year through 31 December five years out
+        (recomputed on every run, relative to CURRENT_DATE). Grain is one day; join any fact table
+        on its date column to date_key. Supplies calendar, ISO week and quarter attributes so
+        downstream models never derive their own date logic.
+    columns:
+      - name: date_key
+        description: "PK. The calendar day this row describes. Grain of the dimension."
+        data_tests:
+          - unique
+          - not_null
+
+      - name: year
+        description: "Calendar year, for example 2026."
+        data_tests: [not_null]
+      - name: month
+        description: "Calendar month number within the year, 1 to 12."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+              quote: false
+      - name: monthname
+        description: "Three letter abbreviation of the month name, for example Jan."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+      - name: day
+        description: "Day number within the month, 1 to 31. Same value as dayofmonth."
+        data_tests: [not_null]
+      - name: dayname
+        description: "Three letter abbreviation of the weekday name, for example Mon."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+      - name: quarter
+        description: "Calendar quarter number within the year, 1 to 4."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4]
+              quote: false
+      - name: week
+        description: >
+            Week number within the year. Depends on the Snowflake WEEK_START and WEEK_OF_YEAR_POLICY
+            session parameters; use weekiso for a policy independent value.
+        data_tests: [not_null]
+      - name: dayofmonth
+        description: "Day number within the month, 1 to 31. Same value as day."
+        data_tests: [not_null]
+      - name: dayofweek
+        description: >
+            Day number within the week. Depends on the Snowflake WEEK_START session parameter
+            (0 to 6 under the default, Sunday first); use dayofweekiso for a stable Monday to Sunday
+            numbering.
+        data_tests: [not_null]
+      - name: dayofyear
+        description: "Day number within the year, 1 to 366."
+        data_tests: [not_null]
+
+      - name: last_day_of_month
+        description: "Last calendar day of the month that contains date_key."
+        data_tests: [not_null]
+      - name: last_day_of_quarter
+        description: "Last calendar day of the quarter that contains date_key."
+        data_tests: [not_null]
+      - name: last_day_of_year
+        description: "Last calendar day of the year that contains date_key, always 31 December."
+        data_tests: [not_null]
+      - name: last_day_of_week
+        description: >
+            Last calendar day of the week that contains date_key. Week boundaries follow the
+            Snowflake WEEK_START session parameter.
+        data_tests: [not_null]
+
+      - name: weekofyear
+        description: >
+            Week number within the year, subject to the same WEEK_START and WEEK_OF_YEAR_POLICY
+            session parameters as week.
+        data_tests: [not_null]
+      - name: yearofweek
+        description: >
+            Year that owns the week containing date_key. Differs from year for days at a year
+            boundary whose week rolls into the neighbouring year.
+        data_tests: [not_null]
+      - name: yearofweekiso
+        description: "ISO 8601 week numbering year that owns the ISO week containing date_key."
+        data_tests: [not_null]
+      - name: weekiso
+        description: "ISO 8601 week number, 1 to 53. Independent of session parameters."
+        data_tests: [not_null]
+      - name: dayofweekiso
+        description: "ISO 8601 day of week, 1 for Monday through 7 for Sunday. Independent of session parameters."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7]
+              quote: false
+
+      - name: week_of_month
+        description: >
+            Week ordinal within the month, 1 to 5, computed as day of month divided into blocks of
+            seven. Calendar blocks, not WEEK_START aligned weeks.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5]
+              quote: false
+      - name: first_day_of_quarter
+        description: "First calendar day of the quarter that contains date_key."
+        data_tests: [not_null]
+      - name: day_of_quarter
+        description: "Day number within the quarter, 1 to 92, counting from first_day_of_quarter."
+        data_tests: [not_null]
+      - name: days_in_quarter
+        description: "Total number of days in the quarter that contains date_key, 90 to 92."
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [90, 91, 92]
+              quote: false
+      - name: week_of_quarter
+        description: >
+            Week ordinal within the quarter, 1 to 14, computed as day_of_quarter divided into blocks
+            of seven. Calendar blocks, not WEEK_START aligned weeks.
+        data_tests:
+          - not_null
+          - accepted_values:
+              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+              quote: false

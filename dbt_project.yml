@@ -63,3 +63,11 @@ models:
       +tags: ["silver"]
       adventure_works:
         +schema: ADVENTURE_WORKS
+          silver:
+    gold:
+      +database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
+      +schema: CORE
+      +materialized: table
+      +access: public
+      +group: it_adventure_works
+      +tags: ["gold"]
