@@ -7,7 +7,7 @@ calendar_dates AS (
     FROM bounds b
     CROSS JOIN (
         SELECT SEQ4() AS seq
-        FROM TABLE(GENERATOR(ROWCOUNT => 4100))   -- 4100 > 10 años (máx. 3653 días)
+        FROM TABLE(GENERATOR(ROWCOUNT => 4100))   -- 4100 > the 2191-2192 days six years span
     ) g
     WHERE DATEADD(DAY, g.seq, b.start_date) <= b.end_date
 )
@@ -41,4 +41,4 @@ SELECT
     , CEIL((DATEDIFF(DAY, DATE_TRUNC('QUARTER', calendar_date), calendar_date) + 1) / 7)
                                                              AS WEEK_OF_QUARTER
 FROM calendar_dates
-ORDER BY calendar_date;
+ORDER BY calendar_date

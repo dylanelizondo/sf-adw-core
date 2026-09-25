@@ -8,6 +8,27 @@ models:
         (recomputed on every run, relative to CURRENT_DATE). Grain is one day; join any fact table
         on its date column to date_key. Supplies calendar, ISO week and quarter attributes so
         downstream models never derive their own date logic.
+
+    config:
+      # PRIMARY KEY over date_key, applied as DDL after the table is built.
+      #
+      # A dbt `constraints:` block is only emitted when the model also declares
+      # `contract: enforced: true`; without a contract dbt parses it and ignores it,
+      # so the key would never reach Snowflake. This hook takes its place.
+      #
+      # Safe to re-run: the model is materialized as a table, so every run issues
+      # CREATE OR REPLACE TABLE and the new table arrives with no constraints. If this
+      # model is ever switched to incremental, the table survives between runs and the
+      # second run will fail on a duplicate constraint name.
+      #
+      # Snowflake records the key as NOT ENFORCED and never validates it on write, so
+      # it does not replace the unique and not_null tests on date_key -- those are what
+      # actually catch a duplicate day. What it does buy: the optimizer can use it for
+      # join elimination, and BI tools and Snowflake semantic views read it to infer
+      # the fact-to-dimension join.
+      post_hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_dim_date PRIMARY KEY (date_key)"
+
     columns:
       - name: date_key
         description: "PK. The calendar day this row describes. Grain of the dimension."
@@ -23,14 +44,16 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
-              quote: false
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+                quote: false
       - name: monthname
         description: "Three letter abbreviation of the month name, for example Jan."
         data_tests:
           - not_null
           - accepted_values:
-              values: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+              arguments:
+                values: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
       - name: day
         description: "Day number within the month, 1 to 31. Same value as dayofmonth."
         data_tests: [not_null]
@@ -39,14 +62,16 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
+              arguments:
+                values: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
       - name: quarter
         description: "Calendar quarter number within the year, 1 to 4."
         data_tests:
           - not_null
           - accepted_values:
-              values: [1, 2, 3, 4]
-              quote: false
+              arguments:
+                values: [1, 2, 3, 4]
+                quote: false
       - name: week
         description: >
             Week number within the year. Depends on the Snowflake WEEK_START and WEEK_OF_YEAR_POLICY
@@ -101,8 +126,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7]
-              quote: false
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7]
+                quote: false
 
       - name: week_of_month
         description: >
@@ -111,8 +137,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [1, 2, 3, 4, 5]
-              quote: false
+              arguments:
+                values: [1, 2, 3, 4, 5]
+                quote: false
       - name: first_day_of_quarter
         description: "First calendar day of the quarter that contains date_key."
         data_tests: [not_null]
@@ -124,8 +151,9 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [90, 91, 92]
-              quote: false
+              arguments:
+                values: [90, 91, 92]
+                quote: false
       - name: week_of_quarter
         description: >
             Week ordinal within the quarter, 1 to 14, computed as day_of_quarter divided into blocks
@@ -133,5 +161,6 @@ models:
         data_tests:
           - not_null
           - accepted_values:
-              values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-              quote: false
+              arguments:
+                values: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+                quote: false
