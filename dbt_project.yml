@@ -52,7 +52,7 @@ models:
       +schema: SOURCE
       +tags: ["bronze"]
       +access: public
-      +group: bronze_adventure_works
+      +group: it_adventure_works
       adventure_works:
         +schema: ADVENTURE_WORKS
 
