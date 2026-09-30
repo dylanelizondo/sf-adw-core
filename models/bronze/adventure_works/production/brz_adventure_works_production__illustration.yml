@@ -6,9 +6,9 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.ILLUSTRATION, exposed one to one with no
         transformations. Stores technical diagrams that can be associated with product models.
     columns:
-      - name: illustrationid
+      - name: illustration_id
         description: "PK. Unique identifier of the illustration."
       - name: diagram
         description: "XML representation of the technical illustration. Null when no diagram is available."
-      - name: modifieddate
+      - name: modified_date
         description: "Timestamp of the last change to the record in the source system."
