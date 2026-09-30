@@ -9,6 +9,9 @@ models:
     columns:
       - name: incident_number
         description: "PK. Collision incident number."
+        data_tests:
+          - unique
+          - not_null
       - name: service_area
         description: "Service area where the collision happened."
       - name: driver_last_name

@@ -6,11 +6,28 @@ models:
         Bronze view over ADVENTURE_WORKS.PURCHASING.PRODUCT_VENDOR, exposed one to one with no
         transformations. Commercial terms for each product with each vendor that supplies it. Grain:
         product + vendor.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [product_id, business_entity_id]
+
     columns:
       - name: product_id
         description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product being supplied."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: business_entity_id
         description: "Part of the PK and FK to PURCHASING.VENDOR. Vendor supplying the product."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_purchasing__vendor')
+                field: business_entity_id
       - name: average_lead_time
         description: "Average number of days between placing the order and receiving it."
       - name: standard_price
@@ -27,5 +44,10 @@ models:
         description: "Units ordered and not yet received."
       - name: unit_measure_code
         description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure code."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__unit_measure')
+                field: unit_measure_code
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

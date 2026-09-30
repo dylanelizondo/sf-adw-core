@@ -9,8 +9,20 @@ models:
     columns:
       - name: business_entity_id
         description: "PK and FK to HUMAN_RESOURCES.EMPLOYEE. Identifies the salesperson."
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_human_resources__employee')
+                field: business_entity_id
       - name: territory_id
         description: "FK to SALES.SALES_TERRITORY. Assigned territory. Null for corporate salespeople."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_territory')
+                field: territory_id
       - name: sales_quota
         description: "Sales quota assigned to the salesperson. Null when no quota is set."
       - name: bonus

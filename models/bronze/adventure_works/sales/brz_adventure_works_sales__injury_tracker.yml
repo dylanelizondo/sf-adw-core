@@ -10,6 +10,9 @@ models:
     columns:
       - name: report_number
         description: "PK. Report number of the safety event."
+        data_tests:
+          - unique
+          - not_null
       - name: created_date
         description: "Date and time the report was captured."
       - name: date_occurred

@@ -15,3 +15,4 @@ groups:
     owner:
       name: IT
       email: it@adw.com
+      github: sf-adw-core

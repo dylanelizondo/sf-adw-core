@@ -5,11 +5,24 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_LIST_PRICE_HISTORY, exposed one to one
         with no transformations. Historical list prices for products and their effective periods.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [product_id, start_date]
+
     columns:
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product whose list price changed."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: start_date
         description: "Date and time from which the list price became effective."
+        data_tests:
+          - not_null
       - name: end_date
         description: "Date and time when the list price stopped being effective. Null while the price remains current."
       - name: list_price

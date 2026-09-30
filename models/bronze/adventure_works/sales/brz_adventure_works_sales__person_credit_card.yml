@@ -5,10 +5,27 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.SALES.PERSON_CREDIT_CARD, exposed one to one with no
         transformations. Bridge between people and their credit cards. Grain: person + credit card.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, credit_card_id]
+
     columns:
       - name: business_entity_id
         description: "FK to PERSON.BUSINESS_ENTITY. Universal identifier of the business entity (person, store or vendor)."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__business_entity')
+                field: business_entity_id
       - name: credit_card_id
         description: "FK to SALES.CREDIT_CARD. Credit card associated with the record."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__credit_card')
+                field: credit_card_id
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

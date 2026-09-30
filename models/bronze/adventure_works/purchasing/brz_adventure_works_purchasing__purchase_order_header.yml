@@ -9,16 +9,34 @@ models:
     columns:
       - name: purchase_order_id
         description: "PK. Unique identifier of the purchase order."
+        data_tests:
+          - unique
+          - not_null
       - name: revision_number
         description: "Revision number of the document. Incremented on every change."
       - name: status
         description: "Order status: 1 = pending, 2 = approved, 3 = rejected, 4 = complete."
       - name: employee_id
         description: "FK to HUMAN_RESOURCES.EMPLOYEE. Buyer who raised the order."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_human_resources__employee')
+                field: business_entity_id
       - name: vendor_id
         description: "FK to PURCHASING.VENDOR. Vendor the order was placed with."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_purchasing__vendor')
+                field: business_entity_id
       - name: ship_method_id
         description: "FK to PURCHASING.SHIP_METHOD. Shipping method used."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_purchasing__ship_method')
+                field: ship_method_id
       - name: order_date
         description: "Date the order was placed."
       - name: ship_date

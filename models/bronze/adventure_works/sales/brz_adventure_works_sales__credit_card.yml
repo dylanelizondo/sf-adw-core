@@ -9,6 +9,9 @@ models:
     columns:
       - name: credit_card_id
         description: "PK. Unique identifier of the credit card."
+        data_tests:
+          - unique
+          - not_null
       - name: card_type
         description: "Card brand (Vista, SuperiorCard, Distinguish, ColonialVoice)."
       - name: card_number

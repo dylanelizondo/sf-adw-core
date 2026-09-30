@@ -6,11 +6,24 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_PAY_HISTORY, exposed one to one
         with no transformations. History of pay rates per employee. Grain: employee + rate change
         date.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, rate_change_date]
+
     columns:
       - name: business_entity_id
         description: "Part of the PK and FK to HUMAN_RESOURCES.EMPLOYEE. Employee the rate applies to."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_human_resources__employee')
+                field: business_entity_id
       - name: rate_change_date
         description: "Part of the PK. Date the rate became effective."
+        data_tests:
+          - not_null
       - name: rate
         description: "Hourly pay rate effective from RATE_CHANGE_DATE."
       - name: pay_frequency

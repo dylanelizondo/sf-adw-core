@@ -6,12 +6,27 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.PERSON_PHONE, exposed one to one with no
         transformations. Phone numbers per person, qualified by type. Grain: person + number + type.
         Sensitive data (PII).
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, phone_number, phone_number_type_id]
+
     columns:
       - name: business_entity_id
         description: "Part of the PK and FK to PERSON.PERSON. Person who owns the phone number."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__person')
+                field: business_entity_id
       - name: phone_number
         description: "Part of the PK. Phone number. Sensitive data (PII)."
+        data_tests:
+          - not_null
       - name: phone_number_type_id
         description: "Part of the PK. Phone type: 1 = cell, 2 = home, 3 = work."
+        data_tests:
+          - not_null
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

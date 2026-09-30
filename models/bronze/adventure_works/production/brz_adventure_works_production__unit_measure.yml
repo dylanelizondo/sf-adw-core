@@ -9,6 +9,9 @@ models:
     columns:
       - name: unit_measure_code
         description: "PK. Code of the unit of measure."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the unit of measure."
       - name: modified_date

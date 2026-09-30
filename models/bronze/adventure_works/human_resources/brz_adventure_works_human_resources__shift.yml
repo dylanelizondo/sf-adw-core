@@ -8,6 +8,9 @@ models:
     columns:
       - name: shift_id
         description: "PK. Unique identifier of the shift."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Shift name (Day, Evening, Night)."
       - name: start_time

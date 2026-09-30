@@ -9,6 +9,13 @@ models:
     columns:
       - name: business_entity_id
         description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the person."
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__business_entity')
+                field: business_entity_id
       - name: person_type
         description: "Role of the person: SC (store contact), IN (individual customer), SP (sales person), EM (employee), VC (vendor contact), GC (general contact)."
       - name: name_style

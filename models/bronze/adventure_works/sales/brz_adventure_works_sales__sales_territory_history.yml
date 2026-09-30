@@ -6,13 +6,32 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY_HISTORY, exposed one to one with no
         transformations. History of salesperson assignments to territory. Grain: salesperson +
         territory + start date.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, territory_id, start_date]
+
     columns:
       - name: business_entity_id
         description: "Part of the PK and FK to SALES.SALES_PERSON. Assigned salesperson."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_person')
+                field: business_entity_id
       - name: territory_id
         description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_territory')
+                field: territory_id
       - name: start_date
         description: "Part of the PK. Date the salesperson took over the territory."
+        data_tests:
+          - not_null
       - name: end_date
         description: "Date the salesperson left the territory. Null for the current assignment."
       - name: rowguid

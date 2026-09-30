@@ -11,6 +11,9 @@ models:
     columns:
       - name: salesreasonid
         description: "PK. Unique identifier of the reason. Named SALES_REASON_ID in the rest of the schema."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the reason (for example Price, Quality, Manufacturer)."
       - name: reasontype

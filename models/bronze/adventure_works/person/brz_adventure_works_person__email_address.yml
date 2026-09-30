@@ -6,11 +6,24 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.EMAIL_ADDRESS, exposed one to one with no
         transformations. Email addresses per person. A person may hold several addresses. Sensitive
         data (PII).
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, email_address_id]
+
     columns:
       - name: business_entity_id
         description: "Part of the PK and FK to PERSON.PERSON. Person who owns the email address."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__person')
+                field: business_entity_id
       - name: email_address_id
         description: "Part of the PK. Sequence of the email address within the person."
+        data_tests:
+          - not_null
       - name: email_address
         description: "Email address. Sensitive data (PII)."
       - name: rowguid
