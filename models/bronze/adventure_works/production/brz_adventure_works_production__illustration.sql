@@ -2,7 +2,7 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    illustrationid,
+    illustration_id,
     diagram,
-    modifieddate
+    modified_date
 from {{ source('adventure_works_production', 'illustration') }}

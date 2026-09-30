@@ -55,6 +55,11 @@ sources:
         description: >
             Salespeople with their quota, commission and accumulated performance. Extends
             HUMAN_RESOURCES.EMPLOYEE with sales specific attributes.
+      - name: sales_reason
+        description: >
+            Lookup of the reasons a customer gave for a purchase, grouped by reason type. Referenced
+            by SALES_ORDER_HEADER_SALES_REASON. Unlike the rest of the schema, its columns are still
+            named without separators (SALESREASONID, REASONTYPE, MODIFIEDDATE).
       - name: sales_tax_rate
         description: >
             Tax rates by state or province and tax type.

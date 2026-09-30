@@ -2,7 +2,7 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    scrapreasonid,
+    scrap_reason_id,
     name,
-    modifieddate
+    modified_date
 from {{ source('adventure_works_production', 'scrap_reason') }}
