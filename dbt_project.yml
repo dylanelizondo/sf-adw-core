@@ -60,9 +60,12 @@ models:
       +database: "{{ env_var('DBT_DB_ADW_SILVER') }}"
       +schema: SOURCE
       +materialized: table
+      +access: public
+      +group: it_adventure_works
       +tags: ["silver"]
       adventure_works:
         +schema: ADVENTURE_WORKS
+    
     gold:
       +database: "{{ env_var('DBT_DB_ADW_GOLD') }}"
       +schema: CORE
