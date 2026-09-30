@@ -2,12 +2,12 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    productreviewid,
-    productid,
-    reviewername,
-    reviewdate,
-    emailaddress,
+    product_review_id,
+    product_id,
+    reviewer_name,
+    review_date,
+    email_address,
     rating,
     comments,
-    modifieddate
+    modified_date
 from {{ source('adventure_works_production', 'product_review') }}

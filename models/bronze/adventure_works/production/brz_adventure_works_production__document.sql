@@ -2,17 +2,17 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    documentnode,
-    documentlevel,
+    document_node,
+    document_level,
     title,
     owner,
-    folderflag,
-    filename,
-    fileextension,
+    folder_flag,
+    file_name,
+    file_extension,
     revision,
-    changenumber,
+    change_number,
     status,
-    documentsummary,
+    document_summary,
     rowguid,
-    modifieddate
+    modified_date
 from {{ source('adventure_works_production', 'document') }}

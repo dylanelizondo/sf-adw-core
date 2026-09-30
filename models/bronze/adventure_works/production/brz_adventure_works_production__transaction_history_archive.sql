@@ -2,13 +2,13 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    transactionid,
-    productid,
-    referenceorderid,
-    referenceorderlineid,
-    transactiondate,
-    transactiontype,
+    transaction_id,
+    product_id,
+    reference_order_id,
+    reference_order_line_id,
+    transaction_date,
+    transaction_type,
     quantity,
-    actualcost,
-    modifieddate
+    actual_cost,
+    modified_date
 from {{ source('adventure_works_production', 'transaction_history_archive') }}

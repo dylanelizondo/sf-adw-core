@@ -1,0 +1,19 @@
+version: 2
+
+models:
+  - name: brz_adventure_works_sales__sales_reason
+    description: >
+        Bronze view over ADVENTURE_WORKS.SALES.SALES_REASON, exposed one to one with no
+        transformations. Lookup of the reasons a customer gave for a purchase, grouped by reason
+        type. Referenced by SALES_ORDER_HEADER_SALES_REASON. Grain: one row per reason. The source
+        columns are named without separators, unlike the rest of the schema; bronze keeps them as
+        they arrive and aligning them belongs in the silver layer.
+    columns:
+      - name: salesreasonid
+        description: "PK. Unique identifier of the reason. Named SALES_REASON_ID in the rest of the schema."
+      - name: name
+        description: "Name of the reason (for example Price, Quality, Manufacturer)."
+      - name: reasontype
+        description: "Grouping the reason belongs to: Marketing, Other or Promotion."
+      - name: modifieddate
+        description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

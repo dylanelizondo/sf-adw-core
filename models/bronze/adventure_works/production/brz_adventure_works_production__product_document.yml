@@ -6,9 +6,9 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no
         transformations. Bridge relating products to their associated technical documents.
     columns:
-      - name: productid
+      - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product associated with the document."
-      - name: documentnode
+      - name: document_node
         description: "FK to PRODUCTION.DOCUMENT. Document associated with the product."
-      - name: modifieddate
+      - name: modified_date
         description: "Timestamp of the last change to the record in the source system."

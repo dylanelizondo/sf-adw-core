@@ -2,10 +2,10 @@
 -- Any renaming, casting or deduplication belongs in the silver layer.
 
 select
-    productmodelid,
+    product_model_id,
     name,
-    catalogdescription,
+    catalog_description,
     instructions,
     rowguid,
-    modifieddate
+    modified_date
 from {{ source('adventure_works_production', 'product_model') }}
