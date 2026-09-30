@@ -9,8 +9,16 @@ models:
     columns:
       - name: work_order_id
         description: "PK. Unique identifier of the work order."
+        data_tests:
+          - unique
+          - not_null
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product being manufactured."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: order_qty
         description: "Units to be manufactured on the order."
       - name: stocked_qty

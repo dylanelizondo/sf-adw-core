@@ -9,16 +9,34 @@ models:
     columns:
       - name: bill_of_materials_id
         description: "PK. Unique identifier of the bill of materials line."
+        data_tests:
+          - unique
+          - not_null
       - name: product_assembly_id
         description: "FK to PRODUCTION.PRODUCT. Parent product (assembly). Null at the root of the structure."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: component_id
         description: "FK to PRODUCTION.PRODUCT. Child product consumed by the assembly."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: start_date
         description: "Date the record became effective."
       - name: end_date
         description: "Date the record stopped being effective. Null while it is still current."
       - name: unit_measure_code
         description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure code."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__unit_measure')
+                field: unit_measure_code
       - name: bomlevel
         description: "Depth of the component within the structure."
       - name: per_assembly_qty

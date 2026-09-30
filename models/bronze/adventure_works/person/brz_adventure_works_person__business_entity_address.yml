@@ -6,13 +6,36 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.BUSINESS_ENTITY_ADDRESS, exposed one to one with no
         transformations. Bridge between business entities and addresses, qualified by address type.
         Grain: business entity + address + address type.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [business_entity_id, address_id, address_type_id]
+
     columns:
       - name: business_entity_id
         description: "FK to PERSON.BUSINESS_ENTITY. Universal identifier of the business entity (person, store or vendor)."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__business_entity')
+                field: business_entity_id
       - name: address_id
         description: "FK to PERSON.ADDRESS. Address associated with the record."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__address')
+                field: address_id
       - name: address_type_id
         description: "FK to PERSON.ADDRESS_TYPE. Intended use of the address."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__address_type')
+                field: address_type_id
       - name: rowguid
         description: "Globally unique identifier (GUID) used by the source system for row-level replication."
       - name: modified_date

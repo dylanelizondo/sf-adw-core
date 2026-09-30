@@ -9,16 +9,34 @@ models:
     columns:
       - name: sales_order_id
         description: "FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_order_header')
+                field: sales_order_id
       - name: sales_order_detail_id
         description: "PK. Unique identifier of the sales order line."
+        data_tests:
+          - unique
+          - not_null
       - name: carrier_tracking_number
         description: "Carrier tracking number for the line."
       - name: order_qty
         description: "Number of units ordered."
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: special_offer_id
         description: "FK to SALES.SPECIAL_OFFER. Promotion applied."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__special_offer')
+                field: special_offer_id
       - name: unit_price
         description: "Unit price applied on the line."
       - name: unit_price_discount

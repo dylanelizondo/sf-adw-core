@@ -9,6 +9,9 @@ models:
     columns:
       - name: sales_order_id
         description: "PK. Unique identifier of the sales order."
+        data_tests:
+          - unique
+          - not_null
       - name: revision_number
         description: "Revision number of the document. Incremented on every change."
       - name: order_date
@@ -29,22 +32,62 @@ models:
         description: "Accounting account number tied to the sale."
       - name: customer_id
         description: "FK to SALES.CUSTOMER. Customer the record belongs to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__customer')
+                field: customer_id
       - name: sales_person_id
         description: "FK to SALES.SALES_PERSON. Assigned salesperson."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_person')
+                field: business_entity_id
       - name: territory_id
         description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_territory')
+                field: territory_id
       - name: bill_to_address_id
         description: "FK to PERSON.ADDRESS. Billing address."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__address')
+                field: address_id
       - name: ship_to_address_id
         description: "FK to PERSON.ADDRESS. Shipping address."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__address')
+                field: address_id
       - name: ship_method_id
         description: "FK to PURCHASING.SHIP_METHOD. Shipping method used."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_purchasing__ship_method')
+                field: ship_method_id
       - name: credit_card_id
         description: "FK to SALES.CREDIT_CARD. Credit card associated with the record."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__credit_card')
+                field: credit_card_id
       - name: credit_card_approval_code
         description: "Approval code returned by the card processor."
       - name: currency_rate_id
         description: "FK to SALES.CURRENCY_RATE. Exchange rate applied. Null for sales in local currency."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__currency_rate')
+                field: currency_rate_id
       - name: sub_total
         description: "Document subtotal before tax and freight."
       - name: tax_amt

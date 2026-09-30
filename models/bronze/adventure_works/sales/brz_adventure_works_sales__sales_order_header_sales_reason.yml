@@ -6,10 +6,30 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER_SALES_REASON, exposed one to one
         with no transformations. Bridge between sales orders and the recorded reasons for the
         purchase. An order may carry several reasons. Grain: order + reason.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [sales_order_id, sales_reason_id]
+
     columns:
       - name: sales_order_id
         description: "FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_order_header')
+                field: sales_order_id
       - name: sales_reason_id
-        description: "Part of the PK. Reason for the purchase tied to the order."
+        description: >
+            Part of the PK. FK to SALES.SALES_REASON. Reason for the purchase tied to the order.
+            The parent column is named SALESREASONID in the source, so bronze exposes it unaliased
+            and the two names do not match across the join.
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_reason')
+                field: salesreasonid
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

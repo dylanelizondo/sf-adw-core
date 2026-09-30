@@ -8,10 +8,22 @@ models:
     columns:
       - name: business_entity_id
         description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the store."
+        data_tests:
+          - unique
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__business_entity')
+                field: business_entity_id
       - name: name
         description: "Name of the reseller store."
       - name: sales_person_id
         description: "FK to SALES.SALES_PERSON. Salesperson who serves the store."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_person')
+                field: business_entity_id
       - name: demographics
         description: "Demographic attributes of the store as XML, exactly as delivered by the source."
       - name: rowguid

@@ -8,6 +8,9 @@ models:
     columns:
       - name: culture_id
         description: "PK. Culture code (for example en, es, fr)."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the language or culture."
       - name: modified_date

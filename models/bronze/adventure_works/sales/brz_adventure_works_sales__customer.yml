@@ -9,12 +9,30 @@ models:
     columns:
       - name: customer_id
         description: "PK. Unique identifier of the customer."
+        data_tests:
+          - unique
+          - not_null
       - name: person_id
         description: "FK to PERSON.PERSON. Person buying at retail. Null when the customer is a store."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__person')
+                field: business_entity_id
       - name: store_id
         description: "FK to SALES.STORE. Reseller store. Null when the customer is a person."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__store')
+                field: business_entity_id
       - name: territory_id
         description: "FK to SALES.SALES_TERRITORY. Sales territory the record belongs to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__sales_territory')
+                field: territory_id
       - name: account_number
         description: "Customer account number, derived in the source system."
       - name: rowguid

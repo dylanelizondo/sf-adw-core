@@ -9,8 +9,16 @@ models:
     columns:
       - name: transaction_id
         description: "PK. Unique identifier of the archived transaction."
+        data_tests:
+          - unique
+          - not_null
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product involved in the transaction."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: reference_order_id
         description: "Identifier of the purchase order, sales order or work order associated with the transaction."
       - name: reference_order_line_id

@@ -9,6 +9,9 @@ models:
     columns:
       - name: product_id
         description: "PK. Unique identifier of the product."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Commercial name of the product."
       - name: product_number
@@ -31,8 +34,18 @@ models:
         description: "Size of the product, expressed in SIZE_UNIT_MEASURE_CODE."
       - name: size_unit_measure_code
         description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the size."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__unit_measure')
+                field: unit_measure_code
       - name: weight_unit_measure_code
         description: "FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the weight."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__unit_measure')
+                field: unit_measure_code
       - name: weight
         description: "Weight of the product, expressed in WEIGHT_UNIT_MEASURE_CODE."
       - name: days_to_manufacture
@@ -45,6 +58,11 @@ models:
         description: "Product style: W (womens), M (mens), U (universal)."
       - name: product_subcategory_id
         description: "FK to PRODUCTION.PRODUCT_SUBCATEGORY. Subcategory of the product."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_subcategory')
+                field: product_subcategory_id
       - name: product_model_id
         description: "Identifier of the product model in the source system."
       - name: sell_start_date

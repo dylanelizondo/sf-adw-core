@@ -9,6 +9,9 @@ models:
     columns:
       - name: special_offer_id
         description: "PK. Unique identifier of the promotion."
+        data_tests:
+          - unique
+          - not_null
       - name: description
         description: "Description of the promotion."
       - name: discount_pct

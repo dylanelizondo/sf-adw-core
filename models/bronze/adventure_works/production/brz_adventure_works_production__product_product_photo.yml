@@ -6,11 +6,28 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PRODUCT_PHOTO, exposed one to one with
         no transformations. Bridge relating products to their product photos and identifying the
         primary photo.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [product_id, product_photo_id]
+
     columns:
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product associated with the photo."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: product_photo_id
         description: "FK to PRODUCTION.PRODUCT_PHOTO. Photo associated with the product."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_photo')
+                field: product_photo_id
       - name: primary
         description: "True when the photo is the primary image for the product, false otherwise."
       - name: modified_date

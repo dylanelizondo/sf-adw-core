@@ -8,6 +8,9 @@ models:
     columns:
       - name: country_region_code
         description: "PK. ISO code of the country or region."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the country or region."
       - name: modified_date

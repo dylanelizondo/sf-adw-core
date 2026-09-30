@@ -8,6 +8,9 @@ models:
     columns:
       - name: address_type_id
         description: "PK. Unique identifier of the address type."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the address type."
       - name: rowguid
