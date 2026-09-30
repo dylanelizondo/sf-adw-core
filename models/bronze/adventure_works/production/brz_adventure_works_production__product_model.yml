@@ -7,15 +7,15 @@ models:
         transformations. Lookup of product models shared by individual product variants, including
         catalog descriptions and manufacturing instructions.
     columns:
-      - name: productmodelid
+      - name: product_model_id
         description: "PK. Unique identifier of the product model."
       - name: name
         description: "Name of the product model."
-      - name: catalogdescription
+      - name: catalog_description
         description: "XML catalog description of the product model. Null when no catalog description is available."
       - name: instructions
         description: "XML manufacturing instructions for the product model. Null when no instructions are available."
       - name: rowguid
         description: "Globally unique identifier (GUID) used by the source system for row-level replication."
-      - name: modifieddate
+      - name: modified_date
         description: "Timestamp of the last change to the record in the source system."

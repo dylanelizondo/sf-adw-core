@@ -7,11 +7,11 @@ models:
         exposed one to one with no transformations. Bridge relating product models to translated
         product descriptions and their cultures.
     columns:
-      - name: productmodelid
+      - name: product_model_id
         description: "FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the description."
-      - name: productdescriptionid
+      - name: product_description_id
         description: "FK to PRODUCTION.PRODUCT_DESCRIPTION. Description associated with the product model."
-      - name: cultureid
+      - name: culture_id
         description: "FK to PRODUCTION.CULTURE. Language or culture of the product description."
-      - name: modifieddate
+      - name: modified_date
         description: "Timestamp of the last change to the record in the source system."

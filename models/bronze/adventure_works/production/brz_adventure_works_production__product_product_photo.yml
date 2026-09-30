@@ -7,11 +7,11 @@ models:
         no transformations. Bridge relating products to their product photos and identifying the
         primary photo.
     columns:
-      - name: productid
+      - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product associated with the photo."
-      - name: productphotoid
+      - name: product_photo_id
         description: "FK to PRODUCTION.PRODUCT_PHOTO. Photo associated with the product."
       - name: primary
         description: "True when the photo is the primary image for the product, false otherwise."
-      - name: modifieddate
+      - name: modified_date
         description: "Timestamp of the last change to the record in the source system."
