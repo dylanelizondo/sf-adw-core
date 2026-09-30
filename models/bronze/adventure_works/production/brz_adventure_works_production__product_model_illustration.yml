@@ -5,10 +5,27 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_ILLUSTRATION, exposed one to one
         with no transformations. Bridge relating product models to their technical illustrations.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [product_model_id, illustration_id]
+
     columns:
       - name: product_model_id
         description: "FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the illustration."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_model')
+                field: product_model_id
       - name: illustration_id
         description: "FK to PRODUCTION.ILLUSTRATION. Illustration associated with the product model."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__illustration')
+                field: illustration_id
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system."

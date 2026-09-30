@@ -9,6 +9,9 @@ models:
     columns:
       - name: address_id
         description: "PK. Unique identifier of the address."
+        data_tests:
+          - unique
+          - not_null
       - name: address_line1
         description: "First line of the address (street and number)."
       - name: address_line2
@@ -17,6 +20,11 @@ models:
         description: "City of the address."
       - name: state_province_id
         description: "FK to PERSON.STATE_PROVINCE. State or province of the record."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__state_province')
+                field: state_province_id
       - name: postal_code
         description: "Postal code of the address."
       - name: spatial_location

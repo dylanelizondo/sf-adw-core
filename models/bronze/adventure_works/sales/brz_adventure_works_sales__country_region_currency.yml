@@ -6,10 +6,27 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.COUNTRY_REGION_CURRENCY, exposed one to one with no
         transformations. Bridge stating which currencies are used in each country or region. Grain:
         country + currency.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [country_region_code, currency_code]
+
     columns:
       - name: country_region_code
         description: "FK to PERSON.COUNTRY_REGION. ISO code of the country or region."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__country_region')
+                field: country_region_code
       - name: currency_code
         description: "FK to SALES.CURRENCY. ISO code of the currency."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__currency')
+                field: currency_code
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system. Arrives as text from the source."

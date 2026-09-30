@@ -8,8 +8,16 @@ models:
     columns:
       - name: sales_tax_rate_id
         description: "PK. Unique identifier of the tax rate."
+        data_tests:
+          - unique
+          - not_null
       - name: state_province_id
         description: "FK to PERSON.STATE_PROVINCE. State or province of the record."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__state_province')
+                field: state_province_id
       - name: tax_type
         description: "Tax type: 1 = shipping only, 2 = state only, 3 = both."
       - name: tax_rate

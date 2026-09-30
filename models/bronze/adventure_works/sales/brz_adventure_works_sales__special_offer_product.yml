@@ -6,11 +6,28 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER_PRODUCT, exposed one to one with no
         transformations. Bridge between promotions and the products they apply to. Grain: promotion
         + product.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [special_offer_id, product_id]
+
     columns:
       - name: special_offer_id
         description: "FK to SALES.SPECIAL_OFFER. Promotion applied."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__special_offer')
+                field: special_offer_id
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: rowguid
         description: "Globally unique identifier (GUID) used by the source system for row-level replication."
       - name: modified_date

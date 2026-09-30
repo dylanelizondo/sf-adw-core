@@ -9,10 +9,18 @@ models:
     columns:
       - name: territory_id
         description: "PK. Unique identifier of the sales territory."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the territory (for example Northwest, Canada)."
       - name: country_region_code
         description: "FK to PERSON.COUNTRY_REGION. ISO code of the country or region."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_person__country_region')
+                field: country_region_code
       - name: group
         description: "Higher level grouping of the territory (North America, Europe, Pacific). The column name is a reserved word in Snowflake, so it is referenced with double quotes."
       - name: sales_ytd

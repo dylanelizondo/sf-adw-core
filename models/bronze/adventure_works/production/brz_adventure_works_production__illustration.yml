@@ -8,6 +8,9 @@ models:
     columns:
       - name: illustration_id
         description: "PK. Unique identifier of the illustration."
+        data_tests:
+          - unique
+          - not_null
       - name: diagram
         description: "XML representation of the technical illustration. Null when no diagram is available."
       - name: modified_date

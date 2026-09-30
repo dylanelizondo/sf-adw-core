@@ -8,6 +8,9 @@ models:
     columns:
       - name: currency_code
         description: "PK. ISO code of the currency."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the currency."
       - name: modified_date
