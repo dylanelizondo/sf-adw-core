@@ -9,12 +9,25 @@ models:
     columns:
       - name: currency_rate_id
         description: "PK. Unique identifier of the exchange rate."
+        data_tests:
+          - unique
+          - not_null
       - name: currency_rate_date
         description: "Date the exchange rate applies to."
       - name: from_currency_code
         description: "FK to SALES.CURRENCY. Source currency of the conversion."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__currency')
+                field: currency_code
       - name: to_currency_code
         description: "FK to SALES.CURRENCY. Target currency of the conversion."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_sales__currency')
+                field: currency_code
       - name: average_rate
         description: "Average exchange rate for the day."
       - name: end_of_day_rate

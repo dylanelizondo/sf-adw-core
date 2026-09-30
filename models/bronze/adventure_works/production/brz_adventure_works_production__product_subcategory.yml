@@ -8,8 +8,16 @@ models:
     columns:
       - name: product_subcategory_id
         description: "PK. Unique identifier of the subcategory."
+        data_tests:
+          - unique
+          - not_null
       - name: product_category_id
         description: "FK to PRODUCTION.PRODUCT_CATEGORY. Category of the product."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_category')
+                field: product_category_id
       - name: name
         description: "Name of the subcategory (for example Mountain Bikes, Road Frames)."
       - name: rowguid

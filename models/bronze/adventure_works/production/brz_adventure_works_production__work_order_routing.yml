@@ -6,15 +6,39 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER_ROUTING, exposed one to one with no
         transformations. Manufacturing routing for each work order: one row per operation, with
         planned versus actual costs and dates. Grain: work order + product + operation sequence.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [work_order_id, product_id, operation_sequence]
+
     columns:
       - name: work_order_id
         description: "Part of the PK and FK to PRODUCTION.WORK_ORDER. Work order being routed."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__work_order')
+                field: work_order_id
       - name: product_id
         description: "Part of the PK and FK to PRODUCTION.PRODUCT. Product being manufactured."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: operation_sequence
         description: "Sequence number of the operation within the manufacturing routing."
+        data_tests:
+          - not_null
       - name: location_id
         description: "FK to PRODUCTION.LOCATION. Location inside the plant."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__location')
+                field: location_id
       - name: scheduled_start_date
         description: "Planned start date of the operation."
       - name: scheduled_end_date

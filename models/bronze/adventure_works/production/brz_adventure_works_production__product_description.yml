@@ -8,6 +8,9 @@ models:
     columns:
       - name: product_description_id
         description: "PK. Unique identifier of the description."
+        data_tests:
+          - unique
+          - not_null
       - name: description
         description: "Marketing copy for the product."
       - name: rowguid

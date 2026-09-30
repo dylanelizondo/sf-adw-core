@@ -6,12 +6,42 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_PRODUCT_DESCRIPTION_CULTURE,
         exposed one to one with no transformations. Bridge relating product models to translated
         product descriptions and their cultures.
+    data_tests:
+      - unique_combination_of_columns:
+          arguments:
+            columns: [product_model_id, product_description_id, culture_id]
+
     columns:
       - name: product_model_id
         description: "FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the description."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_model')
+                field: product_model_id
       - name: product_description_id
         description: "FK to PRODUCTION.PRODUCT_DESCRIPTION. Description associated with the product model."
+        data_tests:
+          - not_null
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product_description')
+                field: product_description_id
       - name: culture_id
-        description: "FK to PRODUCTION.CULTURE. Language or culture of the product description."
+        description: >
+            FK to PRODUCTION.CULTURE. Language or culture of the product description. Does not
+            join to the parent as loaded; see the note below.
+        # No relationships test here. PRODUCTION.CULTURE.CULTURE_ID kept the trailing padding
+        # of its SQL Server nchar(6) type ('en    ', length 6) while this table was loaded
+        # trimmed ('en', length 2), so 'en' <> 'en    ' and 5 of the 6 values find no parent:
+        # 635 orphan rows out of 762. Only 'zh-cht' joins, because it already fills the 6
+        # characters exactly. Both columns are TEXT in Snowflake, so the padding is in the
+        # values and not visible in the column type.
+        #
+        # Bronze cannot trim without breaking the passthrough rule, so the assertion belongs
+        # on the silver model that trims both sides before joining.
+        data_tests:
+          - not_null
       - name: modified_date
         description: "Timestamp of the last change to the record in the source system."

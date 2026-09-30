@@ -9,14 +9,27 @@ models:
     columns:
       - name: purchase_order_id
         description: "FK to PURCHASING.PURCHASE_ORDER_HEADER. Purchase order the record belongs to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_purchasing__purchase_order_header')
+                field: purchase_order_id
       - name: purchase_order_detail_id
         description: "PK. Unique identifier of the purchase order line."
+        data_tests:
+          - unique
+          - not_null
       - name: due_date
         description: "Date the delivery was promised for."
       - name: order_qty
         description: "Number of units ordered."
       - name: product_id
         description: "FK to PRODUCTION.PRODUCT. Product the record refers to."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_production__product')
+                field: product_id
       - name: unit_price
         description: "Unit price applied on the line."
       - name: line_total

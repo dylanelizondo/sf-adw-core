@@ -9,6 +9,9 @@ models:
     columns:
       - name: document_node
         description: "PK. Hierarchy path that uniquely identifies the document in the source system."
+        data_tests:
+          - unique
+          - not_null
       - name: document_level
         description: "Depth of the document within the document hierarchy."
       - name: title

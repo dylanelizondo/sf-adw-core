@@ -9,6 +9,9 @@ models:
     columns:
       - name: department_id
         description: "PK. Unique identifier of the department."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Department name (for example Engineering, Sales)."
       - name: group_name

@@ -8,6 +8,9 @@ models:
     columns:
       - name: ship_method_id
         description: "PK. Unique identifier of the shipping method."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the shipping method (for example XRQ - TRUCK GROUND)."
       - name: ship_base

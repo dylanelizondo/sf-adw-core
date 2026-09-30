@@ -8,6 +8,9 @@ models:
     columns:
       - name: scrap_reason_id
         description: "PK. Unique identifier of the scrap reason."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Description of the manufacturing failure or scrap reason."
       - name: modified_date

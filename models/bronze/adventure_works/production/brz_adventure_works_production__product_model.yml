@@ -9,6 +9,9 @@ models:
     columns:
       - name: product_model_id
         description: "PK. Unique identifier of the product model."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the product model."
       - name: catalog_description

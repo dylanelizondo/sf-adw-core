@@ -8,6 +8,9 @@ models:
     columns:
       - name: location_id
         description: "PK. Unique identifier of the location."
+        data_tests:
+          - unique
+          - not_null
       - name: name
         description: "Name of the location (for example Tool Crib, Paint Shop)."
       - name: cost_rate

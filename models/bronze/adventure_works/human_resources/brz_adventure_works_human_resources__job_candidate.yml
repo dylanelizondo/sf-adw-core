@@ -9,8 +9,16 @@ models:
     columns:
       - name: job_candidate_id
         description: "PK. Unique identifier of the candidate."
+        data_tests:
+          - unique
+          - not_null
       - name: business_entity_id
         description: "FK to HUMAN_RESOURCES.EMPLOYEE. Null while the candidate has not been hired."
+        data_tests:
+          - relationships:
+              arguments:
+                to: ref('brz_adventure_works_human_resources__employee')
+                field: business_entity_id
       - name: resume
         description: "Candidate resume as XML, exactly as delivered by the source."
       - name: modified_date
