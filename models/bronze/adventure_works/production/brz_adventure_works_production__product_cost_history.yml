@@ -6,6 +6,34 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_COST_HISTORY, exposed one to one with no
         transformations. History of standard cost per product. Grain: product + effective start
         date.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_cost_history
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_COST_HISTORY, exposed one to one with no transformations. History of standard cost per product. Grain: product + effective start date.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | END_DATE | Date the record stopped being effective. Null while it is still current. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product the cost applies to. |
+            | STANDARD_COST | Standard cost in force during the period. |
+            | START_DATE | Part of the PK. Date the cost became effective. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

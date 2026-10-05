@@ -6,6 +6,42 @@ models:
         Bronze view over ADVENTURE_WORKS.PURCHASING.PURCHASE_ORDER_HEADER, exposed one to one with
         no transformations. Header of purchase orders placed with vendors, including amounts, status
         and dates. Grain: one row per purchase order.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Purchasing"
+          termNames:
+            - "Purchasing"
+          readme: |
+            # brz_adventure_works_purchasing__purchase_order_header
+
+            Bronze view over ADVENTURE_WORKS.PURCHASING.PURCHASE_ORDER_HEADER, exposed one to one with no transformations. Header of purchase orders placed with vendors, including amounts, status and dates. Grain: one row per purchase order.
+
+            **Layer:** bronze  
+            **Subject area:** Purchasing
+
+            | Column | Description |
+            | --- | --- |
+            | EMPLOYEE_ID | FK to HUMAN_RESOURCES.EMPLOYEE. Buyer who raised the order. |
+            | FREIGHT | Freight cost charged on the document. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | ORDER_DATE | Date the order was placed. |
+            | PURCHASE_ORDER_ID | PK. Unique identifier of the purchase order. |
+            | REVISION_NUMBER | Revision number of the document. Incremented on every change. |
+            | SHIP_DATE | Date the document was shipped. Null while it has not shipped. |
+            | SHIP_METHOD_ID | FK to PURCHASING.SHIP_METHOD. Shipping method used. |
+            | STATUS | Order status: 1 = pending, 2 = approved, 3 = rejected, 4 = complete. |
+            | SUB_TOTAL | Document subtotal before tax and freight. |
+            | TAX_AMT | Tax amount charged on the document. |
+            | TOTAL_DUE | Total amount due on the document (subtotal + tax + freight). |
+            | VENDOR_ID | FK to PURCHASING.VENDOR. Vendor the order was placed with. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: purchase_order_id
         description: "PK. Unique identifier of the purchase order."

@@ -6,6 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.PERSON_PHONE, exposed one to one with no
         transformations. Phone numbers per person, qualified by type. Grain: person + number + type.
         Sensitive data (PII).
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__person_phone
+
+            Bronze view over ADVENTURE_WORKS.PERSON.PERSON_PHONE, exposed one to one with no transformations. Phone numbers per person, qualified by type. Grain: person + number + type. Sensitive data (PII).
+
+            **Layer:** bronze  
+            **Subject area:** Person
+
+            | Column | Description |
+            | --- | --- |
+            | BUSINESS_ENTITY_ID | Part of the PK and FK to PERSON.PERSON. Person who owns the phone number. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PHONE_NUMBER | Part of the PK. Phone number. Sensitive data (PII). |
+            | PHONE_NUMBER_TYPE_ID | Part of the PK. Phone type: 1 = cell, 2 = home, 3 = work. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

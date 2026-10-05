@@ -5,6 +5,32 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.ILLUSTRATION, exposed one to one with no
         transformations. Stores technical diagrams that can be associated with product models.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__illustration
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.ILLUSTRATION, exposed one to one with no transformations. Stores technical diagrams that can be associated with product models.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | DIAGRAM | XML representation of the technical illustration. Null when no diagram is available. |
+            | ILLUSTRATION_ID | PK. Unique identifier of the illustration. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: illustration_id
         description: "PK. Unique identifier of the illustration."

@@ -6,6 +6,39 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY, exposed one to one with no
         transformations. Sales territories with their accumulated sales and cost. It is the
         commercial geography dimension of the model.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__sales_territory
+
+            Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY, exposed one to one with no transformations. Sales territories with their accumulated sales and cost. It is the commercial geography dimension of the model.
+
+            **Layer:** bronze  
+            **Subject area:** Sales
+
+            | Column | Description |
+            | --- | --- |
+            | COST_LAST_YEAR | Cost accumulated over the previous year. |
+            | COST_YTD | Cost accumulated year to date. |
+            | COUNTRY_REGION_CODE | FK to PERSON.COUNTRY_REGION. ISO code of the country or region. |
+            | GROUP | Higher level grouping of the territory (North America, Europe, Pacific). The column name is a reserved word in Snowflake, so it is referenced with double quotes. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the territory (for example Northwest, Canada). |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SALES_LAST_YEAR | Sales accumulated over the previous year. |
+            | SALES_YTD | Sales accumulated year to date. |
+            | TERRITORY_ID | PK. Unique identifier of the sales territory. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: territory_id
         description: "PK. Unique identifier of the sales territory."

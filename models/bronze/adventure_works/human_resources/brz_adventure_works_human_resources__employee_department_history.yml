@@ -6,6 +6,35 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_DEPARTMENT_HISTORY, exposed one to
         one with no transformations. History of employee assignments to department and shift. Grain:
         employee + department + shift + start date. Lets you rebuild headcount as of any date.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Human Resources"
+          termNames:
+            - "Human Resources"
+          readme: |
+            # brz_adventure_works_human_resources__employee_department_history
+
+            Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_DEPARTMENT_HISTORY, exposed one to one with no transformations. History of employee assignments to department and shift. Grain: employee + department + shift + start date. Lets you rebuild headcount as of any date.
+
+            **Layer:** bronze  
+            **Subject area:** Human Resources
+
+            | Column | Description |
+            | --- | --- |
+            | BUSINESS_ENTITY_ID | Part of the PK and FK to HUMAN_RESOURCES.EMPLOYEE. Assigned employee. |
+            | DEPARTMENT_ID | FK to HUMAN_RESOURCES.DEPARTMENT. Department the record belongs to. |
+            | END_DATE | Date the employee left the department. Null for the current assignment. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | SHIFT_ID | FK to HUMAN_RESOURCES.SHIFT. Work shift the record belongs to. |
+            | START_DATE | Date the employee joined the department. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

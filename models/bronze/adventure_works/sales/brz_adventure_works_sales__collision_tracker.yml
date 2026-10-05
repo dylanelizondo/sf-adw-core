@@ -6,6 +6,48 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.COLLISION_TRACKER, exposed one to one with no
         transformations. Log of fleet vehicle collisions. Table added on top of the original
         AdventureWorks model for safety analytics; it is not part of the standard schema.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__collision_tracker
+
+            Bronze view over ADVENTURE_WORKS.SALES.COLLISION_TRACKER, exposed one to one with no transformations. Log of fleet vehicle collisions. Table added on top of the original AdventureWorks model for safety analytics; it is not part of the standard schema.
+
+            **Layer:** bronze  
+            **Subject area:** Sales
+
+            | Column | Description |
+            | --- | --- |
+            | CDL_HOLDER | Whether the driver holds a commercial drivers license (CDL). |
+            | COLLISION_INITIATED_BY | Party that initiated the collision. |
+            | COLLISION_LOCATION | Location where the collision happened. |
+            | COLLISION_TYPE | Type of collision recorded. |
+            | CONCLUSION | Conclusion of the incident investigation. |
+            | DAY_OF_WEEK | Day of the week the collision happened. |
+            | DRIVER_FIRST_NAME | Given name of the driver involved. Sensitive data (PII). |
+            | DRIVER_LAST_NAME | Family name of the driver involved. Sensitive data (PII). |
+            | INCIDENT_DATE | Date the collision happened. |
+            | INCIDENT_NUMBER | PK. Collision incident number. |
+            | INCIDENT_TITLE | Short title summarising the incident. |
+            | KORE_CAMERA_ASSISTED | Whether KORE camera footage was available to support the analysis. |
+            | MPH_AT_COLLISION | Estimated speed in miles per hour at the moment of impact. |
+            | NOTES | Free-form investigator notes about the incident. |
+            | SAFETY_PROFESSIONAL | Safety professional who handled the case. |
+            | SERVICE_AREA | Service area where the collision happened. |
+            | TERRITORY | Operating territory the collision was reported in. |
+            | TIME_OF_DAY | Time band in which the collision happened. |
+            | VEHICLE_ACTIVITY_AT_COLLISION | Manoeuvre the vehicle was performing at the moment of impact. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: incident_number
         description: "PK. Collision incident number."

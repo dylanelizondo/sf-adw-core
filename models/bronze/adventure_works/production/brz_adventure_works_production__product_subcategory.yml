@@ -5,6 +5,34 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_SUBCATEGORY, exposed one to one with no
         transformations. Lookup of product subcategories: the level between category and product.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_subcategory
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_SUBCATEGORY, exposed one to one with no transformations. Lookup of product subcategories: the level between category and product.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the subcategory (for example Mountain Bikes, Road Frames). |
+            | PRODUCT_CATEGORY_ID | FK to PRODUCTION.PRODUCT_CATEGORY. Category of the product. |
+            | PRODUCT_SUBCATEGORY_ID | PK. Unique identifier of the subcategory. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_subcategory_id
         description: "PK. Unique identifier of the subcategory."
