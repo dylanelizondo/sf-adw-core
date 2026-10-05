@@ -5,6 +5,33 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PHOTO, exposed one to one with no
         transformations. Stores file-name metadata for product thumbnail and large-format photos.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_photo
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PHOTO, exposed one to one with no transformations. Stores file-name metadata for product thumbnail and large-format photos.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | LARGE_PHOTO_FILE_NAME | File name of the large product image. Null when no large image file is available. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+            | PRODUCT_PHOTO_ID | PK. Unique identifier of the product photo. |
+            | THUMBNAIL_PHOTO_FILE_NAME | File name of the thumbnail product image. Null when no thumbnail file is available. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_photo_id
         description: "PK. Unique identifier of the product photo."

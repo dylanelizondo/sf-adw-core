@@ -6,6 +6,37 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_REVIEW, exposed one to one with no
         transformations. Customer reviews of products, including reviewer details, ratings and
         comments.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_review
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_REVIEW, exposed one to one with no transformations. Customer reviews of products, including reviewer details, ratings and comments.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | COMMENTS | Free-text comments supplied by the reviewer. Null when no comments were provided. |
+            | EMAIL_ADDRESS | Email address supplied by the reviewer. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product being reviewed. |
+            | PRODUCT_REVIEW_ID | PK. Unique identifier of the product review. |
+            | RATING | Product rating from 1 to 5. |
+            | REVIEWER_NAME | Name of the person who submitted the review. |
+            | REVIEW_DATE | Date and time when the review was submitted. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_review_id
         description: "PK. Unique identifier of the product review."

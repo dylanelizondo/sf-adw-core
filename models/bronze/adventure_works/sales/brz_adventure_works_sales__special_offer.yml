@@ -6,6 +6,40 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER, exposed one to one with no
         transformations. Lookup of promotions and discounts, with validity dates and the quantity
         range they apply to.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__special_offer
+
+            Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER, exposed one to one with no transformations. Lookup of promotions and discounts, with validity dates and the quantity range they apply to.
+
+            **Layer:** bronze  
+            **Subject area:** Sales
+
+            | Column | Description |
+            | --- | --- |
+            | CATEGORY | Audience the promotion targets: Reseller or Customer. |
+            | DESCRIPTION | Description of the promotion. |
+            | DISCOUNT_PCT | Discount percentage granted by the promotion. |
+            | END_DATE | Date the record stopped being effective. Null while it is still current. |
+            | MAX_QTY | Maximum quantity the promotion applies up to. Null when there is no cap. |
+            | MIN_QTY | Minimum quantity for the promotion to apply. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SPECIAL_OFFER_ID | PK. Unique identifier of the promotion. |
+            | START_DATE | Date the record became effective. |
+            | TYPE | Promotion type (for example Volume Discount, Discontinued Product). |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: special_offer_id
         description: "PK. Unique identifier of the promotion."

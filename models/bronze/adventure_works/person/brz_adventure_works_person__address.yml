@@ -6,6 +6,38 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS, exposed one to one with no transformations.
         Physical addresses used by customers, employees, stores and vendors. Linked to business
         entities through BUSINESS_ENTITY_ADDRESS.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__address
+
+            Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS, exposed one to one with no transformations. Physical addresses used by customers, employees, stores and vendors. Linked to business entities through BUSINESS_ENTITY_ADDRESS.
+
+            **Layer:** bronze  
+            **Subject area:** Person
+
+            | Column | Description |
+            | --- | --- |
+            | ADDRESS_ID | PK. Unique identifier of the address. |
+            | ADDRESS_LINE1 | First line of the address (street and number). |
+            | ADDRESS_LINE2 | Second line of the address (apartment, suite). Null when not applicable. |
+            | CITY | City of the address. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | POSTAL_CODE | Postal code of the address. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SPATIAL_LOCATION | Geographic coordinate of the address (source geography type). |
+            | STATE_PROVINCE_ID | FK to PERSON.STATE_PROVINCE. State or province of the record. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: address_id
         description: "PK. Unique identifier of the address."
