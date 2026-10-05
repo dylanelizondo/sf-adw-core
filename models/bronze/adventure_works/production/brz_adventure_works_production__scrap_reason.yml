@@ -5,6 +5,31 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.SCRAP_REASON, exposed one to one with no
         transformations. Lookup of reasons why units are scrapped during manufacturing.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__scrap_reason
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.SCRAP_REASON, exposed one to one with no transformations. Lookup of reasons why units are scrapped during manufacturing.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+          | NAME | Description of the manufacturing failure or scrap reason. |
+          | SCRAP_REASON_ID | PK. Unique identifier of the scrap reason. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: scrap_reason_id
         description: "PK. Unique identifier of the scrap reason."

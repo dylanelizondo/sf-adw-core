@@ -6,6 +6,32 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.DEPARTMENT, exposed one to one with no
         transformations. Lookup of company departments, rolled up into functional groups. Base
         dimension for analysing headcount by area.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Human Resources"
+        termNames:
+          - "Human Resources"
+        readme: |
+          # brz_adventure_works_human_resources__department
+
+          Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.DEPARTMENT, exposed one to one with no transformations. Lookup of company departments, rolled up into functional groups. Base dimension for analysing headcount by area.
+
+          **Layer:** bronze  
+          **Subject area:** Human Resources
+
+          | Column | Description |
+          | --- | --- |
+          | DEPARTMENT_ID | PK. Unique identifier of the department. |
+          | GROUP_NAME | Functional group that rolls up several departments (for example Research and Development). |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Department name (for example Engineering, Sales). |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: department_id
         description: "PK. Unique identifier of the department."

@@ -6,6 +6,54 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER, exposed one to one with no
         transformations. Header of sales orders: customer, salesperson, territory, addresses,
         amounts and dates. Grain: one row per sales order.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__sales_order_header
+
+          Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER, exposed one to one with no transformations. Header of sales orders: customer, salesperson, territory, addresses, amounts and dates. Grain: one row per sales order.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | ACCOUNT_NUMBER | Accounting account number tied to the sale. |
+          | BILL_TO_ADDRESS_ID | FK to PERSON.ADDRESS. Billing address. |
+          | COMMENT | Free-form comment captured on the order. |
+          | CREDIT_CARD_APPROVAL_CODE | Approval code returned by the card processor. |
+          | CREDIT_CARD_ID | FK to SALES.CREDIT_CARD. Credit card associated with the record. |
+          | CURRENCY_RATE_ID | FK to SALES.CURRENCY_RATE. Exchange rate applied. Null for sales in local currency. |
+          | CUSTOMER_ID | FK to SALES.CUSTOMER. Customer the record belongs to. |
+          | DUE_DATE | Date the delivery was promised for. |
+          | FREIGHT | Freight cost charged on the document. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | ONLINE_ORDER_FLAG | 1 when the order was placed online, 0 when a salesperson placed it. |
+          | ORDER_DATE | Date the order was placed. |
+          | PURCHASE_ORDER_NUMBER | Purchase order number the customer assigned to the sale. |
+          | REVISION_NUMBER | Revision number of the document. Incremented on every change. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | SALES_ORDER_ID | PK. Unique identifier of the sales order. |
+          | SALES_ORDER_NUMBER | Sales order number shown to the customer. |
+          | SALES_PERSON_ID | FK to SALES.SALES_PERSON. Assigned salesperson. |
+          | SHIP_DATE | Date the document was shipped. Null while it has not shipped. |
+          | SHIP_METHOD_ID | FK to PURCHASING.SHIP_METHOD. Shipping method used. |
+          | SHIP_TO_ADDRESS_ID | FK to PERSON.ADDRESS. Shipping address. |
+          | STATUS | Order status: 1 = in process, 2 = approved, 3 = backordered, 4 = rejected, 5 = shipped, 6 = cancelled. |
+          | SUB_TOTAL | Document subtotal before tax and freight. |
+          | TAX_AMT | Tax amount charged on the document. |
+          | TERRITORY_ID | FK to SALES.SALES_TERRITORY. Sales territory the record belongs to. |
+          | TOTAL_DUE | Total amount due on the document (subtotal + tax + freight). |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: sales_order_id
         description: "PK. Unique identifier of the sales order."

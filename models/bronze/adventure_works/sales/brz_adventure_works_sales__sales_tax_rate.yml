@@ -5,6 +5,35 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.SALES.SALES_TAX_RATE, exposed one to one with no
         transformations. Tax rates by state or province and tax type.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__sales_tax_rate
+
+          Bronze view over ADVENTURE_WORKS.SALES.SALES_TAX_RATE, exposed one to one with no transformations. Tax rates by state or province and tax type.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Descriptive name of the tax rate. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | SALES_TAX_RATE_ID | PK. Unique identifier of the tax rate. |
+          | STATE_PROVINCE_ID | FK to PERSON.STATE_PROVINCE. State or province of the record. |
+          | TAX_RATE | Applicable tax rate, as a percentage. |
+          | TAX_TYPE | Tax type: 1 = shipping only, 2 = state only, 3 = both. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: sales_tax_rate_id
         description: "PK. Unique identifier of the tax rate."

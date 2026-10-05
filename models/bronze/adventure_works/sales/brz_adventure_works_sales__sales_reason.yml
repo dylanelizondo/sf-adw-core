@@ -8,6 +8,32 @@ models:
         type. Referenced by SALES_ORDER_HEADER_SALES_REASON. Grain: one row per reason. The source
         columns are named without separators, unlike the rest of the schema; bronze keeps them as
         they arrive and aligning them belongs in the silver layer.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__sales_reason
+
+          Bronze view over ADVENTURE_WORKS.SALES.SALES_REASON, exposed one to one with no transformations. Lookup of the reasons a customer gave for a purchase, grouped by reason type. Referenced by SALES_ORDER_HEADER_SALES_REASON. Grain: one row per reason. The source columns are named without separators, unlike the rest of the schema; bronze keeps them as they arrive and aligning them belongs in the silver layer.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | MODIFIEDDATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Name of the reason (for example Price, Quality, Manufacturer). |
+          | REASONTYPE | Grouping the reason belongs to: Marketing, Other or Promotion. |
+          | SALESREASONID | PK. Unique identifier of the reason. Named SALES_REASON_ID in the rest of the schema. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: salesreasonid
         description: "PK. Unique identifier of the reason. Named SALES_REASON_ID in the rest of the schema."

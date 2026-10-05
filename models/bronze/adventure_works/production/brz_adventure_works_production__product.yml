@@ -6,6 +6,53 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT, exposed one to one with no
         transformations. Master product catalog: commercial, physical and cost attributes plus the
         selling window. It is the base product dimension for the whole model.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__product
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT, exposed one to one with no transformations. Master product catalog: commercial, physical and cost attributes plus the selling window. It is the base product dimension for the whole model.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | CLASS | Quality classification: H (high), M (medium), L (low). |
+          | COLOR | Color of the product. Null when not applicable. |
+          | DAYS_TO_MANUFACTURE | Days required to manufacture the product. |
+          | DISCONTINUED_DATE | Date the product was discontinued. Null when it was not discontinued. |
+          | FINISHED_GOODS_FLAG | 1 when the product is sellable, 0 when it is a component. |
+          | LIST_PRICE | Current list price of the product. |
+          | MAKE_FLAG | 1 when the product is manufactured in house, 0 when it is purchased. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Commercial name of the product. |
+          | PRODUCT_ID | PK. Unique identifier of the product. |
+          | PRODUCT_LINE | Product line: R (Road), M (Mountain), T (Touring), S (Standard). |
+          | PRODUCT_MODEL_ID | Identifier of the product model in the source system. |
+          | PRODUCT_NUMBER | Product code used in catalogs and documents. |
+          | PRODUCT_SUBCATEGORY_ID | FK to PRODUCTION.PRODUCT_SUBCATEGORY. Subcategory of the product. |
+          | REORDER_POINT | Inventory level that triggers replenishment. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | SAFETY_STOCK_LEVEL | Minimum safety stock level. |
+          | SELL_END_DATE | Date the product stopped being sold. Null while it is still on sale. |
+          | SELL_START_DATE | Date the product became available for sale. |
+          | SIZE | Size of the product, expressed in SIZE_UNIT_MEASURE_CODE. |
+          | SIZE_UNIT_MEASURE_CODE | FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the size. |
+          | STANDARD_COST | Standard cost of the product. |
+          | STYLE | Product style: W (womens), M (mens), U (universal). |
+          | WEIGHT | Weight of the product, expressed in WEIGHT_UNIT_MEASURE_CODE. |
+          | WEIGHT_UNIT_MEASURE_CODE | FK to PRODUCTION.UNIT_MEASURE. Unit of measure for the weight. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_id
         description: "PK. Unique identifier of the product."

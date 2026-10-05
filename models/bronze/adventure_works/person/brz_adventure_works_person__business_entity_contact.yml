@@ -6,6 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.BUSINESS_ENTITY_CONTACT, exposed one to one with no
         transformations. Bridge that links contact people to business entities (stores and vendors),
         qualified by contact type.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Person"
+        termNames:
+          - "Person"
+        readme: |
+          # brz_adventure_works_person__business_entity_contact
+
+          Bronze view over ADVENTURE_WORKS.PERSON.BUSINESS_ENTITY_CONTACT, exposed one to one with no transformations. Bridge that links contact people to business entities (stores and vendors), qualified by contact type.
+
+          **Layer:** bronze  
+          **Subject area:** Person
+
+          | Column | Description |
+          | --- | --- |
+          | BUSINESS_ENTITY_ID | FK to PERSON.BUSINESS_ENTITY. Universal identifier of the business entity (person, store or vendor). |
+          | CONTACT_TYPE_ID | FK to PERSON.CONTACT_TYPE. Type of contact. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | PERSON_ID | FK to PERSON.PERSON. Person associated with the record. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

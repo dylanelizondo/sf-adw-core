@@ -5,6 +5,31 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.SALES.CURRENCY, exposed one to one with no transformations.
         Lookup of currencies identified by ISO code.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__currency
+
+          Bronze view over ADVENTURE_WORKS.SALES.CURRENCY, exposed one to one with no transformations. Lookup of currencies identified by ISO code.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | CURRENCY_CODE | PK. ISO code of the currency. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Name of the currency. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: currency_code
         description: "PK. ISO code of the currency."

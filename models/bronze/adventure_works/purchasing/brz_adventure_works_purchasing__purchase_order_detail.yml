@@ -6,6 +6,39 @@ models:
         Bronze view over ADVENTURE_WORKS.PURCHASING.PURCHASE_ORDER_DETAIL, exposed one to one with
         no transformations. Purchase order lines, with ordered, received, rejected and stocked
         quantities. Grain: one row per purchase order line.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Purchasing"
+        termNames:
+          - "Purchasing"
+        readme: |
+          # brz_adventure_works_purchasing__purchase_order_detail
+
+          Bronze view over ADVENTURE_WORKS.PURCHASING.PURCHASE_ORDER_DETAIL, exposed one to one with no transformations. Purchase order lines, with ordered, received, rejected and stocked quantities. Grain: one row per purchase order line.
+
+          **Layer:** bronze  
+          **Subject area:** Purchasing
+
+          | Column | Description |
+          | --- | --- |
+          | DUE_DATE | Date the delivery was promised for. |
+          | LINE_TOTAL | Calculated total for the line. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | ORDER_QTY | Number of units ordered. |
+          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
+          | PURCHASE_ORDER_DETAIL_ID | PK. Unique identifier of the purchase order line. |
+          | PURCHASE_ORDER_ID | FK to PURCHASING.PURCHASE_ORDER_HEADER. Purchase order the record belongs to. |
+          | RECEIVED_QTY | Quantity received from the vendor. |
+          | REJECTED_QTY | Quantity rejected on quality inspection. |
+          | STOCKED_QTY | Quantity actually taken into inventory. |
+          | UNIT_PRICE | Unit price applied on the line. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: purchase_order_id
         description: "FK to PURCHASING.PURCHASE_ORDER_HEADER. Purchase order the record belongs to."

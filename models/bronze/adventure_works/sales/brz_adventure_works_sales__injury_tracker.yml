@@ -7,6 +7,41 @@ models:
         transformations. Log of workplace injuries and safety events with their OSHA classification.
         Table added on top of the original AdventureWorks model for safety analytics; it is not part
         of the standard schema.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__injury_tracker
+
+          Bronze view over ADVENTURE_WORKS.SALES.INJURY_TRACKER, exposed one to one with no transformations. Log of workplace injuries and safety events with their OSHA classification. Table added on top of the original AdventureWorks model for safety analytics; it is not part of the standard schema.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | CREATED_DATE | Date and time the report was captured. |
+          | DATE_OCCURRED | Date the event happened. |
+          | DAYS_LOST | Days of work lost resulting from the event. |
+          | DAYS_RESTRICTED | Days of restricted work resulting from the event. |
+          | DEPARTMENT | Department where the event happened. |
+          | EVENT_REPORT_TITLE | Short title of the report. |
+          | EVENT_TYPE | Type of safety event reported. |
+          | LOCATION_OF_EVENT | Physical location where the event happened. |
+          | NATURE_OF_INJURY | Nature of the injury sustained. |
+          | OSHA_CLASSIFICATION | Classification of the event under OSHA rules. |
+          | REGION_OF_BODY | Part of the body affected. |
+          | REPORT_NUMBER | PK. Report number of the safety event. |
+          | SAFETY_INCIDENT_DESCRIPTION | Narrative description of the incident. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: report_number
         description: "PK. Report number of the safety event."

@@ -6,6 +6,31 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.UNIT_MEASURE, exposed one to one with no
         transformations. Lookup of units of measure used across product, purchasing and bill of
         materials.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__unit_measure
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.UNIT_MEASURE, exposed one to one with no transformations. Lookup of units of measure used across product, purchasing and bill of materials.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Name of the unit of measure. |
+          | UNIT_MEASURE_CODE | PK. Code of the unit of measure. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: unit_measure_code
         description: "PK. Code of the unit of measure."

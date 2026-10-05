@@ -6,6 +6,31 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.COUNTRY_REGION_CURRENCY, exposed one to one with no
         transformations. Bridge stating which currencies are used in each country or region. Grain:
         country + currency.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__country_region_currency
+
+          Bronze view over ADVENTURE_WORKS.SALES.COUNTRY_REGION_CURRENCY, exposed one to one with no transformations. Bridge stating which currencies are used in each country or region. Grain: country + currency.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | COUNTRY_REGION_CODE | FK to PERSON.COUNTRY_REGION. ISO code of the country or region. |
+          | CURRENCY_CODE | FK to SALES.CURRENCY. ISO code of the currency. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

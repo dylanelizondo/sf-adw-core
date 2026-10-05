@@ -6,6 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_PAY_HISTORY, exposed one to one
         with no transformations. History of pay rates per employee. Grain: employee + rate change
         date.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Human Resources"
+        termNames:
+          - "Human Resources"
+        readme: |
+          # brz_adventure_works_human_resources__employee_pay_history
+
+          Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE_PAY_HISTORY, exposed one to one with no transformations. History of pay rates per employee. Grain: employee + rate change date.
+
+          **Layer:** bronze  
+          **Subject area:** Human Resources
+
+          | Column | Description |
+          | --- | --- |
+          | BUSINESS_ENTITY_ID | Part of the PK and FK to HUMAN_RESOURCES.EMPLOYEE. Employee the rate applies to. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | PAY_FREQUENCY | Pay frequency: 1 = monthly, 2 = biweekly. |
+          | RATE | Hourly pay rate effective from RATE_CHANGE_DATE. |
+          | RATE_CHANGE_DATE | Part of the PK. Date the rate became effective. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

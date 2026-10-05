@@ -5,6 +5,36 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PURCHASING.VENDOR, exposed one to one with no
         transformations. Company vendors with their credit rating and preferred status.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Purchasing"
+        termNames:
+          - "Purchasing"
+        readme: |
+          # brz_adventure_works_purchasing__vendor
+
+          Bronze view over ADVENTURE_WORKS.PURCHASING.VENDOR, exposed one to one with no transformations. Company vendors with their credit rating and preferred status.
+
+          **Layer:** bronze  
+          **Subject area:** Purchasing
+
+          | Column | Description |
+          | --- | --- |
+          | ACCOUNT_NUMBER | Vendor account number. |
+          | ACTIVE_FLAG | 1 when the company still buys from this vendor, 0 when not. |
+          | BUSINESS_ENTITY_ID | PK and FK to PERSON.BUSINESS_ENTITY. Identifies the vendor. |
+          | CREDIT_RATING | Credit rating from 1 (best) to 5 (worst). |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NAME | Legal name of the vendor. |
+          | PREFERRED_VENDOR_STATUS | 1 when the vendor is preferred, 0 when not. |
+          | PURCHASING_WEB_SERVICE_URL | URL of the vendor purchasing web service. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: business_entity_id
         description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the vendor."

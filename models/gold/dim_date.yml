@@ -9,6 +9,58 @@ models:
         on its date column to date_key. Supplies calendar, ISO week and quarter attributes so
         downstream models never derive their own date logic.
 
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: VERIFIED
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Adventure Works"
+        readme: |
+          # dim_date
+
+          Gold conformed date dimension, generated in SQL rather than sourced from ADVENTURE_WORKS. One row per calendar day, from 1 January of last year through 31 December five years out (recomputed on every run, relative to CURRENT_DATE). Grain is one day; join any fact table on its date column to date_key. Supplies calendar, ISO week and quarter attributes so downstream models never derive their own date logic.
+
+          **Layer:** gold  
+          **Subject area:** —
+
+          | Column | Description |
+          | --- | --- |
+          | DATE_KEY | PK. The calendar day this row describes. Grain of the dimension. |
+          | DAY | Day number within the month, 1 to 31. Same value as dayofmonth. |
+          | DAYNAME | Three letter abbreviation of the weekday name, for example Mon. |
+          | DAYOFMONTH | Day number within the month, 1 to 31. Same value as day. |
+          | DAYOFWEEK | Day number within the week. Depends on the Snowflake WEEK_START session parameter (0 to 6 under the default, Sunday first); use dayofweekiso for a stable Monday to Sunday numbering.
+           |
+          | DAYOFWEEKISO | ISO 8601 day of week, 1 for Monday through 7 for Sunday. Independent of session parameters. |
+          | DAYOFYEAR | Day number within the year, 1 to 366. |
+          | DAYS_IN_QUARTER | Total number of days in the quarter that contains date_key, 90 to 92. |
+          | DAY_OF_QUARTER | Day number within the quarter, 1 to 92, counting from first_day_of_quarter. |
+          | FIRST_DAY_OF_QUARTER | First calendar day of the quarter that contains date_key. |
+          | LAST_DAY_OF_MONTH | Last calendar day of the month that contains date_key. |
+          | LAST_DAY_OF_QUARTER | Last calendar day of the quarter that contains date_key. |
+          | LAST_DAY_OF_WEEK | Last calendar day of the week that contains date_key. Week boundaries follow the Snowflake WEEK_START session parameter.
+           |
+          | LAST_DAY_OF_YEAR | Last calendar day of the year that contains date_key, always 31 December. |
+          | MONTH | Calendar month number within the year, 1 to 12. |
+          | MONTHNAME | Three letter abbreviation of the month name, for example Jan. |
+          | QUARTER | Calendar quarter number within the year, 1 to 4. |
+          | WEEK | Week number within the year. Depends on the Snowflake WEEK_START and WEEK_OF_YEAR_POLICY session parameters; use weekiso for a policy independent value.
+           |
+          | WEEKISO | ISO 8601 week number, 1 to 53. Independent of session parameters. |
+          | WEEKOFYEAR | Week number within the year, subject to the same WEEK_START and WEEK_OF_YEAR_POLICY session parameters as week.
+           |
+          | WEEK_OF_MONTH | Week ordinal within the month, 1 to 5, computed as day of month divided into blocks of seven. Calendar blocks, not WEEK_START aligned weeks.
+           |
+          | WEEK_OF_QUARTER | Week ordinal within the quarter, 1 to 14, computed as day_of_quarter divided into blocks of seven. Calendar blocks, not WEEK_START aligned weeks.
+           |
+          | YEAR | Calendar year, for example 2026. |
+          | YEAROFWEEK | Year that owns the week containing date_key. Differs from year for days at a year boundary whose week rolls into the neighbouring year.
+           |
+          | YEAROFWEEKISO | ISO 8601 week numbering year that owns the ISO week containing date_key. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     config:
       # PRIMARY KEY over date_key, applied as DDL after the table is built.
       #

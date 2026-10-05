@@ -15,6 +15,85 @@ models:
         Gold models should select only the blocks they need; the survey_* columns are
         candidates for Snowflake column masking policies.
 
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: VERIFIED
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Adventure Works"
+        readme: |
+          # slv_person
+
+          Conformed identity spine of the AdventureWorks party model. One row per person (19,972, equal to PERSON.PERSON). Mints the person_key that every team's gold person dimension inherits, settles the one agreed name form, states in four flags why each person exists in the database, resolves one primary email, phone and address per person, and shreds the IndividualSurvey XML for the retail customers who answered it. Teams project this into their own vocabulary in gold; nobody recomputes person_key.
+          CONTAINS PII (names, email, phone) AND SENSITIVE SELF-REPORTED ATTRIBUTES (survey_gender, survey_marital_status, survey_age_band, survey_yearly_income). Gold models should select only the blocks they need; the survey_* columns are candidates for Snowflake column masking policies.
+
+          **Layer:** silver  
+          **Subject area:** —
+
+          | Column | Description |
+          | --- | --- |
+          | ADDRESS_COUNT | Total addresses held for this person. Zero is legitimate, not a defect. |
+          | BUSINESS_ENTITY_ID | Natural key. The party identifier shared across PERSON, HUMANRESOURCES, SALES and PURCHASING -- the same value identifies this party as a person, an employee and a salesperson down a supertype chain. Kept under its source name deliberately; renaming it per table obscures that it is one identity, not a lookup FK.
+           |
+          | EMAIL_COUNT | Total email addresses held for this person. Greater than 1 means primary_email_address is a choice rather than the only value.
+           |
+          | HAS_DEMOGRAPHICS_SURVEY | True when the IndividualSurvey XML holds real answers rather than the constant 163 character empty shell that every non-customer carries. Expect roughly 18,484. Use this to tell "never surveyed" apart from "surveyed and the answer was null": every survey_ column below is null for the roughly 1,488 persons never surveyed.
+           |
+          | IS_CUSTOMER | True when the person is a RETAIL individual customer — present in Sales.Customer with store_id NULL. Expect 18,484, which is exactly the surveyed population: only retail customers answered the IndividualSurvey, so is_customer and has_demographics_survey agree row for row. Persons named as the contact on a RESELLER customer account (store_id NOT NULL) are deliberately EXCLUDED here and are exposed via is_store_contact instead; all 635 of them carry that flag, so nothing is lost. Do not derive retail customers from Sales.Customer.person_id alone — store_id is the discriminator. |
+          | IS_EMPLOYEE | Present in HUMANRESOURCES.EMPLOYEE. True for salespeople too. Expect 290. |
+          | IS_STORE_CONTACT | Named contact for a reseller, via BUSINESS_ENTITY_CONTACT joined to SALES.STORE. Expect roughly 753.
+           |
+          | IS_VENDOR_CONTACT | Named contact for a supplier, via BUSINESS_ENTITY_CONTACT joined to PURCHASING.VENDOR. Expect roughly 156.
+           |
+          | PERSON_EMAIL_PROMOTION | Marketing contact preference: 0 do not send promotions, 1 AdventureWorks only, 2 AdventureWorks and selected partners.
+           |
+          | PERSON_FIRST_NAME | Given name. |
+          | PERSON_FULL_NAME | Display name, assembled in the order indicated by the source name_style flag. The one agreed name form; gold models should not rebuild this from the parts.
+           |
+          | PERSON_IS_EASTERN_NAME_ORDER | True when the name follows Eastern order with the family name first, from the source name_style flag. Every shipped row is currently false, but the logic honours the flag rather than hardcoding Western order.
+           |
+          | PERSON_KEY | PK. Conformed surrogate key, md5 of business_entity_id, MINTED HERE. Downstream projects inherit this column; recomputing it per team risks the same human getting different keys in Purchasing and Sales, which silently breaks drill-across.
+           |
+          | PERSON_LAST_NAME | Family name. |
+          | PERSON_MIDDLE_NAME | Middle name or initial. Null for roughly half of all persons. |
+          | PERSON_MODIFIED_DATE | Last change to this person in the source system. The source lands this as text, so it is cast here. Not a reliable change-detection column: the demo database is static. |
+          | PERSON_SORT_NAME | Last name, comma, first name. For display ordering. |
+          | PERSON_SUFFIX | Name suffix such as Jr. or III. Null for almost all rows. |
+          | PERSON_TITLE | Courtesy title such as Mr. or Ms. Null for most rows. |
+          | PERSON_TYPE | Source role label: IN individual customer, SC store contact, GC general contact, EM employee, VC vendor contact, SP sales person. A HINT ONLY. Employees are split across EM (273) and SP (17), so filtering person_type = 'EM' silently drops the 17 salespeople, who own every sales quota. Use the is_* flags for any logic.
+           |
+          | PHONE_COUNT | Total phone numbers held for this person. |
+          | PRIMARY_ADDRESS_ID | FK to the address model for the winning address, where Home beats Primary beats Main Office, then lowest address_id. Null for the few hundred persons with no address at all. Gold joins this for city, state and country rather than having geography duplicated here.
+           |
+          | PRIMARY_ADDRESS_TYPE_ID | Address type of the winning address. |
+          | PRIMARY_EMAIL_ADDRESS | Winning email address: lowest email_address_id. |
+          | PRIMARY_PHONE_NUMBER | Winning phone number: cell beats work beats home. |
+          | PRIMARY_PHONE_NUMBER_TYPE_ID | Type of the winning phone: 1 cell, 2 home, 3 work. Decoded in gold. |
+          | SURVEY_AGE_BAND | Banded age derived from the survey birth date. The raw birth date is deliberately not exposed. Recomputed at build time against CURRENT_DATE, so it drifts until the model is rebuilt. SENSITIVE.
+           |
+          | SURVEY_COMMUTE_DISTANCE | Commute BAND as text, for example 5-10 Miles. Never cast to numeric. |
+          | SURVEY_COMMUTE_DISTANCE_SORT | Display order for survey_commute_distance, 1 to 5. A null alongside a non-null band flags an unmapped source value.
+           |
+          | SURVEY_DATE_FIRST_PURCHASE | Self-reported date of first purchase. |
+          | SURVEY_EDUCATION | Highest education band reached, from Partial High School to Graduate Degree. |
+          | SURVEY_EDUCATION_SORT | Display order for survey_education, 1 to 5. A null alongside a non-null band flags an unmapped source value.
+           |
+          | SURVEY_GENDER | Self-reported gender. SENSITIVE. Customers only. |
+          | SURVEY_IS_HOME_OWNER | Self-reported home ownership. |
+          | SURVEY_MARITAL_STATUS | Self-reported marital status, M married or S single. SENSITIVE. Customers only. |
+          | SURVEY_NUMBER_CARS_OWNED | Self-reported number of cars owned. |
+          | SURVEY_NUMBER_CHILDREN_AT_HOME | Self-reported number of children living at home. |
+          | SURVEY_OCCUPATION | Occupation category: Clerical, Manual, Skilled Manual, Professional, Management. |
+          | SURVEY_TOTAL_CHILDREN | Self-reported total number of children. |
+          | SURVEY_TOTAL_PURCHASE_YTD | Self-reported purchases year to date. A survey answer, not a ledger figure. |
+          | SURVEY_YEARLY_INCOME | Income BAND as text, for example 50001-75000. Never cast to numeric. SENSITIVE.
+           |
+          | SURVEY_YEARLY_INCOME_SORT | Display order for survey_yearly_income, 1 to 5. A null here alongside a non-null band flags a source value the CASE does not map.
+           |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     config:
       # Published to other projects deliberately at MODEL level rather than by adding
       # +access/+group to the silver block in dbt_project.yml. A project-level

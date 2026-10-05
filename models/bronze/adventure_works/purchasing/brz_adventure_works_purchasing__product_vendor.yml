@@ -6,6 +6,39 @@ models:
         Bronze view over ADVENTURE_WORKS.PURCHASING.PRODUCT_VENDOR, exposed one to one with no
         transformations. Commercial terms for each product with each vendor that supplies it. Grain:
         product + vendor.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Purchasing"
+        termNames:
+          - "Purchasing"
+        readme: |
+          # brz_adventure_works_purchasing__product_vendor
+
+          Bronze view over ADVENTURE_WORKS.PURCHASING.PRODUCT_VENDOR, exposed one to one with no transformations. Commercial terms for each product with each vendor that supplies it. Grain: product + vendor.
+
+          **Layer:** bronze  
+          **Subject area:** Purchasing
+
+          | Column | Description |
+          | --- | --- |
+          | AVERAGE_LEAD_TIME | Average number of days between placing the order and receiving it. |
+          | BUSINESS_ENTITY_ID | Part of the PK and FK to PURCHASING.VENDOR. Vendor supplying the product. |
+          | LAST_RECEIPT_COST | Unit cost of the most recent receipt. |
+          | LAST_RECEIPT_DATE | Date of the most recent receipt of the product. |
+          | MAX_ORDER_QTY | Maximum quantity the vendor accepts per order. |
+          | MIN_ORDER_QTY | Minimum quantity the vendor accepts per order. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | ON_ORDER_QTY | Units ordered and not yet received. |
+          | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product being supplied. |
+          | STANDARD_PRICE | Purchase price negotiated with the vendor. |
+          | UNIT_MEASURE_CODE | FK to PRODUCTION.UNIT_MEASURE. Unit of measure code. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

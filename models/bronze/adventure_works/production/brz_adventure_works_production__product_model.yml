@@ -6,6 +6,34 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL, exposed one to one with no
         transformations. Lookup of product models shared by individual product variants, including
         catalog descriptions and manufacturing instructions.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__product_model
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL, exposed one to one with no transformations. Lookup of product models shared by individual product variants, including catalog descriptions and manufacturing instructions.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | CATALOG_DESCRIPTION | XML catalog description of the product model. Null when no catalog description is available. |
+          | INSTRUCTIONS | XML manufacturing instructions for the product model. Null when no instructions are available. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+          | NAME | Name of the product model. |
+          | PRODUCT_MODEL_ID | PK. Unique identifier of the product model. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_model_id
         description: "PK. Unique identifier of the product model."

@@ -5,6 +5,31 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_ILLUSTRATION, exposed one to one
         with no transformations. Bridge relating product models to their technical illustrations.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__product_model_illustration
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_ILLUSTRATION, exposed one to one with no transformations. Bridge relating product models to their technical illustrations.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | ILLUSTRATION_ID | FK to PRODUCTION.ILLUSTRATION. Illustration associated with the product model. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+          | PRODUCT_MODEL_ID | FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the illustration. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

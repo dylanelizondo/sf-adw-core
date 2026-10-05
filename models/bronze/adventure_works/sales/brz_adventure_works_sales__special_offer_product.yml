@@ -6,6 +6,32 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER_PRODUCT, exposed one to one with no
         transformations. Bridge between promotions and the products they apply to. Grain: promotion
         + product.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Sales"
+        termNames:
+          - "Sales"
+        readme: |
+          # brz_adventure_works_sales__special_offer_product
+
+          Bronze view over ADVENTURE_WORKS.SALES.SPECIAL_OFFER_PRODUCT, exposed one to one with no transformations. Bridge between promotions and the products they apply to. Grain: promotion + product.
+
+          **Layer:** bronze  
+          **Subject area:** Sales
+
+          | Column | Description |
+          | --- | --- |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | SPECIAL_OFFER_ID | FK to SALES.SPECIAL_OFFER. Promotion applied. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

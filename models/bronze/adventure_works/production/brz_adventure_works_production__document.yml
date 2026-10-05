@@ -6,6 +6,41 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.DOCUMENT, exposed one to one with no
         transformations. Stores product-related document metadata, document hierarchy, ownership
         and status information.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Production"
+        termNames:
+          - "Production"
+        readme: |
+          # brz_adventure_works_production__document
+
+          Bronze view over ADVENTURE_WORKS.PRODUCTION.DOCUMENT, exposed one to one with no transformations. Stores product-related document metadata, document hierarchy, ownership and status information.
+
+          **Layer:** bronze  
+          **Subject area:** Production
+
+          | Column | Description |
+          | --- | --- |
+          | CHANGE_NUMBER | Engineering change number associated with the document. |
+          | DOCUMENT_LEVEL | Depth of the document within the document hierarchy. |
+          | DOCUMENT_NODE | PK. Hierarchy path that uniquely identifies the document in the source system. |
+          | DOCUMENT_SUMMARY | Summary or description of the document. Null when no summary is available. |
+          | FILE_EXTENSION | File extension of the document. |
+          | FILE_NAME | Name of the document file. |
+          | FOLDER_FLAG | True when the row represents a folder, false when it represents a document. |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+          | OWNER | Identifier of the employee that owns the document. |
+          | REVISION | Revision identifier assigned to the document. |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | STATUS | Document status code. |
+          | TITLE | Title of the document. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: document_node
         description: "PK. Hierarchy path that uniquely identifies the document in the source system."

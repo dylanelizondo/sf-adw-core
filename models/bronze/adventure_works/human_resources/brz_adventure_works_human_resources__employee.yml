@@ -6,6 +6,44 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE, exposed one to one with no
         transformations. One row per employee with their employment and demographic attributes. The
         reporting hierarchy is modelled through ORGANIZATION_NODE / ORGANIZATION_LEVEL.
+    meta:
+      atlan:
+        attributes:
+          ownerUsers: ["dylan.ea"]
+          ownerGroups: ["it_adventure_works"]
+          certificateStatus: DRAFT
+          certificateStatusMessage: "Synced from dbt."
+        domainName: "Human Resources"
+        termNames:
+          - "Human Resources"
+        readme: |
+          # brz_adventure_works_human_resources__employee
+
+          Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.EMPLOYEE, exposed one to one with no transformations. One row per employee with their employment and demographic attributes. The reporting hierarchy is modelled through ORGANIZATION_NODE / ORGANIZATION_LEVEL.
+
+          **Layer:** bronze  
+          **Subject area:** Human Resources
+
+          | Column | Description |
+          | --- | --- |
+          | BIRTH_DATE | Employee date of birth. Sensitive data (PII). |
+          | BUSINESS_ENTITY_ID | PK and FK to PERSON.BUSINESS_ENTITY. Identifies the employee. |
+          | CURRENT_FLAG | 1 when the employee is active, 0 when no longer employed. |
+          | GENDER | Gender recorded in the source system: M or F. |
+          | HIRE_DATE | Date the employee was hired. |
+          | JOB_TITLE | Current job title of the employee. |
+          | LOGIN_ID | Network account the employee signs in with. |
+          | MARITAL_STATUS | Marital status: M (married) or S (single). |
+          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+          | NATIONAL_IDNUMBER | Employee national identification number. Sensitive data (PII). |
+          | ORGANIZATION_LEVEL | Depth of the employee in the org chart. Null for the root level (CEO). |
+          | ORGANIZATION_NODE | Hierarchical path of the employee in the org chart (source hierarchyid type). |
+          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+          | SALARIED_FLAG | 1 when the employee is salaried, 0 when paid hourly. |
+          | SICK_LEAVE_HOURS | Sick leave hours available to the employee. |
+          | VACATION_HOURS | Vacation hours available to the employee. |
+
+          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: business_entity_id
         description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the employee."
