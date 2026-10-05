@@ -6,35 +6,36 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_INVENTORY, exposed one to one with no
         transformations. Stock on hand per product and location, including its physical position in
         the warehouse. Grain: product + location.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__product_inventory
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_inventory
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_INVENTORY, exposed one to one with no transformations. Stock on hand per product and location, including its physical position in the warehouse. Grain: product + location.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_INVENTORY, exposed one to one with no transformations. Stock on hand per product and location, including its physical position in the warehouse. Grain: product + location.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | BIN | Bin within the shelf. |
-          | LOCATION_ID | Part of the PK and FK to PRODUCTION.LOCATION. Location where it is stored. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product held in stock. |
-          | QUANTITY | Units on hand at that location. |
-          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
-          | SHELF | Shelf where the product is stored. |
+            | Column | Description |
+            | --- | --- |
+            | BIN | Bin within the shelf. |
+            | LOCATION_ID | Part of the PK and FK to PRODUCTION.LOCATION. Location where it is stored. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product held in stock. |
+            | QUANTITY | Units on hand at that location. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SHELF | Shelf where the product is stored. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

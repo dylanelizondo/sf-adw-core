@@ -5,33 +5,34 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.LOCATION, exposed one to one with no
         transformations. Lookup of inventory and manufacturing locations inside the plant.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__location
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__location
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.LOCATION, exposed one to one with no transformations. Lookup of inventory and manufacturing locations inside the plant.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.LOCATION, exposed one to one with no transformations. Lookup of inventory and manufacturing locations inside the plant.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | AVAILABILITY | Available capacity of the location, in hours. |
-          | COST_RATE | Hourly cost of using the location in manufacturing. |
-          | LOCATION_ID | PK. Unique identifier of the location. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME | Name of the location (for example Tool Crib, Paint Shop). |
+            | Column | Description |
+            | --- | --- |
+            | AVAILABILITY | Available capacity of the location, in hours. |
+            | COST_RATE | Hourly cost of using the location in manufacturing. |
+            | LOCATION_ID | PK. Unique identifier of the location. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the location (for example Tool Crib, Paint Shop). |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: location_id
         description: "PK. Unique identifier of the location."

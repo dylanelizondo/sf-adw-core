@@ -6,37 +6,38 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.TRANSACTION_HISTORY, exposed one to one with no
         transformations. Log of inventory movements driven by purchases, sales and work orders. It
         is the product movement fact table and the highest volume table in the schema.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__transaction_history
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__transaction_history
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.TRANSACTION_HISTORY, exposed one to one with no transformations. Log of inventory movements driven by purchases, sales and work orders. It is the product movement fact table and the highest volume table in the schema.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.TRANSACTION_HISTORY, exposed one to one with no transformations. Log of inventory movements driven by purchases, sales and work orders. It is the product movement fact table and the highest volume table in the schema.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | ACTUAL_COST | Actual cost of the movement. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
-          | QUANTITY | Units moved. |
-          | REFERENCE_ORDER_ID | Identifier of the document that drove the movement. Its meaning depends on TRANSACTION_TYPE. |
-          | REFERENCE_ORDER_LINE_ID | Line of the document that drove the movement. |
-          | TRANSACTION_DATE | Date of the inventory movement. |
-          | TRANSACTION_ID | PK. Unique identifier of the movement. |
-          | TRANSACTION_TYPE | Movement type: W (work order), S (sales), P (purchase). |
+            | Column | Description |
+            | --- | --- |
+            | ACTUAL_COST | Actual cost of the movement. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
+            | QUANTITY | Units moved. |
+            | REFERENCE_ORDER_ID | Identifier of the document that drove the movement. Its meaning depends on TRANSACTION_TYPE. |
+            | REFERENCE_ORDER_LINE_ID | Line of the document that drove the movement. |
+            | TRANSACTION_DATE | Date of the inventory movement. |
+            | TRANSACTION_ID | PK. Unique identifier of the movement. |
+            | TRANSACTION_TYPE | Movement type: W (work order), S (sales), P (purchase). |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: transaction_id
         description: "PK. Unique identifier of the movement."

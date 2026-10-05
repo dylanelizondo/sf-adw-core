@@ -5,32 +5,33 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DESCRIPTION, exposed one to one with no
         transformations. Product marketing copy, reusable across models and translatable by culture.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__product_description
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_description
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DESCRIPTION, exposed one to one with no transformations. Product marketing copy, reusable across models and translatable by culture.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DESCRIPTION, exposed one to one with no transformations. Product marketing copy, reusable across models and translatable by culture.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | DESCRIPTION | Marketing copy for the product. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | PRODUCT_DESCRIPTION_ID | PK. Unique identifier of the description. |
-          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | Column | Description |
+            | --- | --- |
+            | DESCRIPTION | Marketing copy for the product. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PRODUCT_DESCRIPTION_ID | PK. Unique identifier of the description. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: product_description_id
         description: "PK. Unique identifier of the description."

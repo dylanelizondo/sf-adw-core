@@ -5,32 +5,33 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS_TYPE, exposed one to one with no
         transformations. Lookup of address types (Billing, Home, Shipping and so on).
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Person"
-        termNames:
-          - "Person"
-        readme: |
-          # brz_adventure_works_person__address_type
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__address_type
 
-          Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS_TYPE, exposed one to one with no transformations. Lookup of address types (Billing, Home, Shipping and so on).
+            Bronze view over ADVENTURE_WORKS.PERSON.ADDRESS_TYPE, exposed one to one with no transformations. Lookup of address types (Billing, Home, Shipping and so on).
 
-          **Layer:** bronze  
-          **Subject area:** Person
+            **Layer:** bronze  
+            **Subject area:** Person
 
-          | Column | Description |
-          | --- | --- |
-          | ADDRESS_TYPE_ID | PK. Unique identifier of the address type. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME | Name of the address type. |
-          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | Column | Description |
+            | --- | --- |
+            | ADDRESS_TYPE_ID | PK. Unique identifier of the address type. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the address type. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: address_type_id
         description: "PK. Unique identifier of the address type."

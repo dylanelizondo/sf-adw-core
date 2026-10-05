@@ -6,32 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PRODUCT_PHOTO, exposed one to one with
         no transformations. Bridge relating products to their product photos and identifying the
         primary photo.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__product_product_photo
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_product_photo
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PRODUCT_PHOTO, exposed one to one with no transformations. Bridge relating products to their product photos and identifying the primary photo.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_PRODUCT_PHOTO, exposed one to one with no transformations. Bridge relating products to their product photos and identifying the primary photo.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
-          | PRIMARY | True when the photo is the primary image for the product, false otherwise. |
-          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product associated with the photo. |
-          | PRODUCT_PHOTO_ID | FK to PRODUCTION.PRODUCT_PHOTO. Photo associated with the product. |
+            | Column | Description |
+            | --- | --- |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+            | PRIMARY | True when the photo is the primary image for the product, false otherwise. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product associated with the photo. |
+            | PRODUCT_PHOTO_ID | FK to PRODUCTION.PRODUCT_PHOTO. Photo associated with the product. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

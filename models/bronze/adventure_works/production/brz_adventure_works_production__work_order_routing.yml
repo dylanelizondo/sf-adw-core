@@ -6,40 +6,41 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER_ROUTING, exposed one to one with no
         transformations. Manufacturing routing for each work order: one row per operation, with
         planned versus actual costs and dates. Grain: work order + product + operation sequence.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__work_order_routing
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__work_order_routing
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER_ROUTING, exposed one to one with no transformations. Manufacturing routing for each work order: one row per operation, with planned versus actual costs and dates. Grain: work order + product + operation sequence.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER_ROUTING, exposed one to one with no transformations. Manufacturing routing for each work order: one row per operation, with planned versus actual costs and dates. Grain: work order + product + operation sequence.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | ACTUAL_COST | Actual cost of the operation. |
-          | ACTUAL_END_DATE | Actual end date of the operation. |
-          | ACTUAL_RESOURCE_HRS | Resource hours actually consumed by the operation. |
-          | ACTUAL_START_DATE | Actual start date of the operation. |
-          | LOCATION_ID | FK to PRODUCTION.LOCATION. Location inside the plant. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | OPERATION_SEQUENCE | Sequence number of the operation within the manufacturing routing. |
-          | PLANNED_COST | Planned cost of the operation. |
-          | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product being manufactured. |
-          | SCHEDULED_END_DATE | Planned end date of the operation. |
-          | SCHEDULED_START_DATE | Planned start date of the operation. |
-          | WORK_ORDER_ID | Part of the PK and FK to PRODUCTION.WORK_ORDER. Work order being routed. |
+            | Column | Description |
+            | --- | --- |
+            | ACTUAL_COST | Actual cost of the operation. |
+            | ACTUAL_END_DATE | Actual end date of the operation. |
+            | ACTUAL_RESOURCE_HRS | Resource hours actually consumed by the operation. |
+            | ACTUAL_START_DATE | Actual start date of the operation. |
+            | LOCATION_ID | FK to PRODUCTION.LOCATION. Location inside the plant. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | OPERATION_SEQUENCE | Sequence number of the operation within the manufacturing routing. |
+            | PLANNED_COST | Planned cost of the operation. |
+            | PRODUCT_ID | Part of the PK and FK to PRODUCTION.PRODUCT. Product being manufactured. |
+            | SCHEDULED_END_DATE | Planned end date of the operation. |
+            | SCHEDULED_START_DATE | Planned start date of the operation. |
+            | WORK_ORDER_ID | Part of the PK and FK to PRODUCTION.WORK_ORDER. Work order being routed. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

@@ -5,33 +5,34 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.SHIFT, exposed one to one with no
         transformations. Lookup of work shifts with their time window.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Human Resources"
-        termNames:
-          - "Human Resources"
-        readme: |
-          # brz_adventure_works_human_resources__shift
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Human Resources"
+          termNames:
+            - "Human Resources"
+          readme: |
+            # brz_adventure_works_human_resources__shift
 
-          Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.SHIFT, exposed one to one with no transformations. Lookup of work shifts with their time window.
+            Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.SHIFT, exposed one to one with no transformations. Lookup of work shifts with their time window.
 
-          **Layer:** bronze  
-          **Subject area:** Human Resources
+            **Layer:** bronze  
+            **Subject area:** Human Resources
 
-          | Column | Description |
-          | --- | --- |
-          | END_TIME | Time the shift ends. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME | Shift name (Day, Evening, Night). |
-          | SHIFT_ID | PK. Unique identifier of the shift. |
-          | START_TIME | Time the shift starts. |
+            | Column | Description |
+            | --- | --- |
+            | END_TIME | Time the shift ends. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Shift name (Day, Evening, Night). |
+            | SHIFT_ID | PK. Unique identifier of the shift. |
+            | START_TIME | Time the shift starts. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: shift_id
         description: "PK. Unique identifier of the shift."

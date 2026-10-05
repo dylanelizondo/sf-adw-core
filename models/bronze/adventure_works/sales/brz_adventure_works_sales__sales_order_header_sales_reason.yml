@@ -6,32 +6,32 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER_SALES_REASON, exposed one to one
         with no transformations. Bridge between sales orders and the recorded reasons for the
         purchase. An order may carry several reasons. Grain: order + reason.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Sales"
-        termNames:
-          - "Sales"
-        readme: |
-          # brz_adventure_works_sales__sales_order_header_sales_reason
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__sales_order_header_sales_reason
 
-          Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER_SALES_REASON, exposed one to one with no transformations. Bridge between sales orders and the recorded reasons for the purchase. An order may carry several reasons. Grain: order + reason.
+            Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_HEADER_SALES_REASON, exposed one to one with no transformations. Bridge between sales orders and the recorded reasons for the purchase. An order may carry several reasons. Grain: order + reason.
 
-          **Layer:** bronze  
-          **Subject area:** Sales
+            **Layer:** bronze  
+            **Subject area:** Sales
 
-          | Column | Description |
-          | --- | --- |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | SALES_ORDER_ID | FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to. |
-          | SALES_REASON_ID | Part of the PK. FK to SALES.SALES_REASON. Reason for the purchase tied to the order. The parent column is named SALESREASONID in the source, so bronze exposes it unaliased and the two names do not match across the join.
-           |
+            | Column | Description |
+            | --- | --- |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | SALES_ORDER_ID | FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to. |
+            | SALES_REASON_ID | Part of the PK. FK to SALES.SALES_REASON. Reason for the purchase tied to the order. The parent column is named SALESREASONID in the source, so bronze exposes it unaliased and the two names do not match across the join. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

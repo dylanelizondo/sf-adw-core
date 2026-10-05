@@ -6,38 +6,39 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER, exposed one to one with no
         transformations. Manufacturing work orders with produced and scrapped quantities plus the
         cycle dates.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Production"
-        termNames:
-          - "Production"
-        readme: |
-          # brz_adventure_works_production__work_order
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__work_order
 
-          Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER, exposed one to one with no transformations. Manufacturing work orders with produced and scrapped quantities plus the cycle dates.
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.WORK_ORDER, exposed one to one with no transformations. Manufacturing work orders with produced and scrapped quantities plus the cycle dates.
 
-          **Layer:** bronze  
-          **Subject area:** Production
+            **Layer:** bronze  
+            **Subject area:** Production
 
-          | Column | Description |
-          | --- | --- |
-          | DUE_DATE | Date the delivery was promised for. |
-          | END_DATE | Date manufacturing finished. Null while the order is still open. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | ORDER_QTY | Units to be manufactured on the order. |
-          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product being manufactured. |
-          | SCRAPPED_QTY | Quantity scrapped because of defects. |
-          | SCRAP_REASON_ID | Identifier of the scrap reason. Null when nothing was scrapped. |
-          | START_DATE | Date manufacturing started. |
-          | STOCKED_QTY | Quantity actually taken into inventory. |
-          | WORK_ORDER_ID | PK. Unique identifier of the work order. |
+            | Column | Description |
+            | --- | --- |
+            | DUE_DATE | Date the delivery was promised for. |
+            | END_DATE | Date manufacturing finished. Null while the order is still open. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | ORDER_QTY | Units to be manufactured on the order. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product being manufactured. |
+            | SCRAPPED_QTY | Quantity scrapped because of defects. |
+            | SCRAP_REASON_ID | Identifier of the scrap reason. Null when nothing was scrapped. |
+            | START_DATE | Date manufacturing started. |
+            | STOCKED_QTY | Quantity actually taken into inventory. |
+            | WORK_ORDER_ID | PK. Unique identifier of the work order. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: work_order_id
         description: "PK. Unique identifier of the work order."

@@ -6,32 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.JOB_CANDIDATE, exposed one to one with no
         transformations. Candidates for open positions, with their resume stored as XML.
         BUSINESS_ENTITY_ID is only populated once the candidate has been hired.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Human Resources"
-        termNames:
-          - "Human Resources"
-        readme: |
-          # brz_adventure_works_human_resources__job_candidate
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Human Resources"
+          termNames:
+            - "Human Resources"
+          readme: |
+            # brz_adventure_works_human_resources__job_candidate
 
-          Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.JOB_CANDIDATE, exposed one to one with no transformations. Candidates for open positions, with their resume stored as XML. BUSINESS_ENTITY_ID is only populated once the candidate has been hired.
+            Bronze view over ADVENTURE_WORKS.HUMAN_RESOURCES.JOB_CANDIDATE, exposed one to one with no transformations. Candidates for open positions, with their resume stored as XML. BUSINESS_ENTITY_ID is only populated once the candidate has been hired.
 
-          **Layer:** bronze  
-          **Subject area:** Human Resources
+            **Layer:** bronze  
+            **Subject area:** Human Resources
 
-          | Column | Description |
-          | --- | --- |
-          | BUSINESS_ENTITY_ID | FK to HUMAN_RESOURCES.EMPLOYEE. Null while the candidate has not been hired. |
-          | JOB_CANDIDATE_ID | PK. Unique identifier of the candidate. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | RESUME | Candidate resume as XML, exactly as delivered by the source. |
+            | Column | Description |
+            | --- | --- |
+            | BUSINESS_ENTITY_ID | FK to HUMAN_RESOURCES.EMPLOYEE. Null while the candidate has not been hired. |
+            | JOB_CANDIDATE_ID | PK. Unique identifier of the candidate. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | RESUME | Candidate resume as XML, exactly as delivered by the source. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: job_candidate_id
         description: "PK. Unique identifier of the candidate."

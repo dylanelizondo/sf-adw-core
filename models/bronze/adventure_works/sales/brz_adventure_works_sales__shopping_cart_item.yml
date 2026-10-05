@@ -6,34 +6,35 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SHOPPING_CART_ITEM, exposed one to one with no
         transformations. Items sitting in online shopping carts that have not yet been turned into
         an order.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Sales"
-        termNames:
-          - "Sales"
-        readme: |
-          # brz_adventure_works_sales__shopping_cart_item
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__shopping_cart_item
 
-          Bronze view over ADVENTURE_WORKS.SALES.SHOPPING_CART_ITEM, exposed one to one with no transformations. Items sitting in online shopping carts that have not yet been turned into an order.
+            Bronze view over ADVENTURE_WORKS.SALES.SHOPPING_CART_ITEM, exposed one to one with no transformations. Items sitting in online shopping carts that have not yet been turned into an order.
 
-          **Layer:** bronze  
-          **Subject area:** Sales
+            **Layer:** bronze  
+            **Subject area:** Sales
 
-          | Column | Description |
-          | --- | --- |
-          | DATE_CREATED | Date the item was added to the cart. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
-          | QUANTITY | Units of the product in the cart. |
-          | SHOPPING_CART_ID | Identifier of the cart, tied to the user session. |
-          | SHOPPING_CART_ITEM_ID | PK. Unique identifier of the cart item. |
+            | Column | Description |
+            | --- | --- |
+            | DATE_CREATED | Date the item was added to the cart. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
+            | QUANTITY | Units of the product in the cart. |
+            | SHOPPING_CART_ID | Identifier of the cart, tied to the user session. |
+            | SHOPPING_CART_ITEM_ID | PK. Unique identifier of the cart item. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: shopping_cart_item_id
         description: "PK. Unique identifier of the cart item."

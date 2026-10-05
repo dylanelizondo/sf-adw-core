@@ -6,39 +6,40 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_DETAIL, exposed one to one with no
         transformations. Sales order lines with product, quantity, price and discount applied. It is
         the finest grain sales fact table and the highest volume table in the schema.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Sales"
-        termNames:
-          - "Sales"
-        readme: |
-          # brz_adventure_works_sales__sales_order_detail
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__sales_order_detail
 
-          Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_DETAIL, exposed one to one with no transformations. Sales order lines with product, quantity, price and discount applied. It is the finest grain sales fact table and the highest volume table in the schema.
+            Bronze view over ADVENTURE_WORKS.SALES.SALES_ORDER_DETAIL, exposed one to one with no transformations. Sales order lines with product, quantity, price and discount applied. It is the finest grain sales fact table and the highest volume table in the schema.
 
-          **Layer:** bronze  
-          **Subject area:** Sales
+            **Layer:** bronze  
+            **Subject area:** Sales
 
-          | Column | Description |
-          | --- | --- |
-          | CARRIER_TRACKING_NUMBER | Carrier tracking number for the line. |
-          | LINE_TOTAL | Line total, computed in the source system as quantity times price net of discount. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | ORDER_QTY | Number of units ordered. |
-          | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
-          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
-          | SALES_ORDER_DETAIL_ID | PK. Unique identifier of the sales order line. |
-          | SALES_ORDER_ID | FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to. |
-          | SPECIAL_OFFER_ID | FK to SALES.SPECIAL_OFFER. Promotion applied. |
-          | UNIT_PRICE | Unit price applied on the line. |
-          | UNIT_PRICE_DISCOUNT | Discount applied to the unit price, as a decimal fraction. |
+            | Column | Description |
+            | --- | --- |
+            | CARRIER_TRACKING_NUMBER | Carrier tracking number for the line. |
+            | LINE_TOTAL | Line total, computed in the source system as quantity times price net of discount. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | ORDER_QTY | Number of units ordered. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product the record refers to. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SALES_ORDER_DETAIL_ID | PK. Unique identifier of the sales order line. |
+            | SALES_ORDER_ID | FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to. |
+            | SPECIAL_OFFER_ID | FK to SALES.SPECIAL_OFFER. Promotion applied. |
+            | UNIT_PRICE | Unit price applied on the line. |
+            | UNIT_PRICE_DISCOUNT | Discount applied to the unit price, as a decimal fraction. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: sales_order_id
         description: "FK to SALES.SALES_ORDER_HEADER. Sales order the record belongs to."

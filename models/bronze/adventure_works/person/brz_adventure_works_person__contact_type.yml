@@ -5,31 +5,32 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PERSON.CONTACT_TYPE, exposed one to one with no
         transformations. Lookup of contact types (Owner, Purchasing Manager, Sales Agent and so on).
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Person"
-        termNames:
-          - "Person"
-        readme: |
-          # brz_adventure_works_person__contact_type
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__contact_type
 
-          Bronze view over ADVENTURE_WORKS.PERSON.CONTACT_TYPE, exposed one to one with no transformations. Lookup of contact types (Owner, Purchasing Manager, Sales Agent and so on).
+            Bronze view over ADVENTURE_WORKS.PERSON.CONTACT_TYPE, exposed one to one with no transformations. Lookup of contact types (Owner, Purchasing Manager, Sales Agent and so on).
 
-          **Layer:** bronze  
-          **Subject area:** Person
+            **Layer:** bronze  
+            **Subject area:** Person
 
-          | Column | Description |
-          | --- | --- |
-          | CONTACT_TYPE_ID | PK. Unique identifier of the contact type. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME | Name of the contact type. |
+            | Column | Description |
+            | --- | --- |
+            | CONTACT_TYPE_ID | PK. Unique identifier of the contact type. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the contact type. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: contact_type_id
         description: "PK. Unique identifier of the contact type."

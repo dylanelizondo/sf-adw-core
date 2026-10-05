@@ -6,41 +6,42 @@ models:
         Bronze view over ADVENTURE_WORKS.PERSON.PERSON, exposed one to one with no transformations.
         Naming data for every person in the model: individual customers, employees and contacts.
         PERSON_TYPE states the role each person plays. Contains PII.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Person"
-        termNames:
-          - "Person"
-        readme: |
-          # brz_adventure_works_person__person
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__person
 
-          Bronze view over ADVENTURE_WORKS.PERSON.PERSON, exposed one to one with no transformations. Naming data for every person in the model: individual customers, employees and contacts. PERSON_TYPE states the role each person plays. Contains PII.
+            Bronze view over ADVENTURE_WORKS.PERSON.PERSON, exposed one to one with no transformations. Naming data for every person in the model: individual customers, employees and contacts. PERSON_TYPE states the role each person plays. Contains PII.
 
-          **Layer:** bronze  
-          **Subject area:** Person
+            **Layer:** bronze  
+            **Subject area:** Person
 
-          | Column | Description |
-          | --- | --- |
-          | ADDITIONAL_CONTACT_INFO | Additional contact information as XML, exactly as delivered by the source. |
-          | BUSINESS_ENTITY_ID | PK and FK to PERSON.BUSINESS_ENTITY. Identifies the person. |
-          | DEMOGRAPHICS | Demographic attributes of the person as XML, exactly as delivered by the source. |
-          | EMAIL_PROMOTION | Marketing preference: 0 = do not contact, 1 = AdventureWorks only, 2 = AdventureWorks and partners. |
-          | FIRST_NAME | Given name. Sensitive data (PII). |
-          | LAST_NAME | Family name. Sensitive data (PII). |
-          | MIDDLE_NAME | Middle name or initial. Sensitive data (PII). |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME_STYLE | 0 when the name follows Western order (first name first), 1 when it follows Eastern order. |
-          | PERSON_TYPE | Role of the person: SC (store contact), IN (individual customer), SP (sales person), EM (employee), VC (vendor contact), GC (general contact). |
-          | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
-          | SUFFIX | Name suffix (Jr., III and so on). |
-          | TITLE | Courtesy title (Mr., Ms. and so on). Null when not captured. |
+            | Column | Description |
+            | --- | --- |
+            | ADDITIONAL_CONTACT_INFO | Additional contact information as XML, exactly as delivered by the source. |
+            | BUSINESS_ENTITY_ID | PK and FK to PERSON.BUSINESS_ENTITY. Identifies the person. |
+            | DEMOGRAPHICS | Demographic attributes of the person as XML, exactly as delivered by the source. |
+            | EMAIL_PROMOTION | Marketing preference: 0 = do not contact, 1 = AdventureWorks only, 2 = AdventureWorks and partners. |
+            | FIRST_NAME | Given name. Sensitive data (PII). |
+            | LAST_NAME | Family name. Sensitive data (PII). |
+            | MIDDLE_NAME | Middle name or initial. Sensitive data (PII). |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME_STYLE | 0 when the name follows Western order (first name first), 1 when it follows Eastern order. |
+            | PERSON_TYPE | Role of the person: SC (store contact), IN (individual customer), SP (sales person), EM (employee), VC (vendor contact), GC (general contact). |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | SUFFIX | Name suffix (Jr., III and so on). |
+            | TITLE | Courtesy title (Mr., Ms. and so on). Null when not captured. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: business_entity_id
         description: "PK and FK to PERSON.BUSINESS_ENTITY. Identifies the person."

@@ -5,31 +5,32 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PERSON.COUNTRY_REGION, exposed one to one with no
         transformations. Lookup of countries and regions identified by ISO code.
-    meta:
-      atlan:
-        attributes:
-          ownerUsers: ["dylan.ea"]
-          ownerGroups: ["it_adventure_works"]
-          certificateStatus: DRAFT
-          certificateStatusMessage: "Synced from dbt."
-        domainName: "Person"
-        termNames:
-          - "Person"
-        readme: |
-          # brz_adventure_works_person__country_region
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__country_region
 
-          Bronze view over ADVENTURE_WORKS.PERSON.COUNTRY_REGION, exposed one to one with no transformations. Lookup of countries and regions identified by ISO code.
+            Bronze view over ADVENTURE_WORKS.PERSON.COUNTRY_REGION, exposed one to one with no transformations. Lookup of countries and regions identified by ISO code.
 
-          **Layer:** bronze  
-          **Subject area:** Person
+            **Layer:** bronze  
+            **Subject area:** Person
 
-          | Column | Description |
-          | --- | --- |
-          | COUNTRY_REGION_CODE | PK. ISO code of the country or region. |
-          | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
-          | NAME | Name of the country or region. |
+            | Column | Description |
+            | --- | --- |
+            | COUNTRY_REGION_CODE | PK. ISO code of the country or region. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the country or region. |
 
-          _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: country_region_code
         description: "PK. ISO code of the country or region."
