@@ -6,6 +6,38 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.BILL_OF_MATERIALS, exposed one to one with no
         transformations. Bill of materials: recursive relationship between an assembly and its
         components, with validity dates. A null PRODUCT_ASSEMBLY_ID marks the root of the structure.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__bill_of_materials
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.BILL_OF_MATERIALS, exposed one to one with no transformations. Bill of materials: recursive relationship between an assembly and its components, with validity dates. A null PRODUCT_ASSEMBLY_ID marks the root of the structure.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | BILL_OF_MATERIALS_ID | PK. Unique identifier of the bill of materials line. |
+            | BOMLEVEL | Depth of the component within the structure. |
+            | COMPONENT_ID | FK to PRODUCTION.PRODUCT. Child product consumed by the assembly. |
+            | END_DATE | Date the record stopped being effective. Null while it is still current. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | PER_ASSEMBLY_QTY | Quantity of the component required per assembly. |
+            | PRODUCT_ASSEMBLY_ID | FK to PRODUCTION.PRODUCT. Parent product (assembly). Null at the root of the structure. |
+            | START_DATE | Date the record became effective. |
+            | UNIT_MEASURE_CODE | FK to PRODUCTION.UNIT_MEASURE. Unit of measure code. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: bill_of_materials_id
         description: "PK. Unique identifier of the bill of materials line."

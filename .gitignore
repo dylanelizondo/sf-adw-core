@@ -4,3 +4,6 @@ target/
 dbt_packages/
 logs/
 dbt_internal_packages/
+scripts/.atlan_state.json
+*.pyc
+/scripts/*

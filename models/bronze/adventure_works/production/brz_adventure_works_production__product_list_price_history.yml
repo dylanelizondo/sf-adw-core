@@ -5,6 +5,34 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_LIST_PRICE_HISTORY, exposed one to one
         with no transformations. Historical list prices for products and their effective periods.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_list_price_history
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_LIST_PRICE_HISTORY, exposed one to one with no transformations. Historical list prices for products and their effective periods.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | END_DATE | Date and time when the list price stopped being effective. Null while the price remains current. |
+            | LIST_PRICE | List price of the product during the effective period. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+            | PRODUCT_ID | FK to PRODUCTION.PRODUCT. Product whose list price changed. |
+            | START_DATE | Date and time from which the list price became effective. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

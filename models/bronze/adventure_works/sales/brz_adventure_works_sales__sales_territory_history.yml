@@ -6,6 +6,35 @@ models:
         Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY_HISTORY, exposed one to one with no
         transformations. History of salesperson assignments to territory. Grain: salesperson +
         territory + start date.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Sales"
+          termNames:
+            - "Sales"
+          readme: |
+            # brz_adventure_works_sales__sales_territory_history
+
+            Bronze view over ADVENTURE_WORKS.SALES.SALES_TERRITORY_HISTORY, exposed one to one with no transformations. History of salesperson assignments to territory. Grain: salesperson + territory + start date.
+
+            **Layer:** bronze  
+            **Subject area:** Sales
+
+            | Column | Description |
+            | --- | --- |
+            | BUSINESS_ENTITY_ID | Part of the PK and FK to SALES.SALES_PERSON. Assigned salesperson. |
+            | END_DATE | Date the salesperson left the territory. Null for the current assignment. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | START_DATE | Part of the PK. Date the salesperson took over the territory. |
+            | TERRITORY_ID | FK to SALES.SALES_TERRITORY. Sales territory the record belongs to. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

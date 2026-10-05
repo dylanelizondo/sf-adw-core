@@ -6,6 +6,33 @@ models:
         Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_PRODUCT_DESCRIPTION_CULTURE,
         exposed one to one with no transformations. Bridge relating product models to translated
         product descriptions and their cultures.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Production"
+          termNames:
+            - "Production"
+          readme: |
+            # brz_adventure_works_production__product_model_product_description_culture
+
+            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_MODEL_PRODUCT_DESCRIPTION_CULTURE, exposed one to one with no transformations. Bridge relating product models to translated product descriptions and their cultures.
+
+            **Layer:** bronze  
+            **Subject area:** Production
+
+            | Column | Description |
+            | --- | --- |
+            | CULTURE_ID | FK to PRODUCTION.CULTURE. Language or culture of the product description. Does not join to the parent as loaded; see the note below. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. |
+            | PRODUCT_DESCRIPTION_ID | FK to PRODUCTION.PRODUCT_DESCRIPTION. Description associated with the product model. |
+            | PRODUCT_MODEL_ID | FK to PRODUCTION.PRODUCT_MODEL. Product model associated with the description. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     data_tests:
       - unique_combination_of_columns:
           arguments:

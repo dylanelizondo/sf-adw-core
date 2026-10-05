@@ -5,6 +5,37 @@ models:
     description: >
         Bronze view over ADVENTURE_WORKS.PERSON.STATE_PROVINCE, exposed one to one with no
         transformations. Lookup of states and provinces, tied to a country and to a sales territory.
+    config:
+      meta:
+        atlan:
+          attributes:
+            ownerUsers: ["dylan.ea"]
+            ownerGroups: ["it_adventure_works"]
+            certificateStatus: DRAFT
+            certificateStatusMessage: "Synced from dbt."
+          domainName: "Person"
+          termNames:
+            - "Person"
+          readme: |
+            # brz_adventure_works_person__state_province
+
+            Bronze view over ADVENTURE_WORKS.PERSON.STATE_PROVINCE, exposed one to one with no transformations. Lookup of states and provinces, tied to a country and to a sales territory.
+
+            **Layer:** bronze  
+            **Subject area:** Person
+
+            | Column | Description |
+            | --- | --- |
+            | COUNTRY_REGION_CODE | FK to PERSON.COUNTRY_REGION. ISO code of the country or region. |
+            | IS_ONLY_STATE_PROVINCE_FLAG | 1 when the country has no subdivisions and this is the placeholder row. |
+            | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
+            | NAME | Name of the state or province. |
+            | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
+            | STATE_PROVINCE_CODE | Short code of the state or province, unique within the country. |
+            | STATE_PROVINCE_ID | PK. Unique identifier of the state or province. |
+            | TERRITORY_ID | FK to SALES.SALES_TERRITORY. Sales territory the record belongs to. |
+
+            _Synced automatically from dbt — edit the source .yml file in sf-adw-core, not this README._
     columns:
       - name: state_province_id
         description: "PK. Unique identifier of the state or province."
