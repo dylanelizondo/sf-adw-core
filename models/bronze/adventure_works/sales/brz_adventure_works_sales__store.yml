@@ -3,8 +3,9 @@ version: 2
 models:
   - name: brz_adventure_works_sales__store
     description: >
-        Bronze view over ADVENTURE_WORKS.SALES.STORE, exposed one to one with no transformations.
-        Reseller stores that buy from AdventureWorks, with the salesperson who serves them.
+        Bronze view over ADVENTURE_WORKS.SALES.STORE. Reseller stores that buy from AdventureWorks,
+        with the salesperson who serves them. The demographics XML is shredded into one column per field;
+        every other column is exposed one to one with no transformations.
     config:
       meta:
         atlan:
@@ -19,15 +20,24 @@ models:
           readme: |
             # brz_adventure_works_sales__store
 
-            Bronze view over ADVENTURE_WORKS.SALES.STORE, exposed one to one with no transformations. Reseller stores that buy from AdventureWorks, with the salesperson who serves them.
+            Bronze view over ADVENTURE_WORKS.SALES.STORE. Reseller stores that buy from AdventureWorks, with the salesperson who serves them. The demographics XML is shredded into one column per field; every other column is exposed one to one with no transformations.
 
-            **Layer:** bronze  
+            **Layer:** bronze
             **Subject area:** Sales
 
             | Column | Description |
             | --- | --- |
             | BUSINESS_ENTITY_ID | PK and FK to PERSON.BUSINESS_ENTITY. Identifies the store. |
-            | DEMOGRAPHICS | Demographic attributes of the store as XML, exactly as delivered by the source. |
+            | DEMOGRAPHICS_ANNUAL_SALES | Annual sales reported by the store, in dollars. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_ANNUAL_REVENUE | Annual revenue reported by the store, in dollars. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_BANK_NAME | Name of the store's bank. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_BUSINESS_TYPE | Type of business, e.g. BM (Brick & Mortar), OS (Online Store), BR (Build and Repair). Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_YEAR_OPENED | Year the store first opened for business. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_SPECIALTY | Specialty area of the store, e.g. Mountain, Road, Touring. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_SQUARE_FEET | Floor space of the store, in square feet. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_BRAND_COUNT | Number of brands carried by the store. Arrives as text (e.g. "4+") and is never cast to a number. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_INTERNET_CONNECTION_TYPE | Type of Internet connection available at the store, e.g. DSL, T1, Cable. Shredded from the StoreSurvey demographics XML. |
+            | DEMOGRAPHICS_NUMBER_EMPLOYEES | Number of employees working at the store. Shredded from the StoreSurvey demographics XML. |
             | MODIFIED_DATE | Timestamp of the last change to the record in the source system. Arrives as text from the source. |
             | NAME | Name of the reseller store. |
             | ROWGUID | Globally unique identifier (GUID) used by the source system for row-level replication. |
@@ -53,8 +63,26 @@ models:
               arguments:
                 to: ref('brz_adventure_works_sales__sales_person')
                 field: business_entity_id
-      - name: demographics
-        description: "Demographic attributes of the store as XML, exactly as delivered by the source."
+      - name: demographics_annual_sales
+        description: "Annual sales reported by the store, in dollars. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_annual_revenue
+        description: "Annual revenue reported by the store, in dollars. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_bank_name
+        description: "Name of the store's bank. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_business_type
+        description: "Type of business, e.g. BM (Brick & Mortar), OS (Online Store), BR (Build and Repair). Shredded from the StoreSurvey demographics XML."
+      - name: demographics_year_opened
+        description: "Year the store first opened for business. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_specialty
+        description: "Specialty area of the store, e.g. Mountain, Road, Touring. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_square_feet
+        description: "Floor space of the store, in square feet. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_brand_count
+        description: "Number of brands carried by the store. Arrives as text (e.g. \"4+\") and is never cast to a number. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_internet_connection_type
+        description: "Type of Internet connection available at the store, e.g. DSL, T1, Cable. Shredded from the StoreSurvey demographics XML."
+      - name: demographics_number_employees
+        description: "Number of employees working at the store. Shredded from the StoreSurvey demographics XML."
       - name: rowguid
         description: "Globally unique identifier (GUID) used by the source system for row-level replication."
       - name: modified_date
