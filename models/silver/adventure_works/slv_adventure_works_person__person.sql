@@ -1,4 +1,4 @@
-{{ config(tags = ['person', 'pii']) }}
+{{ config(tags = ['person', 'pii'], alias="adw_person_person") }}
 
 -- slv_adventure_works_person__person
 -- ONE row per person. 19,972 = Person.Person. THIS ROW COUNT IS THE CONTRACT.
