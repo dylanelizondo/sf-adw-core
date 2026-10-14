@@ -1,4 +1,4 @@
--- Coverage test. dim_date is meant to span 1 January of last year through
+-- Coverage test. gld_dim_date is meant to span 1 January of last year through
 -- 31 December five years out, relative to CURRENT_DATE.
 --
 -- This guards the GENERATOR(ROWCOUNT) in the model: the WHERE clause there caps
@@ -12,7 +12,7 @@ WITH expected AS (
 actual AS (
     SELECT MIN(date_key) AS first_date
          , MAX(date_key) AS last_date
-    FROM {{ ref('dim_date') }}
+    FROM {{ ref('gld_dim_date') }}
 )
 SELECT a.first_date AS actual_first_date
      , e.first_date AS expected_first_date

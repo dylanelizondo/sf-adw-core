@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: dim_date
+  - name: gld_dim_date
     description: >
         Gold conformed date dimension, generated in SQL rather than sourced from ADVENTURE_WORKS.
         One row per calendar day, from 1 January of last year through 31 December five years out
@@ -27,7 +27,7 @@ models:
       # join elimination, and BI tools and Snowflake semantic views read it to infer
       # the fact-to-dimension join.
       post_hook:
-        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_dim_date PRIMARY KEY (date_key)"
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_gld_dim_date PRIMARY KEY (date_key)"
 
       meta:
         atlan:
@@ -38,7 +38,7 @@ models:
             certificateStatusMessage: "Synced from dbt."
           domainName: "Adventure Works"
           readme: |
-            # dim_date
+            # gld_dim_date
 
             Gold conformed date dimension, generated in SQL rather than sourced from ADVENTURE_WORKS. One row per calendar day, from 1 January of last year through 31 December five years out (recomputed on every run, relative to CURRENT_DATE). Grain is one day; join any fact table on its date column to date_key. Supplies calendar, ISO week and quarter attributes so downstream models never derive their own date logic.
 
