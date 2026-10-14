@@ -3,9 +3,27 @@ version: 2
 models:
   - name: brz_adventure_works_production__product_document
     description: >
-        Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no
+        Bronze table over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no
         transformations. Bridge relating products to their associated technical documents.
     config:
+      # PRIMARY KEY over product_id + document_node, applied as DDL after the table is
+      # built. A `constraints:` block is only emitted when the model also declares
+      # `contract: enforced: true`; without a contract dbt parses it and ignores it, so
+      # the key would never reach Snowflake. This hook takes its place.
+      #
+      # Safe to re-run: the model is materialized as a table, so every run issues
+      # CREATE OR REPLACE TABLE and the new table arrives with no constraints. If this
+      # model is ever switched to incremental, the table survives between runs and the
+      # second run will fail on a duplicate constraint name.
+      #
+      # Snowflake records the key as NOT ENFORCED and never validates it on write, so
+      # it does not replace the unique and not_null tests on product_id + document_node
+      # -- those are what actually catch duplicates. What it does buy: the optimizer
+      # can use it for join elimination, and BI tools and Snowflake semantic views read
+      # it to infer the fact-to-dimension join.
+      post_hook:
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_brz_adventure_works_production__product_document PRIMARY KEY (product_id, document_node)"
+
       meta:
         atlan:
           attributes:
@@ -19,7 +37,7 @@ models:
           readme: |
             # brz_adventure_works_production__product_document
 
-            Bronze view over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no transformations. Bridge relating products to their associated technical documents.
+            Bronze table over ADVENTURE_WORKS.PRODUCTION.PRODUCT_DOCUMENT, exposed one to one with no transformations. Bridge relating products to their associated technical documents.
 
             **Layer:** bronze  
             **Subject area:** Production

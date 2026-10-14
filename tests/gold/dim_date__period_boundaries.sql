@@ -11,7 +11,7 @@ SELECT date_key
      , last_day_of_quarter
      , last_day_of_year
      , last_day_of_week
-FROM {{ ref('dim_date') }}
+FROM {{ ref('gld_dim_date') }}
 WHERE first_day_of_quarter <> DATE_FROM_PARTS(YEAR(date_key), (quarter - 1) * 3 + 1, 1)
    OR last_day_of_month    <> DATEADD(DAY, -1, DATEADD(MONTH,   1, DATE_TRUNC('MONTH',   date_key)))
    OR last_day_of_quarter  <> DATEADD(DAY, -1, DATEADD(QUARTER, 1, DATE_TRUNC('QUARTER', date_key)))

@@ -1,4 +1,4 @@
--- Grain test. dim_date must hold exactly one row for every day between its own
+-- Grain test. gld_dim_date must hold exactly one row for every day between its own
 -- first and last date: no gaps, no duplicates.
 --
 -- If the row count equals the span in days AND every date_key is distinct, then
@@ -9,7 +9,7 @@ WITH summary AS (
          , MAX(date_key)             AS last_date
          , COUNT(*)                  AS row_count
          , COUNT(DISTINCT date_key)  AS distinct_dates
-    FROM {{ ref('dim_date') }}
+    FROM {{ ref('gld_dim_date') }}
 )
 SELECT first_date
      , last_date

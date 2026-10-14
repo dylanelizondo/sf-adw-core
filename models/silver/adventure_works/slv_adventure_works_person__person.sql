@@ -1,6 +1,6 @@
-{{ config(tags = ['person', 'pii']) }}
+{{ config(tags = ['person', 'pii'], alias="adw_person_person") }}
 
--- slv_person
+-- slv_adventure_works_person__person
 -- ONE row per person. 19,972 = Person.Person. THIS ROW COUNT IS THE CONTRACT.
 --
 -- Conformed identity spine of the AdventureWorks party model. person_key is minted
@@ -10,7 +10,7 @@
 -- Five blocks, in order: keys | identity | role flags | resolved contact | survey.
 -- Blocks 4 and 5 are where all the fan-out and parse risk lives. They sit inside
 -- the table every team's keys come from, so the row-count assertion in
--- tests/assert_slv_person_row_count_matches_source.sql must never be allowed to fail.
+-- tests/assert_slv_adventure_works_person__person_row_count_matches_source.sql must never be allowed to fail.
 
 with person as (
 
