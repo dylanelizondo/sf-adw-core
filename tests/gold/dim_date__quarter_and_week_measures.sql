@@ -12,7 +12,7 @@ SELECT date_key
      , week_of_quarter
      , dayofmonth
      , week_of_month
-FROM {{ ref('dim_date') }}
+FROM {{ ref('gld_dim_date') }}
 WHERE day_of_quarter  <> DATEDIFF(DAY, first_day_of_quarter, date_key) + 1
    OR days_in_quarter <> DATEDIFF(DAY, first_day_of_quarter, last_day_of_quarter) + 1
    OR week_of_quarter <> CEIL(day_of_quarter / 7)

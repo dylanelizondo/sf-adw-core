@@ -1,5 +1,6 @@
--- Bronze passthrough view. One column per source column, no transformations.
+-- Bronze passthrough table. One column per source column, no transformations.
 -- Any renaming, casting or deduplication belongs in the silver layer.
+{{ config(alias="adw_person_email_address") }}
 
 select
     business_entity_id,

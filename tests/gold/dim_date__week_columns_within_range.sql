@@ -16,7 +16,7 @@ SELECT date_key
      , yearofweek
      , yearofweekiso
      , dayofweek
-FROM {{ ref('dim_date') }}
+FROM {{ ref('gld_dim_date') }}
 WHERE week          <> weekofyear
    OR week           NOT BETWEEN 1 AND 54
    OR weekiso        NOT BETWEEN 1 AND 53

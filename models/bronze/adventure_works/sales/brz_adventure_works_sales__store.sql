@@ -1,5 +1,13 @@
--- Bronze passthrough view. One column per source column, no transformations.
+-- Bronze passthrough table. One column per source column, no transformations.
 -- Any renaming, casting or deduplication belongs in the silver layer.
+-- pK en bronze
+-- cast en bronze
+-- type 1: incremental
+-- type 2: snapshot
+-- slv_dim_table_join.sql/yml
+-- slv_dim_store_join_person
+-- gld_dim_table.sql/yml
+{{ config(alias="adw_sales_store") }}
 
 select
     business_entity_id,
@@ -21,5 +29,5 @@ select
     try_to_number(xmlget(parse_xml(demographics), 'NumberEmployees' ):"$"::varchar) as demographics_number_employees,
 
     rowguid,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_sales', 'store') }}
