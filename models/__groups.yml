@@ -9,7 +9,7 @@ groups:
   - name: it_adventure_works
     description: >
       Models built on the ADVENTURE_WORKS source database, across every layer of the
-      project: bronze passthrough views, silver cleaned and conformed tables, and the
+      project: bronze passthrough tables, silver cleaned and conformed views, and the
       gold dimensional models exposed for consumption. Owned by the Data Platform
       team; downstream projects consume the public models through dbt Mesh.
     owner:

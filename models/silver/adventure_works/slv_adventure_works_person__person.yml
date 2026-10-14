@@ -1,7 +1,7 @@
 version: 2
 
 models:
-  - name: slv_person
+  - name: slv_adventure_works_person__person
     description: >
         Conformed identity spine of the AdventureWorks party model. One row per person
         (19,972, equal to PERSON.PERSON). Mints the person_key that every team's gold person
@@ -24,7 +24,7 @@ models:
       group: it_adventure_works
 
       # PRIMARY KEY over person_key, applied as DDL after the table is built.
-      # Same reasoning as dim_date: a `constraints:` block is only emitted when the model
+      # Same reasoning as gld_dim_date: a `constraints:` block is only emitted when the model
       # declares `contract: enforced: true`, so without one the key never reaches Snowflake.
       #
       # Safe to re-run only because this is materialized as a table -- every run issues
@@ -36,7 +36,7 @@ models:
       # duplicate person. What it buys: optimizer join elimination, and BI tools and
       # semantic views reading it to infer the fact-to-dimension join.
       post_hook:
-        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_slv_person PRIMARY KEY (person_key)"
+        - "ALTER TABLE {{ this }} ADD CONSTRAINT pk_slv_adventure_works_person__person PRIMARY KEY (person_key)"
 
       meta:
         atlan:
@@ -49,7 +49,7 @@ models:
           termNames:
             - "Slv Person"
           readme: |
-            # slv_person
+            # slv_adventure_works_person__person
 
             Conformed identity spine of the AdventureWorks party model. One row per person (19,972, equal to PERSON.PERSON). Mints the person_key that every team's gold person dimension inherits, settles the one agreed name form, states in four flags why each person exists in the database, resolves one primary email, phone and address per person, and shreds the IndividualSurvey XML for the retail customers who answered it. Teams project this into their own vocabulary in gold; nobody recomputes person_key. CONTAINS PII (names, email, phone) AND SENSITIVE SELF-REPORTED ATTRIBUTES (survey_gender, survey_marital_status, survey_age_band, survey_yearly_income). Gold models should select only the blocks they need; the survey_* columns are candidates for Snowflake column masking policies.
 

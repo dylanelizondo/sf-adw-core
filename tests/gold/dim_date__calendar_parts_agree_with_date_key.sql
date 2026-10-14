@@ -15,7 +15,7 @@ SELECT date_key
      , quarter
      , dayofyear
      , dayofweekiso
-FROM {{ ref('dim_date') }}
+FROM {{ ref('gld_dim_date') }}
 WHERE year         <> YEAR(date_key)
    OR month        <> MONTH(date_key)
    OR day          <> DAY(date_key)
