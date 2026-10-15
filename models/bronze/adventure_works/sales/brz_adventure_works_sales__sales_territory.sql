@@ -12,5 +12,5 @@ select
     cost_ytd,
     cost_last_year,
     rowguid,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_sales', 'sales_territory') }}

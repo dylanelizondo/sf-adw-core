@@ -5,5 +5,5 @@
 select
     business_entity_id,
     rowguid,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_person', 'business_entity') }}

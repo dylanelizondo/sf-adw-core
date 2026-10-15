@@ -13,5 +13,5 @@ select
     max_order_qty,
     on_order_qty,
     unit_measure_code,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_purchasing', 'product_vendor') }}

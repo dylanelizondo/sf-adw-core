@@ -6,5 +6,5 @@ select
     job_candidate_id,
     business_entity_id,
     resume,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_human_resources', 'job_candidate') }}

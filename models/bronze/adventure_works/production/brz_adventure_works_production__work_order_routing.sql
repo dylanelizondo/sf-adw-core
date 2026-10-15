@@ -14,5 +14,5 @@ select
     actual_resource_hrs,
     planned_cost,
     actual_cost,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_production', 'work_order_routing') }}

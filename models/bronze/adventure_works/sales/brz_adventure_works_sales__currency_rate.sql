@@ -9,5 +9,5 @@ select
     to_currency_code,
     average_rate,
     end_of_day_rate,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_sales', 'currency_rate') }}

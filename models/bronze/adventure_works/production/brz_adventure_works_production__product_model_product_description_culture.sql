@@ -6,5 +6,5 @@ select
     product_model_id,
     product_description_id,
     culture_id,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_production', 'product_model_product_description_culture') }}

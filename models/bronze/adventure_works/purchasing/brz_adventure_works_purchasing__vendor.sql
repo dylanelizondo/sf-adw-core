@@ -10,5 +10,5 @@ select
     preferred_vendor_status,
     active_flag,
     purchasing_web_service_url,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_purchasing', 'vendor') }}

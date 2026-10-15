@@ -6,5 +6,5 @@ select
     product_id,
     product_photo_id,
     primary,
-    modified_date
+    try_to_timestamp(modified_date) as modified_date
 from {{ source('adventure_works_production', 'product_product_photo') }}
