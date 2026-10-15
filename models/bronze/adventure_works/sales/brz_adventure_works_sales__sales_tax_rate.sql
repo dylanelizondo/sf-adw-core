@@ -9,5 +9,5 @@ select
     tax_rate,
     name,
     rowguid,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_sales', 'sales_tax_rate') }}

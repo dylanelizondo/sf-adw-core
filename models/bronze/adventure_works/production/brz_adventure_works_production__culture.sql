@@ -5,5 +5,5 @@
 select
     culture_id,
     name,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'culture') }}

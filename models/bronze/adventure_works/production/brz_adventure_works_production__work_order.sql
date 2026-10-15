@@ -12,5 +12,5 @@ select
     end_date,
     due_date,
     scrap_reason_id,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'work_order') }}

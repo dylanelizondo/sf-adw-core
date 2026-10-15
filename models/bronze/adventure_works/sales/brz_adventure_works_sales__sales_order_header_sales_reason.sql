@@ -5,5 +5,5 @@
 select
     sales_order_id,
     sales_reason_id,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_sales', 'sales_order_header_sales_reason') }}

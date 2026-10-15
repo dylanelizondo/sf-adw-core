@@ -8,5 +8,5 @@ select
     ship_base,
     ship_rate,
     rowguid,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_purchasing', 'ship_method') }}

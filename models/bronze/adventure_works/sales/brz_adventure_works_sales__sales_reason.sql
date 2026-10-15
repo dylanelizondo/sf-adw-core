@@ -10,5 +10,5 @@ select
     salesreasonid,
     name,
     reasontype,
-    try_to_timestamp(modifieddate) as modifieddate
+    try_to_timestamp(modifieddate::varchar) as modifieddate
 from {{ source('adventure_works_sales', 'sales_reason') }}

@@ -7,5 +7,5 @@ select
     rate_change_date,
     rate,
     pay_frequency,
-    try_to_timestamp(modified_date) as modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_human_resources', 'employee_pay_history') }}
