@@ -7,5 +7,5 @@ select
     name,
     cost_rate,
     availability,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'location') }}

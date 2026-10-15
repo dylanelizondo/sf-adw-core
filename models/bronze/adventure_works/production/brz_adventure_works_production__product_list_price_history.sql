@@ -7,5 +7,5 @@ select
     start_date,
     end_date,
     list_price,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'product_list_price_history') }}

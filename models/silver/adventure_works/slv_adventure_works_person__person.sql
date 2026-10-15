@@ -297,7 +297,7 @@ select
     try_to_boolean(s.home_owner_flag)          as survey_is_home_owner,
 
     -- audit -------------------------------------------------------------
-    try_to_timestamp(p.modified_date) as person_modified_date
+    try_to_timestamp(p.modified_date::varchar) as person_modified_date
 
 from person as p
 left join employee         as e  on p.business_entity_id = e.business_entity_id
