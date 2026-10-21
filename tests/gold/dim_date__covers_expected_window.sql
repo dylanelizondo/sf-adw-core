@@ -6,7 +6,7 @@
 -- the dimension would come up short with no error. Returns a diagnostic row when
 -- the actual bounds do not match the intended ones.
 WITH expected AS (
-    SELECT DATE_FROM_PARTS(YEAR(CURRENT_DATE) - 1, 1, 1)                   AS first_date
+    SELECT DATE_FROM_PARTS(YEAR(CURRENT_DATE) - 5, 1, 1)                   AS first_date
          , DATEADD(DAY, -1, DATE_FROM_PARTS(YEAR(CURRENT_DATE) + 5, 1, 1)) AS last_date
 ),
 actual AS (
