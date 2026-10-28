@@ -8,5 +8,5 @@ select
     catalog_description,
     instructions,
     rowguid,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'product_model') }}

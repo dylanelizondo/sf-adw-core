@@ -5,5 +5,5 @@
 select
     contact_type_id,
     name,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_person', 'contact_type') }}

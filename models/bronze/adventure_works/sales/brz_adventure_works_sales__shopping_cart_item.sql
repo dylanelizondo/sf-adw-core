@@ -8,5 +8,5 @@ select
     quantity,
     product_id,
     date_created,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_sales', 'shopping_cart_item') }}
