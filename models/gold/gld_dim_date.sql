@@ -1,3 +1,9 @@
+{{
+    config(
+        alias="dim_date"
+    )
+}}
+
 WITH bounds AS (
     SELECT DATE_FROM_PARTS(YEAR(CURRENT_DATE) - 5, 1, 1)                  AS start_date
          , DATEADD(DAY, -1, DATE_FROM_PARTS(YEAR(CURRENT_DATE) + 5, 1, 1)) AS end_date
