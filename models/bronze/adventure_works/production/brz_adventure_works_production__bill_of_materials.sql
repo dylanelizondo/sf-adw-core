@@ -11,5 +11,5 @@ select
     unit_measure_code,
     bomlevel,
     per_assembly_qty,
-    modified_date
+    try_to_timestamp(modified_date::varchar) as modified_date
 from {{ source('adventure_works_production', 'bill_of_materials') }}
