@@ -5,9 +5,9 @@
 select
     sales_order_id,
     revision_number,
-    try_to_date(order_date),
-    try_to_date(due_date),
-    try_to_date(ship_date),
+    try_to_date(order_date) as order_date,
+    try_to_date(due_date) as due_date,
+    try_to_date(ship_date) as ship_date,
     status,
     online_order_flag,
     sales_order_number,
